@@ -8,6 +8,7 @@
 #include "TextObject.h"
 #include "GameObject.h"
 #include "Scene.h"
+#include "Time.h"
 
 using namespace std;
 
@@ -95,11 +96,17 @@ void dae::Minigin::Run()
 
 		// todo: this update loop could use some work.
 		bool doContinue = true;
+		auto lastTime = std::chrono::high_resolution_clock::now();
 		while (doContinue)
 		{
+			const auto currentTime = std::chrono::high_resolution_clock::now();
+			const float deltaTime = std::chrono::duration<float>(currentTime - lastTime).count();
+			Time::SetDeltaTime(deltaTime);
+
 			doContinue = input.ProcessInput();
 			sceneManager.Update();
 			renderer.Render();
+			lastTime = currentTime;
 		}
 	}
 
