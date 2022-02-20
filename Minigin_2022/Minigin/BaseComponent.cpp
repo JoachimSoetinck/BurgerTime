@@ -10,13 +10,10 @@ dae::BaseComponent::BaseComponent()
 
 dae::BaseComponent::~BaseComponent()
 {
-	delete m_pGameObject;
-	m_pGameObject = nullptr;
+
 }
 
-
-
-GameObject * dae::BaseComponent::GetGameObject() const
+GameObject* dae::BaseComponent::GetGameObject() const
 {
 	return m_pGameObject;
 }

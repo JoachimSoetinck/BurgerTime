@@ -19,7 +19,7 @@ namespace dae {
 		GameObject* GetGameObject() const;
 
 	private:
-		
+		friend class GameObject;
 		//every component needs an Object to attach to
 		GameObject* m_pGameObject{};
 	};
