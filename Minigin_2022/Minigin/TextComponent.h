@@ -8,6 +8,7 @@ namespace dae {
 	class TextComponent final: public  BaseComponent
 	{
 	public:
+		TextComponent();
 		TextComponent(const std::string& text, std::shared_ptr<Font> font);
 		TextComponent(const std::string& text, std::shared_ptr<Font> font, const SDL_Color& color);
 		virtual ~TextComponent() = default;

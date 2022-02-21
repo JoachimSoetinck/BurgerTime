@@ -41,6 +41,7 @@ void dae::GameObject::AddComponent(std::shared_ptr<BaseComponent> component)
 void dae::GameObject::AddChild(std::shared_ptr<GameObject> child)
 {
 	m_Children.push_back(child);
+	
 }
 
 void dae::GameObject::RemoveChild(std::shared_ptr<GameObject> child)

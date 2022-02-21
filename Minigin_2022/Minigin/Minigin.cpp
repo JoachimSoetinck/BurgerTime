@@ -11,6 +11,7 @@
 #include "TransformComponent.h"
 #include "RenderComponent.h"
 #include "TextComponent.h"
+#include "FPSComponent.h"
 
 using namespace std;
 
@@ -79,6 +80,17 @@ void dae::Minigin::LoadGame() const
 	text->AddComponent(std::make_shared<TextComponent>("Programming 4 Assignment", font));
 	scene.Add(text);
 
+	auto fpsFont = ResourceManager::GetInstance().LoadFont("Lingua.otf", 20);
+	auto fpsObject = std::make_shared<GameObject>();
+	fpsObject->AddComponent(std::make_shared<TransformComponent>());
+	fpsObject->AddComponent(std::make_shared<FPSComponent>());
+	fpsObject->AddComponent(std::make_shared<TextComponent>("0 fps", fpsFont, SDL_Color{ 255, 255, 0 }));
+	
+
+	scene.Add(fpsObject);
+
+	
+
 
 }
 
@@ -114,7 +126,6 @@ void dae::Minigin::Run()
 			const float deltaTime = std::chrono::duration<float>(currentTime - lastTime).count();
 			Time::SetDeltaTime(deltaTime);
 			
-
 			doContinue = input.ProcessInput();
 			sceneManager.Update();
 			renderer.Render();

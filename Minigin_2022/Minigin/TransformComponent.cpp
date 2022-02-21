@@ -3,6 +3,7 @@
 
 dae::TransformComponent::TransformComponent()
 {
+
 }
 
 dae::TransformComponent::TransformComponent(const glm::vec3& pos):

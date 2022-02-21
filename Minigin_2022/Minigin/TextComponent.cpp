@@ -6,10 +6,16 @@
 #include "GameObject.h"
 
 using namespace dae;
+dae::TextComponent::TextComponent() : m_Text("")
+, m_Font(nullptr)
+, m_NeedsUpdate(true)
+, m_Color{ 255,255,255 }
+{
+}
 dae::TextComponent::TextComponent(const std::string& text, std::shared_ptr<Font> font):
 	m_Text{text},
 	m_Font{font},
-	m_Color{255,255,255},
+	m_Color{ 255,255,255 },
 	m_NeedsUpdate{true}
 {
 
@@ -27,8 +33,7 @@ void dae::TextComponent::Update()
 {
 	if (m_NeedsUpdate)
 	{
-		const SDL_Color color = { 255,255,255 };
-		const auto surf = TTF_RenderText_Blended(m_Font->GetFont(), m_Text.c_str(), color);
+		const auto surf = TTF_RenderText_Blended(m_Font->GetFont(), m_Text.c_str(), m_Color);
 		if (surf == nullptr)
 		{
 			throw std::runtime_error(std::string("Render text failed: ") + SDL_GetError());

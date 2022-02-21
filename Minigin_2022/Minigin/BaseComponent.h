@@ -20,8 +20,6 @@ namespace dae {
 		void SetGameObject(GameObject* object);
 
 	protected:
-
-
 		//every component needs an Object to attach to
 		GameObject* m_pGameObject{};
 	};
