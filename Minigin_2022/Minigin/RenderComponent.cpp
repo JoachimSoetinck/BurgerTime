@@ -16,12 +16,11 @@ void dae::RenderComponent::Update()
 
 void dae::RenderComponent::Render() const
 {
-		const auto pos = GetGameObject()->GetComponent<TransformComponent>()->GetPosition();
-		Renderer::GetInstance().RenderTexture(*mTexture, pos.x, pos.y);
-	
+		const auto pos = m_pGameObject->GetComponent<TransformComponent>()->GetPosition();
+		Renderer::GetInstance().RenderTexture(*m_Texture, pos.x, pos.y);
 }
 
 void dae::RenderComponent::SetTexture(const std::string& file)
 {
-	mTexture = ResourceManager::GetInstance().LoadTexture(file);
+	m_Texture = ResourceManager::GetInstance().LoadTexture(file);
 }

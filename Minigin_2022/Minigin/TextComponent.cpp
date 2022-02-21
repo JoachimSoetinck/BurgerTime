@@ -49,7 +49,7 @@ void dae::TextComponent::Render() const
 	if (m_TextTexture != nullptr)
 	{
 		//getting the Transform component out of the gameobjects
-		const auto pos = GetGameObject()->GetComponent<TransformComponent>()->GetPosition();
+		const auto pos = m_pGameObject->GetComponent<TransformComponent>()->GetPosition();
 		Renderer::GetInstance().RenderTexture(*m_TextTexture, pos.x, pos.y);
 	}
 }

@@ -7,25 +7,43 @@ dae::GameObject::~GameObject() = default;
 
 void dae::GameObject::Update()
 {
-	for (auto object : m_Components)
+	for (auto component : m_Components)
 	{
-		object->Update();
+		component->Update();
+	}
+
+	for (auto child : m_Children)
+	{
+		child->Update();
 	}
 }
 
 void dae::GameObject::Render() const
 {
-	for (auto object : m_Components)
+	for (auto component : m_Components)
 	{
-		object->Render();
+		component->Render();
 	}
 
-
+	for (auto child : m_Children)
+	{
+		child->Render();
+	}
 }
 
 
 void dae::GameObject::AddComponent(std::shared_ptr<BaseComponent> component)
 {
 	m_Components.push_back(component);
-	component->m_pGameObject = this;
+	component->SetGameObject(this);
+}
+
+void dae::GameObject::AddChild(std::shared_ptr<GameObject> child)
+{
+	m_Children.push_back(child);
+}
+
+void dae::GameObject::RemoveChild(std::shared_ptr<GameObject> child)
+{
+	
 }

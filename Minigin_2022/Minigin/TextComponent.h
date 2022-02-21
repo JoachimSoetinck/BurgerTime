@@ -5,7 +5,7 @@
 
 namespace dae {
 
-	class TextComponent: public  BaseComponent
+	class TextComponent final: public  BaseComponent
 	{
 	public:
 		TextComponent(const std::string& text, std::shared_ptr<Font> font);

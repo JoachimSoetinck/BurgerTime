@@ -10,6 +10,14 @@ dae::TransformComponent::TransformComponent(const glm::vec3& pos):
 {
 }
 
+void dae::TransformComponent::Update()
+{
+}
+
+void dae::TransformComponent::Render() const
+{
+}
+
 const glm::vec3& dae::TransformComponent::GetPosition() const
 {
     return m_Position;
@@ -25,4 +33,5 @@ void dae::TransformComponent::SetPosition(float x, float y, float z)
 void dae::TransformComponent::SetPosition(const glm::vec3& newPos)
 {
     m_Position = newPos;
+    
 }

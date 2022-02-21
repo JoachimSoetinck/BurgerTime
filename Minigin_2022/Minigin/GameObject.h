@@ -7,15 +7,23 @@ namespace dae
 {
 	class Texture2D;
 
-	// todo: this should become final.
 	class GameObject final : public SceneObject
 	{
 	public:
 		void Update() override;
 		void Render() const override;
 
+		GameObject() = default;
+		virtual ~GameObject();
+		GameObject(const GameObject& other) = delete;
+		GameObject(GameObject&& other) = delete;
+		GameObject& operator=(const GameObject& other) = delete;
+		GameObject& operator=(GameObject&& other) = delete;
+
+
 		void AddComponent(std::shared_ptr<BaseComponent> component);
-		
+		void RemoveComponent(std::shared_ptr<BaseComponent> component);
+
 		template<class T>
 		std::shared_ptr<T> GetComponent()
 		{
@@ -33,18 +41,13 @@ namespace dae
 			return nullptr;
 		}
 
-		GameObject() = default;
-		virtual ~GameObject();
-		GameObject(const GameObject& other) = delete;
-		GameObject(GameObject&& other) = delete;
-		GameObject& operator=(const GameObject& other) = delete;
-		GameObject& operator=(GameObject&& other) = delete;
+		void AddChild(std::shared_ptr<GameObject> child);
+		void RemoveChild(std::shared_ptr<GameObject> child);
 
 	private:
-		Transform m_Transform;
-
-
-
 		std::vector<std::shared_ptr<BaseComponent>> m_Components;
+
+		
+		std::vector<std::shared_ptr<GameObject>> m_Children;
 	};
 }

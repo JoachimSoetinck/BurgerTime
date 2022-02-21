@@ -2,15 +2,15 @@
 #include "BaseComponent.h"
 
 namespace dae {
-	class TransformComponent : public BaseComponent
+	class TransformComponent final : public BaseComponent
 	{
 	public:
 		TransformComponent();
 		TransformComponent(const glm::vec3& pos);
 		virtual ~TransformComponent() = default;
 
-		virtual void Update() override {}
-		virtual void Render() const override {}
+		virtual void Update() override;
+		virtual void Render() const override;
 
 		const glm::vec3& GetPosition() const;
 		void SetPosition(float x, float y, float z);

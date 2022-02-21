@@ -17,9 +17,11 @@ namespace dae {
 		virtual void Render() const = 0;
 
 		GameObject* GetGameObject() const;
+		void SetGameObject(GameObject* object);
 
-	private:
-		friend class GameObject;
+	protected:
+
+
 		//every component needs an Object to attach to
 		GameObject* m_pGameObject{};
 	};

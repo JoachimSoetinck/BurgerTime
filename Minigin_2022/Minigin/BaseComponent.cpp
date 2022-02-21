@@ -10,10 +10,14 @@ dae::BaseComponent::BaseComponent()
 
 dae::BaseComponent::~BaseComponent()
 {
-
 }
 
 GameObject* dae::BaseComponent::GetGameObject() const
 {
 	return m_pGameObject;
+}
+
+void dae::BaseComponent::SetGameObject(GameObject* object)
+{
+	m_pGameObject = object;
 }
