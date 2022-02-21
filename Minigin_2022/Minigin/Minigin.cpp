@@ -30,8 +30,8 @@ void PrintSDLVersion()
 void dae::Minigin::Initialize()
 {
 	PrintSDLVersion();
-	
-	if (SDL_Init(SDL_INIT_VIDEO) != 0) 
+
+	if (SDL_Init(SDL_INIT_VIDEO) != 0)
 	{
 		throw std::runtime_error(std::string("SDL_Init Error: ") + SDL_GetError());
 	}
@@ -44,7 +44,7 @@ void dae::Minigin::Initialize()
 		480,
 		SDL_WINDOW_OPENGL
 	);
-	if (m_Window == nullptr) 
+	if (m_Window == nullptr)
 	{
 		throw std::runtime_error(std::string("SDL_CreateWindow Error: ") + SDL_GetError());
 	}
@@ -59,24 +59,25 @@ void dae::Minigin::LoadGame() const
 {
 	auto& scene = SceneManager::GetInstance().CreateScene("Demo");
 
-	auto go = std::make_shared<GameObject>();
-	go = std::make_shared<GameObject>();
-	go->AddComponent(std::make_shared<TransformComponent>());
-	go->AddComponent(std::make_shared<RenderComponent>("background.jpg"));
-	scene.Add(go);
 
+	auto backGround = std::make_shared<GameObject>();
+	backGround = std::make_shared<GameObject>();
+	backGround->AddComponent(std::make_shared<TransformComponent>());
+	backGround->AddComponent(std::make_shared<RenderComponent>("background.jpg"));
+	scene.Add(backGround);
 
-	go = std::make_shared<GameObject>();
-	go->AddComponent(std::make_shared<TransformComponent>(glm::vec3{ 216, 180, 0 }));
-	go->AddComponent(std::make_shared<RenderComponent>("logo.png"));
-	scene.Add(go);
+	auto logo = std::make_shared<GameObject>();
+	logo = std::make_shared<GameObject>();
+	logo->AddComponent(std::make_shared<TransformComponent>(glm::vec3{ 216, 180, 0 }));
+	logo->AddComponent(std::make_shared<RenderComponent>("logo.png"));
+	scene.Add(logo);
 
-
+	auto text = std::make_shared<GameObject>();
 	auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
-	go = std::make_shared<GameObject>();
-	go->AddComponent(std::make_shared<TransformComponent>(glm::vec3{ 80, 20, 0 }));
-	go->AddComponent(std::make_shared<TextComponent>("Programming 4 Assignment", font));
-	scene.Add(go);
+	text = std::make_shared<GameObject>();
+	text->AddComponent(std::make_shared<TransformComponent>(glm::vec3{ 80, 20, 0 }));
+	text->AddComponent(std::make_shared<TextComponent>("Programming 4 Assignment", font));
+	scene.Add(text);
 
 
 }
@@ -106,22 +107,16 @@ void dae::Minigin::Run()
 		// todo: this update loop could use some work.
 		bool doContinue = true;
 		auto lastTime = std::chrono::high_resolution_clock::now();
-		double lag = 0.0;
 
 		while (doContinue)
 		{
 			const auto currentTime = std::chrono::high_resolution_clock::now();
 			const float deltaTime = std::chrono::duration<float>(currentTime - lastTime).count();
 			Time::SetDeltaTime(deltaTime);
-			lag += Time::GetDeltaTime();
+			
 
 			doContinue = input.ProcessInput();
-			while (lag >= MsPerFrame)
-			{
-				sceneManager.Update();
-				lag -= MsPerFrame;
-			}
-			
+			sceneManager.Update();
 			renderer.Render();
 			lastTime = currentTime;
 		}
