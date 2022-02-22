@@ -80,18 +80,21 @@ void dae::Minigin::LoadGame() const
 	text->AddComponent(std::make_shared<TextComponent>("Programming 4 Assignment", font));
 	scene.Add(text);
 
-	auto fpsFont = ResourceManager::GetInstance().LoadFont("Lingua.otf", 20);
+
 	auto fpsObject = std::make_shared<GameObject>();
+	auto fpsFont = ResourceManager::GetInstance().LoadFont("Lingua.otf", 20);
 	fpsObject->AddComponent(std::make_shared<TransformComponent>());
-	fpsObject->AddComponent(std::make_shared<FPSComponent>());
 	fpsObject->AddComponent(std::make_shared<TextComponent>("0 fps", fpsFont, SDL_Color{ 255, 255, 0 }));
+	fpsObject->AddComponent(std::make_shared<FPSComponent>());
 	
 
 	scene.Add(fpsObject);
+}
 
-	
-
-
+void dae::Minigin::FixedUpdate(float fixedTimeStep)
+{
+	//Nothing in it because no use of Rigid bodies, Forces
+	fixedTimeStep;
 }
 
 void dae::Minigin::Cleanup()
@@ -116,17 +119,24 @@ void dae::Minigin::Run()
 		auto& sceneManager = SceneManager::GetInstance();
 		auto& input = InputManager::GetInstance();
 
-		// todo: this update loop could use some work.
+	
 		bool doContinue = true;
 		auto lastTime = std::chrono::high_resolution_clock::now();
 
+		float lag = 0.0f;
 		while (doContinue)
 		{
 			const auto currentTime = std::chrono::high_resolution_clock::now();
 			const float deltaTime = std::chrono::duration<float>(currentTime - lastTime).count();
-			Time::SetDeltaTime(deltaTime);
-			
+			lag += deltaTime;
 			doContinue = input.ProcessInput();
+			while (lag >= m_FixedTimeStep)
+			{
+				FixedUpdate(m_FixedTimeStep);
+				lag -= m_FixedTimeStep;
+			}
+
+			Time::SetDeltaTime(deltaTime);
 			sceneManager.Update();
 			renderer.Render();
 			lastTime = currentTime;

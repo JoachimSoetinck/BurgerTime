@@ -34,17 +34,19 @@ void dae::GameObject::Render() const
 
 void dae::GameObject::AddComponent(std::shared_ptr<BaseComponent> component)
 {
+
 	m_Components.push_back(component);
 	component->SetGameObject(this);
+
 }
 
 void dae::GameObject::AddChild(std::shared_ptr<GameObject> child)
 {
 	m_Children.push_back(child);
-	
+
 }
 
 void dae::GameObject::RemoveChild(std::shared_ptr<GameObject> child)
 {
-	
+
 }

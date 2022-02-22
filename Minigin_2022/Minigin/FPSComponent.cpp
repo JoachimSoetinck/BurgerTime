@@ -9,9 +9,9 @@
 
 dae::FPSComponent::FPSComponent()
 {
-	auto fpsFont = ResourceManager::GetInstance().LoadFont("Lingua.otf", 25);
-	
+
 }
+
 
 void dae::FPSComponent::Update()
 {
@@ -23,10 +23,10 @@ void dae::FPSComponent::Update()
 		m_pGameObject->GetComponent<TextComponent>()->SetText(m_text);
 		m_AccumulatedTime = 0;
 	}
-		
+
 }
 
 void dae::FPSComponent::Render() const
 {
-	
+
 }

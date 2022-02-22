@@ -1,4 +1,22 @@
-﻿  TextComponent.cpp
+﻿  MiniginPCH.cpp
+  BaseComponent.cpp
+  Font.cpp
+  FPSComponent.cpp
+  GameObject.cpp
+  InputManager.cpp
+  Main.cpp
+  Minigin.cpp
+  RenderComponent.cpp
+  Renderer.cpp
+  ResourceManager.cpp
+  Scene.cpp
+  SceneManager.cpp
+  TextComponent.cpp
+  Texture2D.cpp
+  Time.cpp
+  Transform.cpp
+  TransformComponent.cpp
+  Generating Code...
   Minigin.vcxproj -> C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\x64\Debug\Minigin.exe
   C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\SDL2\lib\x64\SDL2.dll
   1 File(s) copied
