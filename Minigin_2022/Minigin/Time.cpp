@@ -9,7 +9,7 @@ namespace dae
 
 	std::chrono::high_resolution_clock::time_point dae::Time::GetTime()
 	{
-		return std::chrono::high_resolution_clock::now();;
+		return std::chrono::high_resolution_clock::now();
 	}
 
 	float dae::Time::GetDeltaTime()

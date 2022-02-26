@@ -7,8 +7,8 @@ namespace dae {
 	class FPSComponent final : public BaseComponent
 	{
 	public:
-		FPSComponent();
-		~FPSComponent() = default;
+		FPSComponent(std::shared_ptr<GameObject> object);
+		virtual ~FPSComponent() override = default;
 		FPSComponent(const FPSComponent& other) = delete;
 		FPSComponent(BaseComponent&& other) noexcept = delete;
 		FPSComponent& operator=(const FPSComponent& other) = delete;
@@ -19,8 +19,7 @@ namespace dae {
 
 	private:
 		std::shared_ptr<TextComponent> m_Text;
-		std::shared_ptr<TransformComponent> m_Transform;
-
+		
 		float m_AccumulatedTime = 0;
 		std::string m_text;
 	};

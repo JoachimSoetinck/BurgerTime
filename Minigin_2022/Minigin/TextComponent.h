@@ -2,16 +2,18 @@
 #include "BaseComponent.h"
 #include "Font.h"
 #include "Texture2D.h"
+#include "GameObject.h"
+#include <memory>
 
 namespace dae {
 
 	class TextComponent final: public  BaseComponent
 	{
 	public:
-		TextComponent();
-		TextComponent(const std::string& text, std::shared_ptr<Font> font);
-		TextComponent(const std::string& text, std::shared_ptr<Font> font, const SDL_Color& color);
-		virtual ~TextComponent() = default;
+		TextComponent(std::shared_ptr<GameObject> object);
+		TextComponent(const std::string& text, std::shared_ptr<Font> font, std::shared_ptr<GameObject> object);
+		TextComponent(const std::string& text, std::shared_ptr<Font> font, const SDL_Color& color, std::shared_ptr<GameObject> object);
+		virtual ~TextComponent() override = default;
 
 		TextComponent(const TextComponent & other) = delete;
 		TextComponent(TextComponent && other) noexcept = delete;
@@ -30,6 +32,8 @@ namespace dae {
 		std::shared_ptr<Font> m_Font;
 		SDL_Color m_Color;
 		std::shared_ptr<Texture2D> m_TextTexture;
+
+		
 
 	};
 }

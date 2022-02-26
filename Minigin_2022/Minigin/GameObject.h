@@ -7,14 +7,14 @@ namespace dae
 {
 	class Texture2D;
 
-	class GameObject final : public SceneObject
+	class GameObject final
 	{
 	public:
-		void Update() override;
-		void Render() const override;
+		void Update() ;
+		void Render() const ;
 
 		GameObject() = default;
-		virtual ~GameObject();
+	    ~GameObject();
 		GameObject(const GameObject& other) = delete;
 		GameObject(GameObject&& other) = delete;
 		GameObject& operator=(const GameObject& other) = delete;
@@ -34,7 +34,7 @@ namespace dae
 				//if there is a component and
 				if (typeid(*component) == type)
 				{
-					return std::dynamic_pointer_cast<T>(component);
+					return std::static_pointer_cast<T>(component);
 				}
 			}
 

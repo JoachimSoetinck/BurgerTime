@@ -77,25 +77,19 @@ void dae::Minigin::LoadGame() const
 	auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
 	text = std::make_shared<GameObject>();
 	text->AddComponent(std::make_shared<TransformComponent>(glm::vec3{ 80, 20, 0 }));
-	text->AddComponent(std::make_shared<TextComponent>("Programming 4 Assignment", font));
+	text->AddComponent(std::make_shared<TextComponent>("Programming 4 Assignment", font, text));
 	scene.Add(text);
 
 
 	auto fpsObject = std::make_shared<GameObject>();
 	auto fpsFont = ResourceManager::GetInstance().LoadFont("Lingua.otf", 20);
 	fpsObject->AddComponent(std::make_shared<TransformComponent>());
-	fpsObject->AddComponent(std::make_shared<TextComponent>("0 fps", fpsFont, SDL_Color{ 255, 255, 0 }));
-	fpsObject->AddComponent(std::make_shared<FPSComponent>());
+	fpsObject->AddComponent(std::make_shared<TextComponent>("0 fps", fpsFont, SDL_Color{ 255, 255, 0 }, fpsObject));
+	fpsObject->AddComponent(std::make_shared<FPSComponent>(fpsObject));
 	
-
 	scene.Add(fpsObject);
 }
 
-void dae::Minigin::FixedUpdate(float fixedTimeStep)
-{
-	//Nothing in it because no use of Rigid bodies, Forces
-	fixedTimeStep;
-}
 
 void dae::Minigin::Cleanup()
 {
@@ -122,24 +116,31 @@ void dae::Minigin::Run()
 	
 		bool doContinue = true;
 		auto lastTime = std::chrono::high_resolution_clock::now();
-
 		float lag = 0.0f;
+
 		while (doContinue)
 		{
 			const auto currentTime = std::chrono::high_resolution_clock::now();
 			const float deltaTime = std::chrono::duration<float>(currentTime - lastTime).count();
+			Time::GetInstance().SetDeltaTime(deltaTime);
+
 			lag += deltaTime;
+			lastTime = currentTime;
+
 			doContinue = input.ProcessInput();
+			
 			while (lag >= m_FixedTimeStep)
 			{
-				FixedUpdate(m_FixedTimeStep);
+				sceneManager.FixedUpdate(m_FixedTimeStep);
 				lag -= m_FixedTimeStep;
 			}
 
-			Time::SetDeltaTime(deltaTime);
 			sceneManager.Update();
 			renderer.Render();
-			lastTime = currentTime;
+
+			//cap fps
+			const auto sleepTime = currentTime + std::chrono::milliseconds(MsPerFrame/1000) - std::chrono::high_resolution_clock::now();
+			this_thread::sleep_for(sleepTime);
 		}
 	}
 

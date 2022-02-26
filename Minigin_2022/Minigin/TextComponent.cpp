@@ -6,13 +6,13 @@
 #include "GameObject.h"
 
 using namespace dae;
-dae::TextComponent::TextComponent() : m_Text("")
+dae::TextComponent::TextComponent(std::shared_ptr<GameObject> object) : m_Text("")
 , m_Font(nullptr)
 , m_NeedsUpdate(true)
 , m_Color{ 255,255,255 }
 {
 }
-dae::TextComponent::TextComponent(const std::string& text, std::shared_ptr<Font> font):
+dae::TextComponent::TextComponent(const std::string& text, std::shared_ptr<Font> font, std::shared_ptr<GameObject> object):
 	m_Text{text},
 	m_Font{font},
 	m_Color{ 255,255,255 },
@@ -21,7 +21,7 @@ dae::TextComponent::TextComponent(const std::string& text, std::shared_ptr<Font>
 
 }
 
-dae::TextComponent::TextComponent(const std::string& text, std::shared_ptr<Font> font, const SDL_Color& color):
+dae::TextComponent::TextComponent(const std::string& text, std::shared_ptr<Font> font, const SDL_Color& color, std::shared_ptr<GameObject> object):
 	m_Text{ text },
 	m_Font{ font },
 	m_Color{ color },

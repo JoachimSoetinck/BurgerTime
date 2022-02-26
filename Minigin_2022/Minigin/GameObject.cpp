@@ -7,12 +7,12 @@ dae::GameObject::~GameObject() = default;
 
 void dae::GameObject::Update()
 {
-	for (auto component : m_Components)
+	for (auto& component : m_Components)
 	{
 		component->Update();
 	}
 
-	for (auto child : m_Children)
+	for (auto& child : m_Children)
 	{
 		child->Update();
 	}

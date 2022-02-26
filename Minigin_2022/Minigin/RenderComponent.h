@@ -1,16 +1,20 @@
 #pragma once
 #include "BaseComponent.h"
 #include "Texture2D.h"
+#include "GameObject.h"
+#include <memory.h>
+
 
 namespace dae
 {
+	
 	class RenderComponent final : public BaseComponent
 	{
 	public:
 		//Render Needs file to load
 		RenderComponent(const std::string& file);
 		
-		virtual ~RenderComponent() = default;
+	   virtual ~RenderComponent() override = default;
 		RenderComponent(const RenderComponent& other) = delete;
 		RenderComponent(RenderComponent&& other) noexcept = delete;
 		RenderComponent& operator=(const RenderComponent& other) = delete;

@@ -7,7 +7,7 @@ namespace dae {
 	public:
 		TransformComponent();
 		TransformComponent(const glm::vec3& pos);
-		virtual ~TransformComponent() = default;
+		virtual ~TransformComponent() override = default;
 
 		virtual void Update() override;
 		virtual void Render() const override;
