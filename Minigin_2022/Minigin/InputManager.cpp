@@ -1,6 +1,8 @@
 #include "MiniginPCH.h"
 #include "InputManager.h"
 
+#include "backends/imgui_impl_sdl.h"
+
 bool dae::InputManager::ProcessInput()
 {
 	ZeroMemory(&m_CurrentState, sizeof(XINPUT_STATE));
@@ -11,6 +13,8 @@ bool dae::InputManager::ProcessInput()
 		if (e.type == SDL_QUIT) {
 			return false;
 		}
+
+		ImGui_ImplSDL2_ProcessEvent(&e);
 		if (e.type == SDL_KEYDOWN) {
 			
 		}
@@ -18,7 +22,6 @@ bool dae::InputManager::ProcessInput()
 			
 		}
 	}
-
 	return true;
 }
 
