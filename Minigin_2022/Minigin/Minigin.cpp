@@ -64,13 +64,13 @@ void dae::Minigin::LoadGame() const
 	auto backGround = std::make_shared<GameObject>();
 	backGround = std::make_shared<GameObject>();
 	backGround->AddComponent(std::make_shared<TransformComponent>());
-	backGround->AddComponent(std::make_shared<RenderComponent>("background.jpg"));
+	backGround->AddComponent(std::make_shared<RenderComponent>("background.jpg", backGround));
 	scene.Add(backGround);
 
 	auto logo = std::make_shared<GameObject>();
 	logo = std::make_shared<GameObject>();
 	logo->AddComponent(std::make_shared<TransformComponent>(glm::vec3{ 216, 180, 0 }));
-	logo->AddComponent(std::make_shared<RenderComponent>("logo.png"));
+	logo->AddComponent(std::make_shared<RenderComponent>("logo.png", logo));
 	scene.Add(logo);
 
 	auto text = std::make_shared<GameObject>();

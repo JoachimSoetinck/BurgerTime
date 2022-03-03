@@ -1,13 +1,22 @@
 #include "MiniginPCH.h"
 #include "Renderer.h"
 
-
+#include <chrono>
 #include "imgui.h"
+
 #include "SceneManager.h"
 #include "Texture2D.h"
 #include "backends/imgui_impl_sdl.h"
 
 #include "backends/imgui_impl_opengl2.h"
+#include "TrashTheCache.h"
+
+constexpr size_t buf_size = 512;
+static float x_data[buf_size];
+
+static float y_data1[buf_size];
+static float y_data2[buf_size];
+
 
 int GetOpenGLDriverIndex()
 {
@@ -37,6 +46,10 @@ void dae::Renderer::Init(SDL_Window * window)
 	ImGui_ImplSDL2_InitForOpenGL(window, SDL_GL_GetCurrentContext());
 	ImGui_ImplOpenGL2_Init();
 
+	
+	m_trash = new TrashTheCache();
+	
+
 }
 
 void dae::Renderer::Render() const
@@ -50,8 +63,19 @@ void dae::Renderer::Render() const
 	ImGui_ImplOpenGL2_NewFrame();
 	ImGui_ImplSDL2_NewFrame(m_Window);
 	ImGui::NewFrame();
-	ImGui::ShowDemoWindow();
+	//ImGui::ShowDemoWindow();
+	ImGui::Begin("exercise 1");
+
+	m_trash->DrawGrid();
+	ImGui::End();
+
+	ImGui::Begin("exercise 2");
+
+	m_trash->DrawGrid2();
+	ImGui::End();
+
 	ImGui::Render();
+
 	ImGui_ImplOpenGL2_RenderDrawData(ImGui::GetDrawData());
 
 	SDL_RenderPresent(m_Renderer);
@@ -67,6 +91,10 @@ void dae::Renderer::Destroy()
 		SDL_DestroyRenderer(m_Renderer);
 		m_Renderer = nullptr;
 	}
+
+	delete m_trash;
+	m_trash = nullptr;
+	
 }
 
 void dae::Renderer::RenderTexture(const Texture2D& texture, const float x, const float y) const
@@ -87,3 +115,7 @@ void dae::Renderer::RenderTexture(const Texture2D& texture, const float x, const
 	dst.h = static_cast<int>(height);
 	SDL_RenderCopy(GetSDLRenderer(), texture.GetSDLTexture(), nullptr, &dst);
 }
+
+
+
+

@@ -6,6 +6,7 @@
 using namespace dae;
 dae::BaseComponent::BaseComponent()
 {
+	
 }
 
 dae::BaseComponent::~BaseComponent()

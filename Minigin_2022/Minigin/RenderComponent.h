@@ -4,6 +4,8 @@
 #include "GameObject.h"
 #include <memory.h>
 
+#include "TransformComponent.h"
+
 
 namespace dae
 {
@@ -12,7 +14,7 @@ namespace dae
 	{
 	public:
 		//Render Needs file to load
-		RenderComponent(const std::string& file);
+		RenderComponent(const std::string& file,  std::shared_ptr<GameObject> object);
 		
 	   virtual ~RenderComponent() override = default;
 		RenderComponent(const RenderComponent& other) = delete;
@@ -27,6 +29,7 @@ namespace dae
 
 	private:
 		std::shared_ptr<Texture2D> m_Texture;
+		std::shared_ptr<TransformComponent> m_TransformComponent;
 	};
 }
 
