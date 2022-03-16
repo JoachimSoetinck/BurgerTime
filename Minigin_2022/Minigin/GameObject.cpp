@@ -2,6 +2,13 @@
 #include "GameObject.h"
 #include "ResourceManager.h"
 #include "Renderer.h"
+#include "TransformComponent.h"
+
+dae::GameObject::GameObject()
+{
+	const auto transformComponent = std::make_shared<TransformComponent>();
+	m_Components.push_back(transformComponent);
+}
 
 dae::GameObject::~GameObject() = default;
 

@@ -13,7 +13,7 @@ namespace dae
 		void Update() ;
 		void Render() const ;
 
-		GameObject() = default;
+		GameObject();
 	    ~GameObject();
 		GameObject(const GameObject& other) = delete;
 		GameObject(GameObject&& other) = delete;

@@ -5,6 +5,8 @@
 #include "GameObject.h"
 #include <memory>
 
+#include "TransformComponent.h"
+
 namespace dae {
 
 	class TextComponent final: public  BaseComponent
@@ -33,7 +35,7 @@ namespace dae {
 		SDL_Color m_Color;
 		std::shared_ptr<Texture2D> m_TextTexture;
 
-		
+		std::shared_ptr<TransformComponent> m_TransformComponent;
 
 	};
 }

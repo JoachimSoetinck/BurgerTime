@@ -1,0 +1,5 @@
+﻿  TrashTheCache.cpp
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\Minigin\TrashTheCache.cpp(98,22): error C2220: the following warning is treated as an error
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\Minigin\TrashTheCache.cpp(98,22): warning C4018: '<': signed/unsigned mismatch
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\Minigin\TrashTheCache.cpp(140,21): warning C4018: '<': signed/unsigned mismatch
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\Minigin\TrashTheCache.cpp(178,21): warning C4018: '<': signed/unsigned mismatch

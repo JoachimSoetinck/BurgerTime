@@ -63,27 +63,25 @@ void dae::Minigin::LoadGame() const
 
 	auto backGround = std::make_shared<GameObject>();
 	backGround = std::make_shared<GameObject>();
-	backGround->AddComponent(std::make_shared<TransformComponent>());
 	backGround->AddComponent(std::make_shared<RenderComponent>("background.jpg", backGround));
 	scene.Add(backGround);
 
 	auto logo = std::make_shared<GameObject>();
 	logo = std::make_shared<GameObject>();
-	logo->AddComponent(std::make_shared<TransformComponent>(glm::vec3{ 216, 180, 0 }));
+	logo->GetComponent<TransformComponent>()->SetPosition(glm::vec3{ 216, 180, 0 });
 	logo->AddComponent(std::make_shared<RenderComponent>("logo.png", logo));
 	scene.Add(logo);
 
 	auto text = std::make_shared<GameObject>();
 	auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
 	text = std::make_shared<GameObject>();
-	text->AddComponent(std::make_shared<TransformComponent>(glm::vec3{ 80, 20, 0 }));
+	text-> GetComponent<TransformComponent>()->SetPosition(glm::vec3{ 80, 20, 0 });
 	text->AddComponent(std::make_shared<TextComponent>("Programming 4 Assignment", font, text));
 	scene.Add(text);
 
 
 	auto fpsObject = std::make_shared<GameObject>();
 	auto fpsFont = ResourceManager::GetInstance().LoadFont("Lingua.otf", 20);
-	fpsObject->AddComponent(std::make_shared<TransformComponent>());
 	fpsObject->AddComponent(std::make_shared<TextComponent>("0 fps", fpsFont, SDL_Color{ 255, 255, 0 }, fpsObject));
 	fpsObject->AddComponent(std::make_shared<FPSComponent>(fpsObject));
 	

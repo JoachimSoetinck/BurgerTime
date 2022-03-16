@@ -9,7 +9,7 @@
 #include "backends/imgui_impl_sdl.h"
 
 #include "backends/imgui_impl_opengl2.h"
-#include "TrashTheCache.h"
+
 
 constexpr size_t buf_size = 512;
 static float x_data[buf_size];
@@ -47,7 +47,7 @@ void dae::Renderer::Init(SDL_Window * window)
 	ImGui_ImplOpenGL2_Init();
 
 	
-	m_trash = new TrashTheCache();
+
 	
 
 }
@@ -64,15 +64,7 @@ void dae::Renderer::Render() const
 	ImGui_ImplSDL2_NewFrame(m_Window);
 	ImGui::NewFrame();
 	//ImGui::ShowDemoWindow();
-	ImGui::Begin("exercise 1");
 
-	m_trash->DrawGrid();
-	ImGui::End();
-
-	ImGui::Begin("exercise 2");
-
-	m_trash->DrawGrid2();
-	ImGui::End();
 
 	ImGui::Render();
 
@@ -92,8 +84,7 @@ void dae::Renderer::Destroy()
 		m_Renderer = nullptr;
 	}
 
-	delete m_trash;
-	m_trash = nullptr;
+	
 	
 }
 

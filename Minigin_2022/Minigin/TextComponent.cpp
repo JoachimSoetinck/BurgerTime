@@ -11,6 +11,8 @@ dae::TextComponent::TextComponent(std::shared_ptr<GameObject> object) : m_Text("
 , m_NeedsUpdate(true)
 , m_Color{ 255,255,255 }
 {
+	m_pGameObject = object.get();
+	m_TransformComponent = m_pGameObject->GetComponent<TransformComponent>();
 }
 dae::TextComponent::TextComponent(const std::string& text, std::shared_ptr<Font> font, std::shared_ptr<GameObject> object):
 	m_Text{text},
@@ -18,7 +20,8 @@ dae::TextComponent::TextComponent(const std::string& text, std::shared_ptr<Font>
 	m_Color{ 255,255,255 },
 	m_NeedsUpdate{true}
 {
-
+	m_pGameObject = object.get();
+	m_TransformComponent = m_pGameObject->GetComponent<TransformComponent>();
 }
 
 dae::TextComponent::TextComponent(const std::string& text, std::shared_ptr<Font> font, const SDL_Color& color, std::shared_ptr<GameObject> object):
@@ -27,6 +30,8 @@ dae::TextComponent::TextComponent(const std::string& text, std::shared_ptr<Font>
 	m_Color{ color },
 	m_NeedsUpdate{true}
 {
+	m_pGameObject = object.get();
+	m_TransformComponent = m_pGameObject->GetComponent<TransformComponent>();
 }
 
 void dae::TextComponent::Update()
@@ -54,7 +59,7 @@ void dae::TextComponent::Render() const
 	if (m_TextTexture != nullptr)
 	{
 		//getting the Transform component out of the gameobjects
-		const auto pos = m_pGameObject->GetComponent<TransformComponent>()->GetPosition();
+		const auto pos = m_TransformComponent->GetPosition();
 		Renderer::GetInstance().RenderTexture(*m_TextTexture, pos.x, pos.y);
 	}
 }
