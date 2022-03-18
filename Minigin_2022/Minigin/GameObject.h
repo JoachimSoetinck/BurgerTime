@@ -44,9 +44,12 @@ namespace dae
 		void AddChild(std::shared_ptr<GameObject> child);
 		void RemoveChild(std::shared_ptr<GameObject> child);
 
+		GameObject* GetParent() const;
+		void SetParent(GameObject* parent) ;
+
 	private:
 		std::vector<std::shared_ptr<BaseComponent>> m_Components;
-		GameObject* m_Parent;
+		GameObject* m_Parent{};
 		
 		
 		std::vector<std::shared_ptr<GameObject>> m_Children;

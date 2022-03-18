@@ -4,8 +4,9 @@
 #include "Renderer.h"
 #include "TransformComponent.h"
 
-dae::GameObject::GameObject()
+dae::GameObject::GameObject() : m_Parent(this)
 {
+	
 	const auto transformComponent = std::make_shared<TransformComponent>();
 	m_Components.push_back(transformComponent);
 }
@@ -50,10 +51,25 @@ void dae::GameObject::AddComponent(std::shared_ptr<BaseComponent> component)
 void dae::GameObject::AddChild(std::shared_ptr<GameObject> child)
 {
 	m_Children.push_back(child);
-
+	child->SetParent(this);
 }
 
 void dae::GameObject::RemoveChild(std::shared_ptr<GameObject> child)
 {
+
+}
+
+dae::GameObject* dae::GameObject::GetParent() const
+{
+	
+	return  m_Parent;
+
+	
+}
+
+void dae::GameObject::SetParent(GameObject* parent) 
+{
+
+	m_Parent = parent;
 
 }

@@ -68,6 +68,7 @@ void dae::Minigin::LoadGame() const
 
 	auto logo = std::make_shared<GameObject>();
 	logo = std::make_shared<GameObject>();
+
 	logo->GetComponent<TransformComponent>()->SetPosition(glm::vec3{ 216, 180, 0 });
 	logo->AddComponent(std::make_shared<RenderComponent>("logo.png", logo));
 	scene.Add(logo);
@@ -111,7 +112,12 @@ void dae::Minigin::Run()
 		auto& sceneManager = SceneManager::GetInstance();
 		auto& input = InputManager::GetInstance();
 
-	
+
+		input.AddCommand(ControllerButton::ButtonA, new FartCommand());
+		input.AddCommand(ControllerButton::ButtonB, new DuckCommand());
+		input.AddCommand(ControllerButton::ButtonY, new JumpCommand());
+		input.AddCommand(ControllerButton::ButtonX, new FireCommand());
+
 		bool doContinue = true;
 		auto lastTime = std::chrono::high_resolution_clock::now();
 		float lag = 0.0f;
