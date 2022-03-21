@@ -1,6 +1,8 @@
 #include "MiniginPCH.h"
 #include "Minigin.h"
 #include <thread>
+
+
 #include "InputManager.h"
 #include "SceneManager.h"
 #include "Renderer.h"
@@ -12,6 +14,9 @@
 #include "RenderComponent.h"
 #include "TextComponent.h"
 #include "FPSComponent.h"
+#include "PeterPepperComponent.h"
+#include "Command.h"
+#include "LivesComponent.h"
 
 using namespace std;
 
@@ -85,7 +90,24 @@ void dae::Minigin::LoadGame() const
 	auto fpsFont = ResourceManager::GetInstance().LoadFont("Lingua.otf", 20);
 	fpsObject->AddComponent(std::make_shared<TextComponent>("0 fps", fpsFont, SDL_Color{ 255, 255, 0 }, fpsObject));
 	fpsObject->AddComponent(std::make_shared<FPSComponent>(fpsObject));
+
+
+	auto peterPepper = std::make_shared<GameObject>();
+	auto player = std::make_shared<PeterPepperComponent>(peterPepper);
+
+	peterPepper->AddComponent(player);
+	peterPepper->GetComponent<TransformComponent>()->SetPosition(glm::vec3{ 20, 450, 0 });;
 	
+	peterPepper->AddComponent(std::make_shared<TextComponent>("Lives:", fpsFont, SDL_Color{ 255, 255, 0 }, peterPepper));
+	peterPepper->AddComponent(std::make_shared<LivesComponent>(peterPepper));
+
+	scene.Add(peterPepper);
+
+	
+	
+	//InputManager::GetInstance().AddCommand(ControllerButton::ButtonY, new JumpCommand());
+	//InputManager::GetInstance().AddCommand(ControllerButton::ButtonX, new FireCommand());
+
 	scene.Add(fpsObject);
 }
 
@@ -113,10 +135,7 @@ void dae::Minigin::Run()
 		auto& input = InputManager::GetInstance();
 
 
-		input.AddCommand(ControllerButton::ButtonA, new FartCommand());
-		input.AddCommand(ControllerButton::ButtonB, new DuckCommand());
-		input.AddCommand(ControllerButton::ButtonY, new JumpCommand());
-		input.AddCommand(ControllerButton::ButtonX, new FireCommand());
+	
 
 		bool doContinue = true;
 		auto lastTime = std::chrono::high_resolution_clock::now();

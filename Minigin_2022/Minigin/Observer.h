@@ -1,4 +1,5 @@
 #pragma once
+#include "Enums.h"
 #include "GameObject.h"
 
 namespace dae
@@ -13,7 +14,7 @@ namespace dae
 		Observer& operator=(const Observer& other) = delete;
 		Observer& operator=(Observer&& other) noexcept = delete;
 
-		virtual void OnNotify(GameObject* pGameObject, int event) = 0;
+		virtual void OnNotify(const GameObject& pGameObject, Event event) = 0;
 	};
 }
 

@@ -1,6 +1,6 @@
 #pragma once
 #include "Singleton.h"
-#include "TrashTheCache.h"
+
 
 namespace dae
 {
@@ -27,7 +27,7 @@ namespace dae
 		void SetBackgroundColor(const SDL_Color& color) { m_clearColor = color; }
 		
 	private:
-		TrashTheCache* m_trash{};
+		
 	};
 }
 

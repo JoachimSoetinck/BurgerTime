@@ -25,7 +25,7 @@ namespace dae
 		void RemoveComponent(std::shared_ptr<BaseComponent> component);
 
 		template<class T>
-		std::shared_ptr<T> GetComponent()
+		std::shared_ptr<T> GetComponent() const
 		{
 			const type_info& type = typeid(T);
 			//checking all components 
