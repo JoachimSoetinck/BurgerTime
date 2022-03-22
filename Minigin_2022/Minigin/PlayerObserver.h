@@ -11,7 +11,6 @@ namespace dae
 	public:
 		void OnNotify(const dae::GameObject& entity, Event event) override;
 
-		int GetLives() const ;
 	};
 }
 

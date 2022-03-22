@@ -88,6 +88,7 @@ dae::InputManager::~InputManager()
 	{
 		if (pair.second != nullptr)
 		{
+			delete pair.second->command;
 			delete pair.second;
 		}
 	}
@@ -137,9 +138,13 @@ bool dae::InputManager::IsDown(ControllerButton button, int player) const
 	return pImpl->IsDown(button, player);
 }
 
-void dae::InputManager::AddCommand(ControllerButton button, Command* command)
+void dae::InputManager::AddCommand(ControllerButton button, Command* command, std::shared_ptr<dae::GameObject>  actor)
 {
-	m_pCommands.insert({ button, command });
+	CommandWithActor* command_with_actor = new CommandWithActor();
+	command_with_actor->actor = actor;
+	command_with_actor->command = command;
+
+	m_pCommands.insert({ button, command_with_actor });
 }
 
 void dae::InputManager::RemoveCommand(ControllerButton)
@@ -153,9 +158,9 @@ void dae::InputManager::Update()
 	{
 		for (auto pair : m_pCommands)
 		{
-			if (IsPressed(pair.first, i))
+			if (pImpl->IsPressed(pair.first, i))
 			{
-				pair.second->Execute();
+				pair.second->command->Execute(pair.second->actor);
 			}
 		}
 	}

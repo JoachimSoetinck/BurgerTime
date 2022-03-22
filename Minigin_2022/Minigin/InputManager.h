@@ -28,6 +28,13 @@ namespace dae
 
 	};
 
+	struct CommandWithActor
+	{
+		std::shared_ptr<dae::GameObject> actor{};
+		Command* command{};
+		
+	};
+
 
 	class InputManager final : public Singleton<InputManager>
 	{
@@ -42,13 +49,13 @@ namespace dae
 		bool IsUp(ControllerButton button, int playerIndex) const;
 		bool IsDown(ControllerButton button, int playerIndex) const;
 
-		void AddCommand(ControllerButton button, Command* command);
+		void AddCommand(ControllerButton button,  Command* command, std::shared_ptr<dae::GameObject>);
 		void RemoveCommand(ControllerButton button);
 		void Update();
 	private:
 		XINPUT_STATE m_CurrentState{};
 
-		std::map<ControllerButton, Command*> m_pCommands;
+		std::map<ControllerButton, CommandWithActor*> m_pCommands;
 	};
 
 }

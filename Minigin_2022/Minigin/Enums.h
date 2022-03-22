@@ -2,7 +2,7 @@
 
 enum class Event
 {
-	Default,
+	GivePoints,
 	Killed,
 	Died
 	

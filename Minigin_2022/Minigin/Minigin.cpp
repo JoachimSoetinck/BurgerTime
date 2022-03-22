@@ -17,6 +17,8 @@
 #include "PeterPepperComponent.h"
 #include "Command.h"
 #include "LivesComponent.h"
+#include "ScoreComponent.h"
+
 
 using namespace std;
 
@@ -81,7 +83,7 @@ void dae::Minigin::LoadGame() const
 	auto text = std::make_shared<GameObject>();
 	auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
 	text = std::make_shared<GameObject>();
-	text-> GetComponent<TransformComponent>()->SetPosition(glm::vec3{ 80, 20, 0 });
+	text->GetComponent<TransformComponent>()->SetPosition(glm::vec3{ 80, 20, 0 });
 	text->AddComponent(std::make_shared<TextComponent>("Programming 4 Assignment", font, text));
 	scene.Add(text);
 
@@ -94,18 +96,20 @@ void dae::Minigin::LoadGame() const
 
 	auto peterPepper = std::make_shared<GameObject>();
 	auto player = std::make_shared<PeterPepperComponent>(peterPepper);
-
 	peterPepper->AddComponent(player);
-	peterPepper->GetComponent<TransformComponent>()->SetPosition(glm::vec3{ 20, 450, 0 });;
-	
-	peterPepper->AddComponent(std::make_shared<TextComponent>("Lives:", fpsFont, SDL_Color{ 255, 255, 0 }, peterPepper));
+	peterPepper->GetComponent<TransformComponent>()->SetPosition(glm::vec3{ 20, 400, 0 });
 	peterPepper->AddComponent(std::make_shared<LivesComponent>(peterPepper));
+
+	peterPepper->AddComponent(std::make_shared<ScoreComponent>(peterPepper));
+	peterPepper->GetComponent<ScoreComponent>()->SetTextLocation(glm::vec3{ 20, 440, 0 });
+
+	
 
 	scene.Add(peterPepper);
 
-	
-	
-	//InputManager::GetInstance().AddCommand(ControllerButton::ButtonY, new JumpCommand());
+
+	InputManager::GetInstance().AddCommand(ControllerButton::ButtonA, new LoseLive(), peterPepper);
+	InputManager::GetInstance().AddCommand(ControllerButton::ButtonB, new GivePointsCommand(), peterPepper);
 	//InputManager::GetInstance().AddCommand(ControllerButton::ButtonX, new FireCommand());
 
 	scene.Add(fpsObject);
@@ -135,7 +139,7 @@ void dae::Minigin::Run()
 		auto& input = InputManager::GetInstance();
 
 
-	
+
 
 		bool doContinue = true;
 		auto lastTime = std::chrono::high_resolution_clock::now();
@@ -151,7 +155,7 @@ void dae::Minigin::Run()
 			lastTime = currentTime;
 
 			doContinue = input.ProcessInput();
-			
+
 			while (lag >= m_FixedTimeStep)
 			{
 				sceneManager.FixedUpdate(m_FixedTimeStep);
@@ -162,7 +166,7 @@ void dae::Minigin::Run()
 			renderer.Render();
 
 			//cap fps
-			const auto sleepTime = currentTime + std::chrono::milliseconds(MsPerFrame/1000) - std::chrono::high_resolution_clock::now();
+			const auto sleepTime = currentTime + std::chrono::milliseconds(MsPerFrame / 1000) - std::chrono::high_resolution_clock::now();
 			this_thread::sleep_for(sleepTime);
 		}
 	}

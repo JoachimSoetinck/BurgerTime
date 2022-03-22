@@ -5,7 +5,6 @@
 
 namespace dae
 {
-	class DieObserver;
 	class TextComponent;
 
 	class LivesComponent : public BaseComponent
@@ -22,13 +21,12 @@ namespace dae
 
 		void Update() override;
 		void Render() const override;
-		
+		void SetLives();
 
 	private:
 
 		std::shared_ptr<TextComponent> m_pTextComponent = nullptr;
 		std::shared_ptr<PeterPepperComponent> m_pPeter = nullptr;
-		PlayerObserver* m_pPlayerObserver = nullptr;
 
 	};
 

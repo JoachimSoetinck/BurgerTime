@@ -27,6 +27,7 @@ namespace dae {
 
 		void SetText(const std::string & text);
 		void SetFont(std::shared_ptr<Font> font);
+		void SetLocation(glm::vec3 location);
 
 	private:
 		bool m_NeedsUpdate;
@@ -34,6 +35,8 @@ namespace dae {
 		std::shared_ptr<Font> m_Font;
 		SDL_Color m_Color;
 		std::shared_ptr<Texture2D> m_TextTexture;
+
+		glm::vec3 m_location{};
 
 		
 		std::shared_ptr<TransformComponent> m_TransformComponent;

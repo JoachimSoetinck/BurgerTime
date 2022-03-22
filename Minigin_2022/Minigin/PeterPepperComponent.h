@@ -19,13 +19,16 @@ namespace dae
 		void Render() const override;
 
 		int GetLives()const;
+		int GetScore()const;
 
-		void OnDeath();
+		void GivePoints();
+
+		void LoseLive();
 		
 
 	private:
 		int m_nrOfLives{ 3 };
-
+		int m_score{ 0 };
 
 
 	};

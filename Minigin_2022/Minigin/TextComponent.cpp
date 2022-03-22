@@ -60,6 +60,11 @@ void dae::TextComponent::Render() const
 	{
 		//getting the Transform component out of the gameobjects
 		const auto pos = m_TransformComponent->GetPosition();
+		if(m_location != glm::vec3{0,0,0})
+		{
+			Renderer::GetInstance().RenderTexture(*m_TextTexture, m_location.x, m_location.y);
+		}
+		else
 		Renderer::GetInstance().RenderTexture(*m_TextTexture, pos.x, pos.y);
 	}
 }
@@ -73,4 +78,9 @@ void dae::TextComponent::SetText(const std::string& text)
 void dae::TextComponent::SetFont(std::shared_ptr<Font> font)
 {
 	m_Font = font;
+}
+
+void dae::TextComponent::SetLocation(glm::vec3 location)
+{
+	m_location = location;
 }

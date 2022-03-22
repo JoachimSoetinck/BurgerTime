@@ -2,51 +2,68 @@
 #include <iostream>
 
 #include "GameObject.h"
+#include "PeterPepperComponent.h"
 
 class Command
 {
 public:
-	Command( dae::GameObject* actor) { m_pTarget = actor; }
+	Command() {  }
 	virtual ~Command() = default;
-	virtual void Execute() = 0;
+	virtual void Execute(std::shared_ptr<dae::GameObject> actor) = 0;
 
-private:
-	dae::GameObject*  m_pTarget;
+
 };
 
 class FireCommand : public Command
 {
 public:
-	FireCommand(dae::GameObject* actor);
-	virtual void Execute( ) override { std::cout << "Fire" << std::endl; };
+
+	virtual void Execute(std::shared_ptr<dae::GameObject> ) override { std::cout << "Fire" << std::endl; };
 };
 
 class DuckCommand : public Command
 {
 public:
-	DuckCommand(dae::GameObject* actor);
-	virtual void Execute( ) override { std::cout << "Duck" << std::endl; };
+
+	virtual void Execute(std::shared_ptr<dae::GameObject> ) override { std::cout << "Duck" << std::endl; };
 };
 
 class JumpCommand : public Command
 {
 public:
-	JumpCommand(dae::GameObject* actor);
-	virtual void Execute( ) override { std::cout << "Jump" << std::endl; };
+
+	virtual void Execute(std::shared_ptr<dae::GameObject> ) override { std::cout << "Jump" << std::endl; };
 };
 
 class FartCommand : public Command
 {
 public:
-	FartCommand(dae::GameObject* actor);
-	virtual void Execute( ) override { std::cout << "Fart" << std::endl; };
+
+	virtual void Execute(std::shared_ptr<dae::GameObject> ) override { std::cout << "Fart" << std::endl; };
 };
 
 class LoseLive : public Command
 {
 public:
-	virtual void Execute( ) override {
-		
+	virtual void Execute(std::shared_ptr<dae::GameObject> actor) override {
+
+		std::shared_ptr<dae::PeterPepperComponent> pepperComp = actor->GetComponent<dae::PeterPepperComponent>();
+
+	
+		pepperComp->LoseLive();
+
+
+	};
+};
+
+class GivePointsCommand : public Command
+{
+public:
+	virtual void Execute(std::shared_ptr<dae::GameObject> actor) override {
+
+		std::shared_ptr<dae::PeterPepperComponent> pepperComp = actor->GetComponent<dae::PeterPepperComponent>();
+
+		pepperComp->GivePoints();
 	};
 };
 
