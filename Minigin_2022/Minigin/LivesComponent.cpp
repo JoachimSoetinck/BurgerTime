@@ -6,13 +6,14 @@
 #include "ResourceManager.h"
 #include "TextComponent.h"
 
-dae::LivesComponent::LivesComponent(std::shared_ptr<GameObject> object)
+dae::LivesComponent::LivesComponent(std::shared_ptr<GameObject> object, SDL_Color color)
 {
 	m_pGameObject = object.get();
 
 	auto fpsFont = ResourceManager::GetInstance().LoadFont("Lingua.otf", 20);
-	
-	m_pTextComponent = std::make_shared<TextComponent>("Lives", fpsFont, SDL_Color{ 255, 255, 0 }, object);
+
+	m_color = SDL_Color{ 255, 255, 0 };
+	m_pTextComponent = std::make_shared<TextComponent>("Lives", fpsFont, color, object);
 	m_pPeter = object->GetComponent<PeterPepperComponent>();
 
 
@@ -21,21 +22,20 @@ dae::LivesComponent::LivesComponent(std::shared_ptr<GameObject> object)
 
 dae::LivesComponent::~LivesComponent()
 {
-	
+
 	m_pTextComponent = nullptr;
 }
+
 
 void dae::LivesComponent::Update()
 {
 	if (m_pTextComponent != nullptr)
 	{
-
-		
 		m_pTextComponent->Update();
 
 	}
 
-	
+
 }
 
 void dae::LivesComponent::Render() const

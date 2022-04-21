@@ -4,15 +4,15 @@
 
 #include "ResourceManager.h"
 
-dae::ScoreComponent::ScoreComponent(std::shared_ptr<GameObject> object)
+dae::ScoreComponent::ScoreComponent(std::shared_ptr<GameObject> object, SDL_Color color)
 {
 	m_pGameObject = object.get();
 
-	m_pGameObject = object.get();
+
 
 	auto fpsFont = ResourceManager::GetInstance().LoadFont("Lingua.otf", 20);
 
-	m_pTextComponent = std::make_shared<TextComponent>("Lives", fpsFont, SDL_Color{ 255, 255, 0 }, object);
+	m_pTextComponent = std::make_shared<TextComponent>("Lives", fpsFont, color, object);
 	m_pPeter = object->GetComponent<PeterPepperComponent>();
 
 	SetScoreText();
@@ -52,4 +52,3 @@ void dae::ScoreComponent::SetScoreText()
 
 	}
 }
-

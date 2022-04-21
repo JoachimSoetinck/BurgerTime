@@ -37,7 +37,7 @@ public:
 			// Get Current state
 			dwResult = XInputGetState(i, &m_CurrentInputStates[i]);
 			m_ConnectedController[i] = (dwResult == ERROR_SUCCESS); // Controller is connected
-				
+
 		}
 	}
 
@@ -86,10 +86,10 @@ dae::InputManager::~InputManager()
 {
 	for (auto pair : m_pCommands)
 	{
-		if (pair.second != nullptr)
+		if (pair.first != nullptr)
 		{
-			delete pair.second->command;
-			delete pair.second;
+			delete pair.first->command;
+			delete pair.first;
 		}
 	}
 
@@ -99,7 +99,7 @@ dae::InputManager::~InputManager()
 
 bool dae::InputManager::ProcessInput()
 {
-	
+
 	SDL_Event e;
 	while (SDL_PollEvent(&e)) {
 		if (e.type == SDL_QUIT) {
@@ -108,10 +108,10 @@ bool dae::InputManager::ProcessInput()
 
 		ImGui_ImplSDL2_ProcessEvent(&e);
 		if (e.type == SDL_KEYDOWN) {
-			
+
 		}
 		if (e.type == SDL_MOUSEBUTTONDOWN) {
-			
+
 		}
 	}
 
@@ -138,13 +138,14 @@ bool dae::InputManager::IsDown(ControllerButton button, int player) const
 	return pImpl->IsDown(button, player);
 }
 
-void dae::InputManager::AddCommand(ControllerButton button, Command* command, std::shared_ptr<dae::GameObject>  actor)
+void dae::InputManager::AddCommand(ControllerButton button, Command* command, std::shared_ptr<dae::GameObject>  actor, int playerController)
 {
 	CommandWithActor* command_with_actor = new CommandWithActor();
 	command_with_actor->actor = actor;
 	command_with_actor->command = command;
+	command_with_actor->playerController = playerController;
 
-	m_pCommands.insert({ button, command_with_actor });
+	m_pCommands.insert({ command_with_actor, button });
 }
 
 void dae::InputManager::RemoveCommand(ControllerButton)
@@ -158,12 +159,11 @@ void dae::InputManager::Update()
 	{
 		for (auto pair : m_pCommands)
 		{
-			if (pImpl->IsPressed(pair.first, i))
+			if (pImpl->IsPressed(pair.second, i) && i == pair.first->playerController)
 			{
-				pair.second->command->Execute(pair.second->actor);
+				pair.first->command->Execute(pair.first->actor);
 			}
 		}
 	}
 
 }
-

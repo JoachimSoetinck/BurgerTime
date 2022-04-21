@@ -9,7 +9,7 @@ namespace dae
 	class ScoreComponent : public BaseComponent
 	{
 	public:
-		ScoreComponent(std::shared_ptr<GameObject> object);
+		ScoreComponent(std::shared_ptr<GameObject> object, SDL_Color color);
 		~ScoreComponent();
 
 		ScoreComponent(const ScoreComponent& other) = delete;

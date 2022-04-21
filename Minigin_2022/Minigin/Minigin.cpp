@@ -97,23 +97,53 @@ void dae::Minigin::LoadGame() const
 	auto peterPepper = std::make_shared<GameObject>();
 	auto player = std::make_shared<PeterPepperComponent>(peterPepper);
 	peterPepper->AddComponent(player);
-	peterPepper->GetComponent<TransformComponent>()->SetPosition(glm::vec3{ 20, 400, 0 });
-	peterPepper->AddComponent(std::make_shared<LivesComponent>(peterPepper));
+	peterPepper->GetComponent<TransformComponent>()->SetPosition(glm::vec3{ 20, 360, 0 });
+	peterPepper->AddComponent(std::make_shared<LivesComponent>(peterPepper, SDL_Color{ 255,255,0 }));
 
-	peterPepper->AddComponent(std::make_shared<ScoreComponent>(peterPepper));
-	peterPepper->GetComponent<ScoreComponent>()->SetTextLocation(glm::vec3{ 20, 440, 0 });
-
-	
+	peterPepper->AddComponent(std::make_shared<ScoreComponent>(peterPepper, SDL_Color{ 255,255,0 }));
+	peterPepper->GetComponent<ScoreComponent>()->SetTextLocation(glm::vec3{ 20, 380, 0 });
 
 	scene.Add(peterPepper);
 
-
 	InputManager::GetInstance().AddCommand(ControllerButton::ButtonA, new LoseLive(), peterPepper);
 	InputManager::GetInstance().AddCommand(ControllerButton::ButtonB, new GivePointsCommand(), peterPepper);
+
+	auto tonySalt = std::make_shared<GameObject>();
+	auto p2 = std::make_shared<PeterPepperComponent>(tonySalt);
+	tonySalt->AddComponent(p2);
+	tonySalt->GetComponent<TransformComponent>()->SetPosition(glm::vec3{ 20, 400, 0 });
+	tonySalt->AddComponent(std::make_shared<LivesComponent>(tonySalt, SDL_Color{ 255,0,0 }));
+	tonySalt->AddComponent(std::make_shared<ScoreComponent>(tonySalt, SDL_Color{ 255,0,0 }));
+	tonySalt->GetComponent<ScoreComponent>()->SetTextLocation(glm::vec3{ 20, 420, 0 });
+
+	scene.Add(tonySalt);
+
+	auto help = std::make_shared<GameObject>();
+	help->GetComponent<TransformComponent>()->SetPosition(glm::vec3{ 270, 90, 0 });
+	auto textComp = std::make_shared<TextComponent>("Buttons:", fpsFont, SDL_Color{ 255, 255, 0 }, help);
+	textComp->SetLocation(glm::vec3{ 250, 90, 0 });
+	help->AddComponent(textComp);
+
+	textComp = std::make_shared<TextComponent>("Cross/A Button: Remove Life", fpsFont, SDL_Color{ 255, 255, 0 }, help);
+	textComp->SetLocation(glm::vec3{ 250, 110, 0 });
+	help->AddComponent(textComp);
+
+	textComp = std::make_shared<TextComponent>("Circle/B Button: Give Player Points", fpsFont, SDL_Color{ 255, 255, 0 }, help);
+	textComp->SetLocation(glm::vec3{ 250, 130, 0 });
+	help->AddComponent(textComp);
+
+	scene.Add(help);
+
+	InputManager::GetInstance().AddCommand(ControllerButton::ButtonA, new LoseLive(), tonySalt, 1);
+	//InputManager::GetInstance().AddCommand(ControllerButton::ButtonB, new GivePointsCommand(), tonySalt,1);
+
+
 	//InputManager::GetInstance().AddCommand(ControllerButton::ButtonX, new FireCommand());
+
 
 	scene.Add(fpsObject);
 }
+
 
 
 void dae::Minigin::Cleanup()
