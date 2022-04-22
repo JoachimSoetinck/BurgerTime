@@ -28,11 +28,16 @@ namespace dae
 
 	};
 
+	enum class ButtonPressType
+	{
+		IsDown, IsPressed, IsUp
+	};
 	struct CommandWithActor
 	{
 		std::shared_ptr<dae::GameObject> actor{};
 		Command* command{};
 		int playerController = 0;
+		ButtonPressType type = ButtonPressType::IsPressed;
 	};
 
 
@@ -49,11 +54,11 @@ namespace dae
 		bool IsUp(ControllerButton button, int playerIndex) const;
 		bool IsDown(ControllerButton button, int playerIndex) const;
 
-		void AddCommand(ControllerButton button, Command* command, std::shared_ptr<dae::GameObject> object, int playerController = 0);
+		void AddCommand(ControllerButton button, Command* command, std::shared_ptr<dae::GameObject> object, int playerController = 0, ButtonPressType type = ButtonPressType::IsPressed);
 		void RemoveCommand(ControllerButton button);
 		void Update();
 	private:
-		XINPUT_STATE m_CurrentState{};
+		
 
 		std::map< CommandWithActor*, ControllerButton> m_pCommands;
 	};

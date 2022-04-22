@@ -4,7 +4,7 @@
 
 namespace dae
 {
-	class PeterPepperComponent : public BaseComponent, Subject
+	class PeterPepperComponent : public BaseComponent, public Subject
 	{
 
 	public:
@@ -15,6 +15,7 @@ namespace dae
 		PeterPepperComponent& operator=(const PeterPepperComponent& other) = delete;
 		PeterPepperComponent& operator=(PeterPepperComponent&& other) noexcept = delete;
 
+		 
 		void Update() override;
 		void Render() const override;
 

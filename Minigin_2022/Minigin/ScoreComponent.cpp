@@ -25,6 +25,17 @@ dae::ScoreComponent::~ScoreComponent()
 }
 
 
+void dae::ScoreComponent::OnNotify(const GameObject& , Event action)
+{
+	switch (action)
+	{
+	case Event::Died:
+		SetScoreText();
+		break;
+	}
+	
+}
+
 void dae::ScoreComponent::SetTextLocation(glm::vec3 location)
 {
 	m_pTextComponent->SetLocation(location);

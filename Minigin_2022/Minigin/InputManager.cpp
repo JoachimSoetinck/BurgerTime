@@ -138,12 +138,13 @@ bool dae::InputManager::IsDown(ControllerButton button, int player) const
 	return pImpl->IsDown(button, player);
 }
 
-void dae::InputManager::AddCommand(ControllerButton button, Command* command, std::shared_ptr<dae::GameObject>  actor, int playerController)
+void dae::InputManager::AddCommand(ControllerButton button, Command* command, std::shared_ptr<dae::GameObject>  actor, int playerController, ButtonPressType type)
 {
 	CommandWithActor* command_with_actor = new CommandWithActor();
 	command_with_actor->actor = actor;
 	command_with_actor->command = command;
 	command_with_actor->playerController = playerController;
+	command_with_actor->type = type;
 
 	m_pCommands.insert({ command_with_actor, button });
 }
@@ -159,11 +160,32 @@ void dae::InputManager::Update()
 	{
 		for (auto pair : m_pCommands)
 		{
-			if (pImpl->IsPressed(pair.second, i) && i == pair.first->playerController)
+			switch (pair.first->type)
 			{
-				pair.first->command->Execute(pair.first->actor);
+			case ButtonPressType::IsPressed:
+				if (pImpl->IsPressed(pair.second, i) && i == pair.first->playerController)
+				{
+					pair.first->command->Execute(pair.first->actor);
+				}
+				break;
+
+			case ButtonPressType::IsDown:
+				if (pImpl->IsDown(pair.second, i) && i == pair.first->playerController)
+				{
+					pair.first->command->Execute(pair.first->actor);
+				}
+				break;
+
+			case ButtonPressType::IsUp:
+				if (pImpl->IsUp(pair.second, i) && i == pair.first->playerController)
+				{
+					pair.first->command->Execute(pair.first->actor);
+				}
+				break;
 			}
+
 		}
 	}
+
 
 }

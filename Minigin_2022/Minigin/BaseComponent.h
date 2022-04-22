@@ -21,7 +21,7 @@ namespace dae {
 
 	protected:
 		//every component needs an Object to attach to
-		GameObject* m_pGameObject{};
+		GameObject* m_pGameObject = nullptr;
 	};
 
 }

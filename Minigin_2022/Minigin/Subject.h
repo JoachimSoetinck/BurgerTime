@@ -7,25 +7,25 @@
 
 namespace dae
 {
-	class Subject
+	class Subject 
 	{
 
 
 	public:
 		Subject() = default;
-		~Subject();
-		void AddObserver(Observer* observer);
-		void RemoveObserver(Observer* observer);
+		virtual ~Subject();
+		void AddObserver(std::shared_ptr<Observer>);
+		void RemoveObserver(std::shared_ptr<Observer>);
 		void Notify(Event eventType, GameObject& object);
 
 		template <class T>
-		T* GetObserver()
+		T GetObserver()
 		{
 			const type_info& ti = typeid(T);
-			for (Observer* obs : m_pObservers)
+			for (std::shared_ptr<Observer> obs : m_pObservers)
 			{
-				if (obs && typeid(*obs) == ti)
-					return static_cast<T*>(obs);
+				if (obs && typeid(std::shared_ptr<Observer>) == ti)
+					return static_cast<T>(obs);
 			}
 			return nullptr;
 		}
@@ -35,7 +35,7 @@ namespace dae
 
 
 	private:
-		std::vector<Observer*> m_pObservers;
+		std::vector<std::shared_ptr<Observer>> m_pObservers;
 	};
 }
 

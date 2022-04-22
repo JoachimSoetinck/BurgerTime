@@ -49,7 +49,7 @@ namespace dae
 
 	private:
 		std::vector<std::shared_ptr<BaseComponent>> m_Components;
-		GameObject* m_Parent{};
+		GameObject* m_Parent = nullptr;
 		
 		
 		std::vector<std::shared_ptr<GameObject>> m_Children;

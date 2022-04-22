@@ -11,7 +11,10 @@ dae::GameObject::GameObject() : m_Parent(this)
 	m_Components.push_back(transformComponent);
 }
 
-dae::GameObject::~GameObject() = default;
+dae::GameObject::~GameObject()
+{
+	
+}
 
 void dae::GameObject::Update()
 {
@@ -46,6 +49,10 @@ void dae::GameObject::AddComponent(std::shared_ptr<BaseComponent> component)
 	m_Components.push_back(component);
 	component->SetGameObject(this);
 
+}
+
+void dae::GameObject::RemoveComponent(std::shared_ptr<BaseComponent> component)
+{
 }
 
 void dae::GameObject::AddChild(std::shared_ptr<GameObject> child)

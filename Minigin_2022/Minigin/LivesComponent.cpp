@@ -2,7 +2,6 @@
 #include "LivesComponent.h"
 
 #include "PeterPepperComponent.h"
-#include "PlayerObserver.h"
 #include "ResourceManager.h"
 #include "TextComponent.h"
 
@@ -16,23 +15,30 @@ dae::LivesComponent::LivesComponent(std::shared_ptr<GameObject> object, SDL_Colo
 	m_pTextComponent = std::make_shared<TextComponent>("Lives", fpsFont, color, object);
 	m_pPeter = object->GetComponent<PeterPepperComponent>();
 
-
 	SetLives();
 }
 
 dae::LivesComponent::~LivesComponent()
+= default;
+
+
+void dae::LivesComponent::OnNotify(const GameObject& , Event action)
 {
+	switch (action)
+	{
+	case Event::Died:
+		SetLives();
+		break;
+	default: ;
+	}
 
-	m_pTextComponent = nullptr;
 }
-
 
 void dae::LivesComponent::Update()
 {
 	if (m_pTextComponent != nullptr)
 	{
 		m_pTextComponent->Update();
-
 	}
 
 

@@ -1,13 +1,13 @@
 #pragma once
 #include "BaseComponent.h"
 #include "PeterPepperComponent.h"
-#include "PlayerObserver.h"
+
 
 namespace dae
 {
 	class TextComponent;
 
-	class LivesComponent : public BaseComponent
+	class LivesComponent : public BaseComponent, public Observer
 	{
 	public:
 		LivesComponent(std::shared_ptr<GameObject> object, SDL_Color color);
@@ -18,7 +18,8 @@ namespace dae
 		LivesComponent& operator=(const LivesComponent& other) = delete;
 		LivesComponent& operator=(LivesComponent&& other) noexcept = delete;
 
-		void SetColor(SDL_Color color);
+		void OnNotify(const GameObject& pGameObject, Event event) override;
+
 
 		void Update() override;
 		void Render() const override;

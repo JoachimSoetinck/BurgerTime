@@ -18,6 +18,8 @@
 #include "Command.h"
 #include "LivesComponent.h"
 #include "ScoreComponent.h"
+#include "Observer.h"
+#include "RigidBodyComponent.h"
 
 
 using namespace std;
@@ -98,25 +100,28 @@ void dae::Minigin::LoadGame() const
 	auto player = std::make_shared<PeterPepperComponent>(peterPepper);
 	peterPepper->AddComponent(player);
 	peterPepper->GetComponent<TransformComponent>()->SetPosition(glm::vec3{ 20, 360, 0 });
-	peterPepper->AddComponent(std::make_shared<LivesComponent>(peterPepper, SDL_Color{ 255,255,0 }));
+	auto lives = std::make_shared<LivesComponent>(peterPepper, SDL_Color{ 255,255,0 });
+	peterPepper->AddComponent(lives);
 
-	peterPepper->AddComponent(std::make_shared<ScoreComponent>(peterPepper, SDL_Color{ 255,255,0 }));
+	auto score = std::make_shared<ScoreComponent>(peterPepper, SDL_Color{ 255,255,0 });
+	peterPepper->AddComponent(score);
 	peterPepper->GetComponent<ScoreComponent>()->SetTextLocation(glm::vec3{ 20, 380, 0 });
+
+	auto peterPepperImage = std::make_shared<RenderComponent>("PeterPepper/Idle.png", peterPepper);
+	peterPepper->AddComponent(std::make_shared<RenderComponent>("PeterPepper/Idle.png", peterPepper));
+	peterPepper->AddComponent(std::make_shared<RigidBodyComponent>(peterPepper));
+	
+
+	
 
 	scene.Add(peterPepper);
 
-	InputManager::GetInstance().AddCommand(ControllerButton::ButtonA, new LoseLive(), peterPepper);
-	InputManager::GetInstance().AddCommand(ControllerButton::ButtonB, new GivePointsCommand(), peterPepper);
+	InputManager::GetInstance().AddCommand(ControllerButton::ButtonA, new LoseLive(), peterPepper, 0);
+	InputManager::GetInstance().AddCommand(ControllerButton::ButtonB, new GivePointsCommand(), peterPepper, 0);
+	InputManager::GetInstance().AddCommand(ControllerButton::ButtonRight, new MoveRight(), peterPepper, 0, ButtonPressType::IsDown);
+	InputManager::GetInstance().AddCommand(ControllerButton::ButtonRight, new StopMoving(), peterPepper, 0, ButtonPressType::IsUp);
 
-	auto tonySalt = std::make_shared<GameObject>();
-	auto p2 = std::make_shared<PeterPepperComponent>(tonySalt);
-	tonySalt->AddComponent(p2);
-	tonySalt->GetComponent<TransformComponent>()->SetPosition(glm::vec3{ 20, 400, 0 });
-	tonySalt->AddComponent(std::make_shared<LivesComponent>(tonySalt, SDL_Color{ 255,0,0 }));
-	tonySalt->AddComponent(std::make_shared<ScoreComponent>(tonySalt, SDL_Color{ 255,0,0 }));
-	tonySalt->GetComponent<ScoreComponent>()->SetTextLocation(glm::vec3{ 20, 420, 0 });
 
-	scene.Add(tonySalt);
 
 	auto help = std::make_shared<GameObject>();
 	help->GetComponent<TransformComponent>()->SetPosition(glm::vec3{ 270, 90, 0 });
@@ -134,11 +139,7 @@ void dae::Minigin::LoadGame() const
 
 	scene.Add(help);
 
-	InputManager::GetInstance().AddCommand(ControllerButton::ButtonA, new LoseLive(), tonySalt, 1);
-	//InputManager::GetInstance().AddCommand(ControllerButton::ButtonB, new GivePointsCommand(), tonySalt,1);
 
-
-	//InputManager::GetInstance().AddCommand(ControllerButton::ButtonX, new FireCommand());
 
 
 	scene.Add(fpsObject);
@@ -167,9 +168,6 @@ void dae::Minigin::Run()
 		auto& renderer = Renderer::GetInstance();
 		auto& sceneManager = SceneManager::GetInstance();
 		auto& input = InputManager::GetInstance();
-
-
-
 
 		bool doContinue = true;
 		auto lastTime = std::chrono::high_resolution_clock::now();

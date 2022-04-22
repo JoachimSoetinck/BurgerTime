@@ -11,6 +11,7 @@ dae::BaseComponent::BaseComponent()
 
 dae::BaseComponent::~BaseComponent()
 {
+
 }
 
 GameObject* dae::BaseComponent::GetGameObject() const

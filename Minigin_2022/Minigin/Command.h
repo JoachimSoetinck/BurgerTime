@@ -3,6 +3,7 @@
 
 #include "GameObject.h"
 #include "PeterPepperComponent.h"
+#include "RigidBodyComponent.h"
 
 class Command
 {
@@ -20,6 +21,26 @@ public:
 
 	virtual void Execute(std::shared_ptr<dae::GameObject> ) override { std::cout << "Fire" << std::endl; };
 };
+
+class MoveRight : public Command
+{
+public:
+	virtual void Execute(std::shared_ptr<dae::GameObject> object) override
+	{ 
+		object->GetComponent<dae::RigidBodyComponent>()->SetDirection(glm::vec2(250.f, 0.f));
+	};
+};
+
+class StopMoving : public Command
+{
+public:
+	virtual void Execute(std::shared_ptr<dae::GameObject> object) override
+	{
+		object->GetComponent<dae::RigidBodyComponent>()->SetDirection(glm::vec2(0.f, 0.f));
+	};
+};
+
+
 
 class DuckCommand : public Command
 {
