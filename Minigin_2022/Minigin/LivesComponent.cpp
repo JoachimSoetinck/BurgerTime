@@ -13,13 +13,11 @@ dae::LivesComponent::LivesComponent(std::shared_ptr<GameObject> object, SDL_Colo
 
 	m_color = SDL_Color{ 255, 255, 0 };
 	m_pTextComponent = std::make_shared<TextComponent>("Lives", fpsFont, color, object);
-	m_pPeter = object->GetComponent<PeterPepperComponent>();
+	m_pPeter = object->GetComponent<PeterPepperComponent>().get();
 
 	SetLives();
 }
 
-dae::LivesComponent::~LivesComponent()
-= default;
 
 
 void dae::LivesComponent::OnNotify(const GameObject& , Event action)

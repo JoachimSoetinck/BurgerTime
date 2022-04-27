@@ -87,6 +87,7 @@ void dae::Minigin::LoadGame() const
 	text = std::make_shared<GameObject>();
 	text->GetComponent<TransformComponent>()->SetPosition(glm::vec3{ 80, 20, 0 });
 	text->AddComponent(std::make_shared<TextComponent>("Programming 4 Assignment", font, text));
+	
 	scene.Add(text);
 
 
@@ -101,18 +102,18 @@ void dae::Minigin::LoadGame() const
 	peterPepper->AddComponent(player);
 	peterPepper->GetComponent<TransformComponent>()->SetPosition(glm::vec3{ 20, 360, 0 });
 	auto lives = std::make_shared<LivesComponent>(peterPepper, SDL_Color{ 255,255,0 });
+
 	peterPepper->AddComponent(lives);
+
+	player->AddObserver(lives);
 
 	auto score = std::make_shared<ScoreComponent>(peterPepper, SDL_Color{ 255,255,0 });
 	peterPepper->AddComponent(score);
 	peterPepper->GetComponent<ScoreComponent>()->SetTextLocation(glm::vec3{ 20, 380, 0 });
 
-	auto peterPepperImage = std::make_shared<RenderComponent>("PeterPepper/Idle.png", peterPepper);
-	peterPepper->AddComponent(std::make_shared<RenderComponent>("PeterPepper/Idle.png", peterPepper));
+	const auto peterPepperImage = std::make_shared<RenderComponent>("PeterPepper/Idle.png", peterPepper);
+	peterPepper->AddComponent(peterPepperImage);
 	peterPepper->AddComponent(std::make_shared<RigidBodyComponent>(peterPepper));
-	
-
-	
 
 	scene.Add(peterPepper);
 

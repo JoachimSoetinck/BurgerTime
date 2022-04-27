@@ -11,7 +11,7 @@ namespace dae
 	{
 	public:
 		LivesComponent(std::shared_ptr<GameObject> object, SDL_Color color);
-		~LivesComponent();
+		~LivesComponent() = default;
 
 		LivesComponent(const LivesComponent& other) = delete;
 		LivesComponent(LivesComponent&& other) noexcept = delete;
@@ -28,7 +28,7 @@ namespace dae
 	private:
 
 		std::shared_ptr<TextComponent> m_pTextComponent = nullptr;
-		std::shared_ptr<PeterPepperComponent> m_pPeter = nullptr;
+		PeterPepperComponent* m_pPeter;
 		SDL_Color m_color = SDL_Color{ 255,255,0 };
 
 	};
