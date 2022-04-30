@@ -22,6 +22,9 @@
     <Filter Include="Observers">
       <UniqueIdentifier>{09432a43-d4ae-456b-8476-dada4921ff2f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Sound">
+      <UniqueIdentifier>{70b8f23f-0f66-425d-8be1-55d0fee34ad4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="MiniginPCH.h">
@@ -132,6 +135,9 @@
     <ClInclude Include="RigidBodyComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>Sound</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MiniginPCH.cpp">
@@ -232,6 +238,9 @@
     </ClCompile>
     <ClCompile Include="RigidBodyComponent.cpp">
       <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>Sound</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

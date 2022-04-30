@@ -6,6 +6,7 @@
 #include "Renderer.h"
 #include "Texture2D.h"
 #include "Font.h"
+#include "Sound.h"
 
 void dae::ResourceManager::Init(const std::string& dataPath)
 {
@@ -43,4 +44,11 @@ std::shared_ptr<dae::Texture2D> dae::ResourceManager::LoadTexture(const std::str
 std::shared_ptr<dae::Font> dae::ResourceManager::LoadFont(const std::string& file, unsigned int size) const
 {
 	return std::make_shared<Font>(m_DataPath + file, size);
+}
+
+std::shared_ptr<Sound> dae::ResourceManager::LoadSound(const std::string& file) const
+{
+	const auto path = m_DataPath + file;
+	auto sound = std::make_shared<Sound>(path);
+	return sound;
 }

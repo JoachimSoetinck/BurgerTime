@@ -473,6 +473,7 @@
     <ClInclude Include="SceneManager.h" />
     <ClInclude Include="ScoreComponent.h" />
     <ClInclude Include="Singleton.h" />
+    <ClInclude Include="Sound.h" />
     <ClInclude Include="Subject.h" />
     <ClInclude Include="TextComponent.h" />
     <ClInclude Include="Texture2D.h" />
@@ -650,6 +651,7 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="ScoreComponent.cpp" />
+    <ClCompile Include="Sound.cpp" />
     <ClCompile Include="Subject.cpp" />
     <ClCompile Include="TextComponent.cpp" />
     <ClCompile Include="Texture2D.cpp" />

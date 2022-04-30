@@ -1,5 +1,7 @@
 #include "MiniginPCH.h"
 #include "Minigin.h"
+
+#include <SDL_mixer.h>
 #include <thread>
 
 
@@ -20,6 +22,7 @@
 #include "ScoreComponent.h"
 #include "Observer.h"
 #include "RigidBodyComponent.h"
+#include "Sound.h"
 
 
 using namespace std;
@@ -87,7 +90,7 @@ void dae::Minigin::LoadGame() const
 	text = std::make_shared<GameObject>();
 	text->GetComponent<TransformComponent>()->SetPosition(glm::vec3{ 80, 20, 0 });
 	text->AddComponent(std::make_shared<TextComponent>("Programming 4 Assignment", font, text));
-	
+
 	scene.Add(text);
 
 
@@ -152,6 +155,7 @@ void dae::Minigin::Cleanup()
 {
 	Renderer::GetInstance().Destroy();
 	SDL_DestroyWindow(m_Window);
+	Mix_CloseAudio();
 	m_Window = nullptr;
 	SDL_Quit();
 }
@@ -164,6 +168,12 @@ void dae::Minigin::Run()
 	ResourceManager::GetInstance().Init("../Data/");
 
 	LoadGame();
+	Mix_OpenAudio(MIX_DEFAULT_FREQUENCY, MIX_DEFAULT_FORMAT, MIX_DEFAULT_CHANNELS, MIX_CHANNELS);
+
+	auto sound = ResourceManager::GetInstance().LoadSound("Sound/burgertime_dies.wav");
+	sound->SetVolume(20);
+	sound->Load();
+	sound->Play();
 
 	{
 		auto& renderer = Renderer::GetInstance();
@@ -184,6 +194,7 @@ void dae::Minigin::Run()
 			lastTime = currentTime;
 
 			doContinue = input.ProcessInput();
+
 
 			while (lag >= m_FixedTimeStep)
 			{
