@@ -49,7 +49,14 @@ public:
 		if (object->GetComponent<dae::PeterPepperComponent>()->IsOnLadder())
 			object->GetComponent<dae::PeterPepperComponent>()->SetState(dae::PeterPepperComponent::PlayerState::ClimbingDown);
 		else
+		{
+
 			object->GetComponent<dae::PeterPepperComponent>()->SetState(dae::PeterPepperComponent::PlayerState::Idle);
+			
+		}
+			
+
+		
 	};
 };
 
@@ -61,7 +68,9 @@ public:
 		if (object->GetComponent<dae::PeterPepperComponent>()->IsOnLadder())
 			object->GetComponent<dae::PeterPepperComponent>()->SetState(dae::PeterPepperComponent::PlayerState::ClimbingUp);
 		else
+		{
 			object->GetComponent<dae::PeterPepperComponent>()->SetState(dae::PeterPepperComponent::PlayerState::Idle);
+		}
 	};
 };
 

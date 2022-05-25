@@ -3,6 +3,7 @@
 
 #include "InputManager.h"
 #include "Command.h"
+#include "LadderComponent.h"
 #include "Scene.h"
 #include "SceneManager.h"
 
@@ -138,10 +139,11 @@ void dae::PeterPepperComponent::HandleMovement()
 			m_TransformComponent->SetPosition(m_TransformComponent->GetPosition().x + m_direction.x * Time::GetDeltaTime(), m_TransformComponent->GetPosition().y + m_direction.y * Time::GetDeltaTime(), m_TransformComponent->GetPosition().z);
 		}
 
-		if (m_isOnGround == false)
+		if (m_isOnGround == false && m_isOnLadder == false )
 		{
 			m_TransformComponent->SetPosition(m_TransformComponent->GetPosition().x, m_TransformComponent->GetPosition().y + 9.81f * Time::GetDeltaTime(), m_TransformComponent->GetPosition().z);
 		}
+		
 	}
 
 }
@@ -151,6 +153,7 @@ void dae::PeterPepperComponent::HandleCollision()
 	auto objects = SceneManager::GetInstance().GetScene(0)->GetObjects();
 
 	bool isOnGround = false;
+	bool isOnLadder = false;
 
 	for (const auto& o2 : objects)
 	{
@@ -163,35 +166,33 @@ void dae::PeterPepperComponent::HandleCollision()
 			}
 		}
 
-		if (o2.get()->GetComponent<PlatformComponent>() != nullptr)
+		if (o2.get()->GetComponent<LadderComponent>() != nullptr)
 		{
 			if (IsOnLadder(o2.get()))
 			{
-				m_isOnLadder = true;
+				isOnLadder = true;
 			}
 		}
 	}
 
 	m_isOnGround = isOnGround;
-	
-
-
-
+	m_isOnLadder = isOnLadder;
 
 }
 
 bool dae::PeterPepperComponent::IsOnLadder(GameObject* obj)
 {
-	int otherObjectWidth = obj->GetComponent<RenderComponent>()->GetWidth();
+	int otherObjectWidth = obj->GetComponent<RenderComponent>()->GetWidth() ;
 	auto otherObjectPos = obj->GetComponent<TransformComponent>()->GetPosition();
 	auto otherObjectheight = obj->GetComponent<RenderComponent>()->GetHeight();
 
 	auto PeterPepperPos = m_pGameObject->GetComponent<TransformComponent>()->GetPosition();
 	int PeterPepperWidth = m_pGameObject->GetComponent<RenderComponent>()->GetWidth();
 	int PeterPepperHeight = m_pGameObject->GetComponent<RenderComponent>()->GetHeight();
+	int offset = 15;
 
-	if ((PeterPepperPos.x >= otherObjectPos.x && PeterPepperPos.x + PeterPepperWidth <= otherObjectPos.x + otherObjectWidth) &&
-		(PeterPepperPos.y + PeterPepperHeight >= otherObjectPos.y && PeterPepperPos.y + PeterPepperHeight <= otherObjectPos.y + otherObjectheight))
+	if ((PeterPepperPos.x >= otherObjectPos.x - offset && PeterPepperPos.x + PeterPepperWidth <= otherObjectPos.x + otherObjectWidth + offset ) &&
+		(PeterPepperPos.y + PeterPepperHeight >= otherObjectPos.y && PeterPepperPos.y + PeterPepperHeight <= otherObjectPos.y + otherObjectheight +3 ))
 	{
 		return true;
 	}
