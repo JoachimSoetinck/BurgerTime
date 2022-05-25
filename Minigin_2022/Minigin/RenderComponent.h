@@ -28,10 +28,14 @@ namespace dae
 		void Render() const override;
 
 		void SetTexture(const std::string& file);
+		int GetWidth() const;
+		int GetHeight() const;
 
 	private:
 		std::shared_ptr<Texture2D> m_Texture;
 		std::shared_ptr<TransformComponent> m_TransformComponent;
+		int m_Width{};
+		int m_Height{};
 
 	};
 }

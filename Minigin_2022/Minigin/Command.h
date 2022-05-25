@@ -28,7 +28,16 @@ class MoveRight : public Command
 public:
 	virtual void Execute(std::shared_ptr<dae::GameObject> object) override
 	{ 
-		object->GetComponent<dae::RigidBodyComponent>()->SetDirection(glm::vec2(250.f, 0.f));
+		object->GetComponent<dae::PeterPepperComponent>()->SetState(dae::PeterPepperComponent::PlayerState::MovingRight);
+	};
+};
+
+class MoveLeft : public Command
+{
+public:
+	virtual void Execute(std::shared_ptr<dae::GameObject> object) override
+	{
+		object->GetComponent<dae::PeterPepperComponent>()->SetState(dae::PeterPepperComponent::PlayerState::MovingLeft);
 	};
 };
 
@@ -37,7 +46,7 @@ class StopMoving : public Command
 public:
 	virtual void Execute(std::shared_ptr<dae::GameObject> object) override
 	{
-		object->GetComponent<dae::RigidBodyComponent>()->SetDirection(glm::vec2(0.f, 0.f));
+		object->GetComponent<dae::PeterPepperComponent>()->SetState(dae::PeterPepperComponent::PlayerState::Idle);
 	};
 };
 

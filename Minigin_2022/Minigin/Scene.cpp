@@ -1,6 +1,8 @@
 #include "MiniginPCH.h"
 #include "Scene.h"
 #include "GameObject.h"
+#include "PeterPepperComponent.h"
+#include "PlatformComponent.h"
 
 using namespace dae;
 
@@ -21,6 +23,7 @@ void Scene::Update()
 	{
 		object->Update();
 	}
+
 }
 
 void Scene::Render() const
@@ -30,4 +33,6 @@ void Scene::Render() const
 		object->Render();
 	}
 }
+
+
 

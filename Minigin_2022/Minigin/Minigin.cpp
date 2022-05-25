@@ -95,7 +95,7 @@ void dae::Minigin::LoadGame() const
 	auto peterPepper = std::make_shared<GameObject>();
 	auto player = std::make_shared<PeterPepperComponent>(peterPepper);
 	peterPepper->AddComponent(player);
-	peterPepper->GetComponent<TransformComponent>()->SetPosition(glm::vec3{ 375, 555, 0 });
+	peterPepper->GetComponent<TransformComponent>()->SetPosition(glm::vec3{ 375, 535, 0 });
 
 
 	auto healthText = std::make_shared<GameObject>();
@@ -113,14 +113,17 @@ void dae::Minigin::LoadGame() const
 
 	const auto peterPepperImage = std::make_shared<RenderComponent>("PeterPepper/PlayerIdle.png", peterPepper);
 	peterPepper->AddComponent(peterPepperImage);
-	peterPepper->AddComponent(std::make_shared<RigidBodyComponent>(peterPepper));
 
 	scene.Add(peterPepper);
 
 	InputManager::GetInstance().AddCommand(ControllerButton::ButtonA, new LoseLive(), peterPepper, 0);
 	InputManager::GetInstance().AddCommand(ControllerButton::ButtonB, new GivePointsCommand(), peterPepper, 0);
+
 	InputManager::GetInstance().AddCommand(ControllerButton::ButtonRight, new MoveRight(), peterPepper, 0, ButtonPressType::IsDown);
 	InputManager::GetInstance().AddCommand(ControllerButton::ButtonRight, new StopMoving(), peterPepper, 0, ButtonPressType::IsUp);
+
+	InputManager::GetInstance().AddCommand(ControllerButton::ButtonLeft, new MoveLeft(), peterPepper, 0, ButtonPressType::IsDown);
+	InputManager::GetInstance().AddCommand(ControllerButton::ButtonLeft, new StopMoving(), peterPepper, 0, ButtonPressType::IsUp);
 
 	InputManager::GetInstance().AddCommand(ControllerButton::ButtonY, new PlaySound(), peterPepper, 0, ButtonPressType::IsUp);
 
@@ -265,7 +268,6 @@ void dae::Minigin::CreateLevel(Scene& scene) const
 	CreateLadder(scene, 615, 420, "Ladder.png");
 	CreateLadder(scene, 615, 475, "Ladder.png");
 	CreateLadder(scene, 615, 530, "Ladder.png");
-	
 	CreateLadder(scene, 695, 90, "Ladder.png");
 	CreateLadder(scene, 695, 145, "Ladder.png");
 	CreateLadder(scene, 695, 200, "Ladder.png");

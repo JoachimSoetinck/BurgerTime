@@ -22,7 +22,7 @@ namespace dae
 		std::shared_ptr<TransformComponent> m_TransformComponent;
 
 
-		glm::vec2 m_direction{};
+		glm::vec2 m_direction{0,0};
 	};
 
 }
