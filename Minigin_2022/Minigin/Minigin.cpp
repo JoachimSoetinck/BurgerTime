@@ -54,8 +54,8 @@ void dae::Minigin::Initialize()
 		"Programming 4 assignment",
 		SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED,
-		640,
-		480,
+		800,
+		600,
 		SDL_WINDOW_OPENGL
 	);
 	if (m_Window == nullptr)
@@ -64,7 +64,8 @@ void dae::Minigin::Initialize()
 	}
 
 	Renderer::GetInstance().Init(m_Window);
-	ServiceLocator::RegisterSoundSystem(new SoundSystemDebug());
+
+	ServiceLocator::RegisterSoundSystem(new SoundSystem());
 }
 
 /**
@@ -77,7 +78,7 @@ void dae::Minigin::LoadGame() const
 
 	auto backGround = std::make_shared<GameObject>();
 	backGround = std::make_shared<GameObject>();
-	backGround->AddComponent(std::make_shared<RenderComponent>("background.jpg", backGround));
+	backGround->AddComponent(std::make_shared<RenderComponent>("level.png", backGround));
 	scene.Add(backGround);
 
 	auto logo = std::make_shared<GameObject>();
@@ -116,7 +117,7 @@ void dae::Minigin::LoadGame() const
 	peterPepper->AddComponent(score);
 	peterPepper->GetComponent<ScoreComponent>()->SetTextLocation(glm::vec3{ 20, 380, 0 });
 
-	const auto peterPepperImage = std::make_shared<RenderComponent>("PeterPepper/Idle.png", peterPepper);
+	const auto peterPepperImage = std::make_shared<RenderComponent>("PeterPepper/PlayerIdle.png", peterPepper);
 	peterPepper->AddComponent(peterPepperImage);
 	peterPepper->AddComponent(std::make_shared<RigidBodyComponent>(peterPepper));
 
@@ -173,10 +174,6 @@ void dae::Minigin::Run()
 	ResourceManager::GetInstance().Init("../Data/");
 
 	LoadGame();
-
-	
-
-	
 
 	{
 		auto& renderer = Renderer::GetInstance();
