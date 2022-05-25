@@ -18,9 +18,11 @@
 #include "FPSComponent.h"
 #include "PeterPepperComponent.h"
 #include "Command.h"
+#include "LadderComponent.h"
 #include "LivesComponent.h"
 #include "ScoreComponent.h"
 #include "Observer.h"
+#include "PlatformComponent.h"
 #include "RigidBodyComponent.h"
 #include "ServiceLocator.h"
 #include "Sound.h"
@@ -54,8 +56,8 @@ void dae::Minigin::Initialize()
 		"Programming 4 assignment",
 		SDL_WINDOWPOS_CENTERED,
 		SDL_WINDOWPOS_CENTERED,
-		800,
-		600,
+		750,
+		750,
 		SDL_WINDOW_OPENGL
 	);
 	if (m_Window == nullptr)
@@ -77,24 +79,11 @@ void dae::Minigin::LoadGame() const
 
 
 	auto backGround = std::make_shared<GameObject>();
-	backGround = std::make_shared<GameObject>();
-	backGround->AddComponent(std::make_shared<RenderComponent>("level.png", backGround));
-	scene.Add(backGround);
 
-	auto logo = std::make_shared<GameObject>();
-	logo = std::make_shared<GameObject>();
-
-	logo->GetComponent<TransformComponent>()->SetPosition(glm::vec3{ 216, 180, 0 });
-	logo->AddComponent(std::make_shared<RenderComponent>("logo.png", logo));
-	scene.Add(logo);
-
-	auto text = std::make_shared<GameObject>();
 	auto font = ResourceManager::GetInstance().LoadFont("Lingua.otf", 36);
-	text = std::make_shared<GameObject>();
-	text->GetComponent<TransformComponent>()->SetPosition(glm::vec3{ 80, 20, 0 });
-	text->AddComponent(std::make_shared<TextComponent>("Programming 4 Assignment", font, text));
 
-	scene.Add(text);
+	CreateLevel(scene);
+
 
 
 	auto fpsObject = std::make_shared<GameObject>();
@@ -106,10 +95,15 @@ void dae::Minigin::LoadGame() const
 	auto peterPepper = std::make_shared<GameObject>();
 	auto player = std::make_shared<PeterPepperComponent>(peterPepper);
 	peterPepper->AddComponent(player);
-	peterPepper->GetComponent<TransformComponent>()->SetPosition(glm::vec3{ 20, 360, 0 });
-	auto lives = std::make_shared<LivesComponent>(peterPepper, SDL_Color{ 255,255,0 });
+	peterPepper->GetComponent<TransformComponent>()->SetPosition(glm::vec3{ 375, 555, 0 });
 
-	peterPepper->AddComponent(lives);
+
+	auto healthText = std::make_shared<GameObject>();
+	healthText->GetComponent<TransformComponent>()->SetPosition(150, 10, 0);
+	auto lives = std::make_shared<LivesComponent>(healthText, SDL_Color{ 255,255,0 }, player);
+	healthText->AddComponent(lives);
+
+	scene.Add(healthText);
 
 	player->AddObserver(lives);
 
@@ -131,24 +125,7 @@ void dae::Minigin::LoadGame() const
 	InputManager::GetInstance().AddCommand(ControllerButton::ButtonY, new PlaySound(), peterPepper, 0, ButtonPressType::IsUp);
 
 
-
-	auto help = std::make_shared<GameObject>();
-	help->GetComponent<TransformComponent>()->SetPosition(glm::vec3{ 270, 90, 0 });
-	auto textComp = std::make_shared<TextComponent>("Buttons:", fpsFont, SDL_Color{ 255, 255, 0 }, help);
-	textComp->SetLocation(glm::vec3{ 250, 90, 0 });
-	help->AddComponent(textComp);
-
-	textComp = std::make_shared<TextComponent>("Cross/A Button: Remove Life", fpsFont, SDL_Color{ 255, 255, 0 }, help);
-	textComp->SetLocation(glm::vec3{ 250, 110, 0 });
-	help->AddComponent(textComp);
-
-	textComp = std::make_shared<TextComponent>("Triangle/Y Button: Play Sound", fpsFont, SDL_Color{ 255, 255, 0 }, help);
-	textComp->SetLocation(glm::vec3{ 250, 130, 0 });
-	help->AddComponent(textComp);
-
-	scene.Add(help);
-
-
+	
 
 
 	scene.Add(fpsObject);
@@ -213,3 +190,181 @@ void dae::Minigin::Run()
 
 	Cleanup();
 }
+
+void dae::Minigin::CreatePlatform(Scene& scene, float x, float y, std::string texture) const
+{
+
+	auto platform = std::make_shared<GameObject>();
+	
+	platform.get()->AddComponent(std::make_shared<RenderComponent>( texture, platform));
+	platform.get()->AddComponent(std::make_unique<PlatformComponent>(platform));
+	platform.get()->GetComponent<TransformComponent>()->SetPosition(x, y,0);
+	scene.Add(platform);
+}
+
+void dae::Minigin::CreateLadder(Scene& scene, float x, float y, std::string texture) const
+{
+	auto ladder = std::make_shared<GameObject>();
+
+	ladder.get()->AddComponent(std::make_shared<RenderComponent>(texture, ladder));
+	ladder.get()->AddComponent(std::make_unique<LadderComponent>(ladder));
+	ladder.get()->GetComponent<TransformComponent>()->SetPosition(x, y, 0);
+	scene.Add(ladder);
+}
+
+void dae::Minigin::CreateLevel(Scene& scene) const
+{
+
+	CreateLadder(scene, 55, 90, "Ladder.png");
+	CreateLadder(scene, 55, 145, "Ladder.png");
+	CreateLadder(scene, 55, 310, "Ladder.png");
+	CreateLadder(scene, 55, 365, "Ladder.png");
+	CreateLadder(scene, 55, 420, "Ladder.png");
+	CreateLadder(scene, 55, 475, "Ladder.png");
+	CreateLadder(scene, 55, 530, "Ladder.png");
+	CreateLadder(scene, 135, 200, "Ladder.png");
+	CreateLadder(scene, 135, 255, "Ladder.png");
+	CreateLadder(scene, 135, 310, "Ladder.png");
+	CreateLadder(scene, 135, 365, "Ladder.png");
+	CreateLadder(scene, 135, 420, "Ladder.png");
+	CreateLadder(scene, 215, 90, "Ladder.png");
+	CreateLadder(scene, 215, 145, "Ladder.png");
+	CreateLadder(scene, 215, 200, "Ladder.png");
+	CreateLadder(scene, 215, 255, "Ladder.png");
+	CreateLadder(scene, 215, 310, "Ladder.png");
+	CreateLadder(scene, 215, 365, "Ladder.png");
+	CreateLadder(scene, 215, 420, "Ladder.png");
+	CreateLadder(scene, 215, 475, "Ladder.png");
+	CreateLadder(scene, 215, 530, "Ladder.png");
+	CreateLadder(scene, 295, 90, "Ladder.png");
+	CreateLadder(scene, 295, 145, "Ladder.png");
+	CreateLadder(scene, 295, 200, "Ladder.png");
+	CreateLadder(scene, 375, 90, "Ladder.png");
+	CreateLadder(scene, 375, 145, "Ladder.png");
+	CreateLadder(scene, 375, 200, "Ladder.png");
+	CreateLadder(scene, 375, 255, "Ladder.png");
+	CreateLadder(scene, 375, 310, "Ladder.png");
+	CreateLadder(scene, 375, 365, "Ladder.png");
+	CreateLadder(scene, 375, 420, "Ladder.png");
+	CreateLadder(scene, 375, 475, "Ladder.png");
+	CreateLadder(scene, 375, 530, "Ladder.png");
+	CreateLadder(scene, 455, 200, "Ladder.png");
+	CreateLadder(scene, 455, 255, "Ladder.png");
+	CreateLadder(scene, 455, 310, "Ladder.png");
+	CreateLadder(scene, 535, 90, "Ladder.png");
+	CreateLadder(scene, 535, 145, "Ladder.png");
+	CreateLadder(scene, 535, 200, "Ladder.png");
+	CreateLadder(scene, 535, 255, "Ladder.png");
+	CreateLadder(scene, 535, 310, "Ladder.png");
+	CreateLadder(scene, 535, 365, "Ladder.png");
+	CreateLadder(scene, 535, 420, "Ladder.png");
+	CreateLadder(scene, 535, 475, "Ladder.png");
+	CreateLadder(scene, 535, 530, "Ladder.png");
+	CreateLadder(scene, 615, 310, "Ladder.png");
+	CreateLadder(scene, 615, 365, "Ladder.png");
+	CreateLadder(scene, 615, 420, "Ladder.png");
+	CreateLadder(scene, 615, 475, "Ladder.png");
+	CreateLadder(scene, 615, 530, "Ladder.png");
+	
+	CreateLadder(scene, 695, 90, "Ladder.png");
+	CreateLadder(scene, 695, 145, "Ladder.png");
+	CreateLadder(scene, 695, 200, "Ladder.png");
+	CreateLadder(scene, 695, 255, "Ladder.png");
+	CreateLadder(scene, 695, 420, "Ladder.png");
+	CreateLadder(scene, 695, 475, "Ladder.png");
+	CreateLadder(scene, 695, 530, "Ladder.png");
+
+	CreatePlatform(scene, 55, 90, "LightBluePlatform.png");
+	CreatePlatform(scene, 95, 90, "BluePlatform.png");
+	CreatePlatform(scene, 135, 90, "BluePlatform.png");
+	CreatePlatform(scene, 175, 90, "BluePlatform.png");
+	CreatePlatform(scene, 215, 90, "LightBluePlatform.png");
+	CreatePlatform(scene, 255, 90, "BluePlatform.png");
+	CreatePlatform(scene, 295, 90, "BluePlatform.png");
+	CreatePlatform(scene, 335, 90, "BluePlatform.png");
+	CreatePlatform(scene, 375, 90, "LightBluePlatform.png");
+	CreatePlatform(scene, 415, 90, "BluePlatform.png");
+	CreatePlatform(scene, 455, 90, "BluePlatform.png");
+	CreatePlatform(scene, 495, 90, "BluePlatform.png");
+	CreatePlatform(scene, 535, 90, "LightBluePlatform.png");
+	CreatePlatform(scene, 575, 90, "BluePlatform.png");
+	CreatePlatform(scene, 615, 90, "BluePlatform.png");
+	CreatePlatform(scene, 655, 90, "BluePlatform.png");
+	CreatePlatform(scene, 695, 90, "LightBluePlatform.png");
+	CreatePlatform(scene, 55, 200, "LightBluePlatform.png");
+	CreatePlatform(scene, 95, 200, "BluePlatform.png");
+	CreatePlatform(scene, 135, 200, "BluePlatform.png");
+	CreatePlatform(scene, 175, 200, "BluePlatform.png");
+	CreatePlatform(scene, 215, 200, "LightBluePlatform.png");
+	CreatePlatform(scene, 375, 200, "LightBluePlatform.png");
+	CreatePlatform(scene, 415, 200, "BluePlatform.png");
+	CreatePlatform(scene, 455, 200, "BluePlatform.png");
+	CreatePlatform(scene, 495, 200, "BluePlatform.png");
+	CreatePlatform(scene, 535, 200, "LightBluePlatform.png");
+	CreatePlatform(scene, 575, 200, "BluePlatform.png");
+	CreatePlatform(scene, 615, 200, "BluePlatform.png");
+	CreatePlatform(scene, 655, 200, "BluePlatform.png");
+	CreatePlatform(scene, 695, 200, "LightBluePlatform.png");
+	CreatePlatform(scene, 215, 255, "LightBluePlatform.png");
+	CreatePlatform(scene, 255, 255, "BluePlatform.png");
+	CreatePlatform(scene, 295, 255, "BluePlatform.png");
+	CreatePlatform(scene, 335, 255, "BluePlatform.png");
+	CreatePlatform(scene, 375, 255, "LightBluePlatform.png");
+	CreatePlatform(scene, 55, 310, "LightBluePlatform.png");
+	CreatePlatform(scene, 95, 310, "BluePlatform.png");
+	CreatePlatform(scene, 135, 310, "BluePlatform.png");
+	CreatePlatform(scene, 175, 310, "BluePlatform.png");
+	CreatePlatform(scene, 215, 310, "LightBluePlatform.png");
+	CreatePlatform(scene, 535, 310, "LightBluePlatform.png");
+	CreatePlatform(scene, 575, 310, "BluePlatform.png");
+	CreatePlatform(scene, 615, 310, "BluePlatform.png");
+	CreatePlatform(scene, 655, 310, "BluePlatform.png");
+	CreatePlatform(scene, 695, 310, "LightBluePlatform.png");
+	CreatePlatform(scene, 215, 365, "LightBluePlatform.png");
+	CreatePlatform(scene, 255, 365, "BluePlatform.png");
+	CreatePlatform(scene, 295, 365, "BluePlatform.png");
+	CreatePlatform(scene, 335, 365, "BluePlatform.png");
+	CreatePlatform(scene, 375, 365, "LightBluePlatform.png");
+	CreatePlatform(scene, 415, 365, "BluePlatform.png");
+	CreatePlatform(scene, 455, 365, "BluePlatform.png");
+	CreatePlatform(scene, 495, 365, "BluePlatform.png");
+	CreatePlatform(scene, 535, 365, "LightBluePlatform.png");
+	CreatePlatform(scene, 535, 420, "LightBluePlatform.png");
+	CreatePlatform(scene, 575, 420, "BluePlatform.png");
+	CreatePlatform(scene, 615, 420, "BluePlatform.png");
+	CreatePlatform(scene, 655, 420, "BluePlatform.png");
+	CreatePlatform(scene, 695, 420, "LightBluePlatform.png");
+	CreatePlatform(scene, 55, 475, "LightBluePlatform.png");
+	CreatePlatform(scene, 95, 475, "BluePlatform.png");
+	CreatePlatform(scene, 135, 475, "BluePlatform.png");
+	CreatePlatform(scene, 175, 475, "BluePlatform.png");
+	CreatePlatform(scene, 215, 475, "LightBluePlatform.png");
+	CreatePlatform(scene, 255, 475, "BluePlatform.png");
+	CreatePlatform(scene, 295, 475, "BluePlatform.png");
+	CreatePlatform(scene, 335, 475, "BluePlatform.png");
+	CreatePlatform(scene, 375, 475, "LightBluePlatform.png");
+	CreatePlatform(scene, 415, 475, "BluePlatform.png");
+	CreatePlatform(scene, 455, 475, "BluePlatform.png");
+	CreatePlatform(scene, 495, 475, "BluePlatform.png");
+	CreatePlatform(scene, 535, 475, "LightBluePlatform.png");
+	CreatePlatform(scene, 55, 585, "LightBluePlatform.png");
+	CreatePlatform(scene, 95, 585, "BluePlatform.png");
+	CreatePlatform(scene, 135, 585, "BluePlatform.png");
+	CreatePlatform(scene, 175, 585, "BluePlatform.png");
+	CreatePlatform(scene, 215, 585, "LightBluePlatform.png");
+	CreatePlatform(scene, 255, 585, "BluePlatform.png");
+	CreatePlatform(scene, 295, 585, "BluePlatform.png");
+	CreatePlatform(scene, 335, 585, "BluePlatform.png");
+	CreatePlatform(scene, 375, 585, "LightBluePlatform.png");
+	CreatePlatform(scene, 415, 585, "BluePlatform.png");
+	CreatePlatform(scene, 455, 585, "BluePlatform.png");
+	CreatePlatform(scene, 495, 585, "BluePlatform.png");
+	CreatePlatform(scene, 535, 585, "LightBluePlatform.png");
+	CreatePlatform(scene, 575, 585, "BluePlatform.png");
+	CreatePlatform(scene, 615, 585, "BluePlatform.png");
+	CreatePlatform(scene, 655, 585, "BluePlatform.png");
+	CreatePlatform(scene, 695, 585, "LightBluePlatform.png");
+
+}
+
+

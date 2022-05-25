@@ -9,6 +9,7 @@ dae::BaseComponent::BaseComponent()
 	
 }
 
+
 dae::BaseComponent::~BaseComponent()
 {
 

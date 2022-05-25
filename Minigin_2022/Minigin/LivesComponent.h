@@ -2,8 +2,6 @@
 #include "BaseComponent.h"
 #include "PeterPepperComponent.h"
 
-
-
 namespace dae
 {
 	class TextComponent;
@@ -11,7 +9,7 @@ namespace dae
 	class LivesComponent : public BaseComponent, public Observer
 	{
 	public:
-		LivesComponent(std::shared_ptr<GameObject> object, SDL_Color color);
+		LivesComponent(std::shared_ptr<GameObject> object, SDL_Color color, std::shared_ptr<PeterPepperComponent> health);
 		~LivesComponent() = default;
 
 		LivesComponent(const LivesComponent& other) = delete;

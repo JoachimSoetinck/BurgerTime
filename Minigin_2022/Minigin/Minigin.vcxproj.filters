@@ -144,6 +144,12 @@
     <ClInclude Include="ServiceLocator.h">
       <Filter>Sound</Filter>
     </ClInclude>
+    <ClInclude Include="PlatformComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="LadderComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MiniginPCH.cpp">
@@ -253,6 +259,12 @@
     </ClCompile>
     <ClCompile Include="ServiceLocator.cpp">
       <Filter>Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="LadderComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="PlatformComponent.cpp">
+      <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

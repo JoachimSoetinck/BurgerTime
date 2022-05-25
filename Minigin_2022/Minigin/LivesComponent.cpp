@@ -5,7 +5,7 @@
 #include "ResourceManager.h"
 #include "TextComponent.h"
 
-dae::LivesComponent::LivesComponent(std::shared_ptr<GameObject> object, SDL_Color color)
+dae::LivesComponent::LivesComponent(std::shared_ptr<GameObject> object, SDL_Color color, std::shared_ptr<PeterPepperComponent> peter)
 {
 	m_pGameObject = object.get();
 
@@ -13,7 +13,7 @@ dae::LivesComponent::LivesComponent(std::shared_ptr<GameObject> object, SDL_Colo
 
 	m_color = SDL_Color{ 255, 255, 0 };
 	m_pTextComponent = std::make_shared<TextComponent>("Lives", fpsFont, color, object);
-	m_pPeter = object->GetComponent<PeterPepperComponent>().get();
+	m_pPeter = peter.get();
 
 	SetLives();
 }
