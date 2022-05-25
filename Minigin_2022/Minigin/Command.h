@@ -20,14 +20,14 @@ class FireCommand : public Command
 {
 public:
 
-	virtual void Execute(std::shared_ptr<dae::GameObject> ) override { std::cout << "Fire" << std::endl; };
+	virtual void Execute(std::shared_ptr<dae::GameObject>) override { std::cout << "Fire" << std::endl; };
 };
 
 class MoveRight : public Command
 {
 public:
 	virtual void Execute(std::shared_ptr<dae::GameObject> object) override
-	{ 
+	{
 		object->GetComponent<dae::PeterPepperComponent>()->SetState(dae::PeterPepperComponent::PlayerState::MovingRight);
 	};
 };
@@ -38,6 +38,30 @@ public:
 	virtual void Execute(std::shared_ptr<dae::GameObject> object) override
 	{
 		object->GetComponent<dae::PeterPepperComponent>()->SetState(dae::PeterPepperComponent::PlayerState::MovingLeft);
+	};
+};
+
+class MoveDown : public Command
+{
+public:
+	virtual void Execute(std::shared_ptr<dae::GameObject> object) override
+	{
+		if (object->GetComponent<dae::PeterPepperComponent>()->IsOnLadder())
+			object->GetComponent<dae::PeterPepperComponent>()->SetState(dae::PeterPepperComponent::PlayerState::ClimbingDown);
+		else
+			object->GetComponent<dae::PeterPepperComponent>()->SetState(dae::PeterPepperComponent::PlayerState::Idle);
+	};
+};
+
+class MoveUp : public Command
+{
+public:
+	virtual void Execute(std::shared_ptr<dae::GameObject> object) override
+	{
+		if (object->GetComponent<dae::PeterPepperComponent>()->IsOnLadder())
+			object->GetComponent<dae::PeterPepperComponent>()->SetState(dae::PeterPepperComponent::PlayerState::ClimbingUp);
+		else
+			object->GetComponent<dae::PeterPepperComponent>()->SetState(dae::PeterPepperComponent::PlayerState::Idle);
 	};
 };
 
@@ -64,21 +88,21 @@ class DuckCommand : public Command
 {
 public:
 
-	virtual void Execute(std::shared_ptr<dae::GameObject> ) override { std::cout << "Duck" << std::endl; };
+	virtual void Execute(std::shared_ptr<dae::GameObject>) override { std::cout << "Duck" << std::endl; };
 };
 
 class JumpCommand : public Command
 {
 public:
 
-	virtual void Execute(std::shared_ptr<dae::GameObject> ) override { std::cout << "Jump" << std::endl; };
+	virtual void Execute(std::shared_ptr<dae::GameObject>) override { std::cout << "Jump" << std::endl; };
 };
 
 class FartCommand : public Command
 {
 public:
 
-	virtual void Execute(std::shared_ptr<dae::GameObject> ) override { std::cout << "Fart" << std::endl; };
+	virtual void Execute(std::shared_ptr<dae::GameObject>) override { std::cout << "Fart" << std::endl; };
 };
 
 class LoseLive : public Command
@@ -88,7 +112,7 @@ public:
 
 		std::shared_ptr<dae::PeterPepperComponent> pepperComp = actor->GetComponent<dae::PeterPepperComponent>();
 
-	
+
 		pepperComp->LoseLive();
 
 

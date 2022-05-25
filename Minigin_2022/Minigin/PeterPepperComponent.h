@@ -20,7 +20,8 @@ namespace dae
 			Idle,
 			MovingLeft,
 			ThrowingSaltLeft,
-			Climbing,
+			ClimbingUp,
+			ClimbingDown,
 			Dying
 		};
 
@@ -38,6 +39,7 @@ namespace dae
 
 		int GetLives()const;
 		int GetScore()const;
+		bool IsOnLadder() const { return m_isOnLadder; }
 
 		void GivePoints();
 
@@ -45,22 +47,25 @@ namespace dae
 		void SetState(PlayerState state);
 
 		
-		bool IsOnGround(GameObject* object);
-		void SetOnGround(bool isOnGround);
+		
 
 	private:
 		int m_nrOfLives{ 3 };
 		int m_score{ 0 };
 		bool m_isOnGround {false};
+		bool m_isOnLadder{false};
 		PlayerState m_state = PlayerState::Idle;
 
 		std::shared_ptr<RigidBodyComponent> m_pRigidBody{};
 		std::shared_ptr<TransformComponent> m_TransformComponent{};
 		std::shared_ptr<RenderComponent> m_pRenderComponent{};
-
 		
 
+
 		void HandleMovement();
+		bool IsOnLadder(GameObject* get);
+		bool IsOnGround(GameObject* object);
+		void SetOnGround(bool isOnGround);
 		void HandleCollision();
 		glm::vec2 m_direction{ 0,0 };
 

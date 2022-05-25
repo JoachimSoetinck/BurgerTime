@@ -95,7 +95,7 @@ void dae::Minigin::LoadGame() const
 	auto peterPepper = std::make_shared<GameObject>();
 	auto player = std::make_shared<PeterPepperComponent>(peterPepper);
 	peterPepper->AddComponent(player);
-	peterPepper->GetComponent<TransformComponent>()->SetPosition(glm::vec3{ 375, 535, 0 });
+	peterPepper->GetComponent<TransformComponent>()->SetPosition(glm::vec3{ 0, 0, 0 });
 
 
 	auto healthText = std::make_shared<GameObject>();
@@ -124,6 +124,12 @@ void dae::Minigin::LoadGame() const
 
 	InputManager::GetInstance().AddCommand(ControllerButton::ButtonLeft, new MoveLeft(), peterPepper, 0, ButtonPressType::IsDown);
 	InputManager::GetInstance().AddCommand(ControllerButton::ButtonLeft, new StopMoving(), peterPepper, 0, ButtonPressType::IsUp);
+
+	InputManager::GetInstance().AddCommand(ControllerButton::ButtonDown, new MoveDown(), peterPepper, 0, ButtonPressType::IsDown);
+	InputManager::GetInstance().AddCommand(ControllerButton::ButtonDown, new StopMoving(), peterPepper, 0, ButtonPressType::IsUp);
+
+	InputManager::GetInstance().AddCommand(ControllerButton::ButtonUp, new MoveUp(), peterPepper, 0, ButtonPressType::IsDown);
+	InputManager::GetInstance().AddCommand(ControllerButton::ButtonUp, new StopMoving(), peterPepper, 0, ButtonPressType::IsUp);
 
 	InputManager::GetInstance().AddCommand(ControllerButton::ButtonY, new PlaySound(), peterPepper, 0, ButtonPressType::IsUp);
 

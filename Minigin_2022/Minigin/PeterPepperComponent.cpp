@@ -20,7 +20,7 @@ dae::PeterPepperComponent::PeterPepperComponent(std::shared_ptr<GameObject> obje
 	m_TransformComponent = m_pGameObject->GetComponent<TransformComponent>();
 	m_pRenderComponent = m_pGameObject->GetComponent<RenderComponent>();
 
-	
+
 
 }
 
@@ -71,16 +71,22 @@ void dae::PeterPepperComponent::SetState(PlayerState state)
 	}
 	case PlayerState::MovingLeft:
 	{
-		m_direction = { -50,0 };
+		m_direction.x = -50 ;
 		break;
 	}
 	case PlayerState::MovingRight:
 	{
-		m_direction = { 50,0 };
+		m_direction.x =  50;
 		break;
 	}
-	case PlayerState::Climbing:
+	case PlayerState::ClimbingUp:
 	{
+		m_direction.y =  -50 ;
+		break;
+	}
+	case PlayerState::ClimbingDown:
+	{
+		m_direction.y = 50;
 		break;
 	}
 	case PlayerState::Dying:
@@ -100,15 +106,17 @@ void dae::PeterPepperComponent::SetState(PlayerState state)
 
 bool dae::PeterPepperComponent::IsOnGround(GameObject* object)
 {
-	int otherObjectWidth = object->GetComponent<RenderComponent>()->GetWidth();
+	int otherObjectWidth = object->GetComponent<RenderComponent>()->GetWidth() ;
 	auto otherObjectPos = object->GetComponent<TransformComponent>()->GetPosition();
+	auto otherObjectheight = object->GetComponent<RenderComponent>()->GetHeight();
 
-	auto characterPos = m_pGameObject->GetComponent<TransformComponent>()->GetPosition();
-	int characterWidth = m_pGameObject->GetComponent<RenderComponent>()->GetWidth();
-	int characterHeight = m_pGameObject->GetComponent<RenderComponent>()->GetHeight();
+	auto PeterPepperPos = m_pGameObject->GetComponent<TransformComponent>()->GetPosition();
+	int PeterPepperWidth = m_pGameObject->GetComponent<RenderComponent>()->GetWidth();
+	int PeterPepperHeight = m_pGameObject->GetComponent<RenderComponent>()->GetHeight();
+	int offset = 15;
 
-	if ((characterPos.x >= otherObjectPos.x && characterPos.x + characterWidth <= otherObjectPos.x + otherObjectWidth) &&
-		(characterPos.y + characterHeight >= otherObjectPos.y && characterPos.y + characterHeight <= otherObjectPos.y + 10))
+	if ((PeterPepperPos.x >= otherObjectPos.x - offset && PeterPepperPos.x + PeterPepperWidth <= otherObjectPos.x + otherObjectWidth + offset) &&
+		(PeterPepperPos.y + PeterPepperHeight >= otherObjectPos.y && PeterPepperPos.y + PeterPepperHeight <= otherObjectPos.y + otherObjectheight))
 	{
 		return true;
 	}
@@ -130,7 +138,7 @@ void dae::PeterPepperComponent::HandleMovement()
 			m_TransformComponent->SetPosition(m_TransformComponent->GetPosition().x + m_direction.x * Time::GetDeltaTime(), m_TransformComponent->GetPosition().y + m_direction.y * Time::GetDeltaTime(), m_TransformComponent->GetPosition().z);
 		}
 
-		else if (m_isOnGround == false)
+		if (m_isOnGround == false)
 		{
 			m_TransformComponent->SetPosition(m_TransformComponent->GetPosition().x, m_TransformComponent->GetPosition().y + 9.81f * Time::GetDeltaTime(), m_TransformComponent->GetPosition().z);
 		}
@@ -142,6 +150,7 @@ void dae::PeterPepperComponent::HandleCollision()
 {
 	auto objects = SceneManager::GetInstance().GetScene(0)->GetObjects();
 
+	bool isOnGround = false;
 
 	for (const auto& o2 : objects)
 	{
@@ -149,11 +158,47 @@ void dae::PeterPepperComponent::HandleCollision()
 		{
 			if (IsOnGround(o2.get()))
 			{
-				SetOnGround(true);
+				isOnGround = true;
+				m_direction.y = 0;
+			}
+		}
+
+		if (o2.get()->GetComponent<PlatformComponent>() != nullptr)
+		{
+			if (IsOnLadder(o2.get()))
+			{
+				m_isOnLadder = true;
 			}
 		}
 	}
+
+	m_isOnGround = isOnGround;
+	
+
+
+
+
 }
+
+bool dae::PeterPepperComponent::IsOnLadder(GameObject* obj)
+{
+	int otherObjectWidth = obj->GetComponent<RenderComponent>()->GetWidth();
+	auto otherObjectPos = obj->GetComponent<TransformComponent>()->GetPosition();
+	auto otherObjectheight = obj->GetComponent<RenderComponent>()->GetHeight();
+
+	auto PeterPepperPos = m_pGameObject->GetComponent<TransformComponent>()->GetPosition();
+	int PeterPepperWidth = m_pGameObject->GetComponent<RenderComponent>()->GetWidth();
+	int PeterPepperHeight = m_pGameObject->GetComponent<RenderComponent>()->GetHeight();
+
+	if ((PeterPepperPos.x >= otherObjectPos.x && PeterPepperPos.x + PeterPepperWidth <= otherObjectPos.x + otherObjectWidth) &&
+		(PeterPepperPos.y + PeterPepperHeight >= otherObjectPos.y && PeterPepperPos.y + PeterPepperHeight <= otherObjectPos.y + otherObjectheight))
+	{
+		return true;
+	}
+
+	return false;
+}
+
 
 void dae::PeterPepperComponent::GivePoints()
 {
