@@ -107,9 +107,14 @@ void dae::Minigin::LoadGame() const
 
 	player->AddObserver(lives);
 
-	auto score = std::make_shared<ScoreComponent>(peterPepper, SDL_Color{ 255,255,0 });
-	peterPepper->AddComponent(score);
-	peterPepper->GetComponent<ScoreComponent>()->SetTextLocation(glm::vec3{ 20, 380, 0 });
+	auto scoreText = std::make_shared<GameObject>();
+	scoreText->GetComponent<TransformComponent>()->SetPosition(250, 10, 0);
+	auto score = std::make_shared<ScoreComponent>(peterPepper, SDL_Color{ 255,255,0 }, peterPepper);
+	scoreText->AddComponent(score);
+	scoreText->GetComponent<ScoreComponent>()->SetTextLocation(glm::vec3{ 250, 10, 00 });
+	scene.Add(scoreText);
+
+	player->AddObserver(score);
 
 	const auto peterPepperImage = std::make_shared<RenderComponent>("PeterPepper/PlayerIdle.png", peterPepper);
 	peterPepper->AddComponent(peterPepperImage);

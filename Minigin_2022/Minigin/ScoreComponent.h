@@ -9,8 +9,8 @@ namespace dae
 	class ScoreComponent : public BaseComponent, public Observer
 	{
 	public:
-		ScoreComponent(std::shared_ptr<GameObject> object, SDL_Color color);
-		~ScoreComponent();
+		ScoreComponent(std::shared_ptr<GameObject> object, SDL_Color color, std::shared_ptr<GameObject> player);
+		~ScoreComponent() = default;
 
 		ScoreComponent(const ScoreComponent& other) = delete;
 		ScoreComponent(ScoreComponent&& other) noexcept = delete;
@@ -26,7 +26,7 @@ namespace dae
 	private:
 
 		std::shared_ptr<TextComponent> m_pTextComponent = nullptr;
-		std::shared_ptr<PeterPepperComponent> m_pPeter = nullptr;
+		PeterPepperComponent* m_pPeter = nullptr;
 
 	};
 

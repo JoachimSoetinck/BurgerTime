@@ -1,4 +1,4 @@
-﻿  PeterPepperComponent.cpp
+﻿  ScoreComponent.cpp
 opengl32.lib(OPENGL32.dll) : warning LNK4006: __NULL_IMPORT_DESCRIPTOR already defined in xinput.lib(XINPUT1_4.dll); second definition ignored
   Minigin.vcxproj -> C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\x64\Debug\Minigin.lib
   C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\SDL2\lib\x64\SDL2.dll

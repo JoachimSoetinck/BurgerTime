@@ -4,7 +4,7 @@
 
 #include "ResourceManager.h"
 
-dae::ScoreComponent::ScoreComponent(std::shared_ptr<GameObject> object, SDL_Color color)
+dae::ScoreComponent::ScoreComponent(std::shared_ptr<GameObject> object, SDL_Color color, std::shared_ptr<GameObject> peterPepper)
 {
 	m_pGameObject = object.get();
 
@@ -13,16 +13,13 @@ dae::ScoreComponent::ScoreComponent(std::shared_ptr<GameObject> object, SDL_Colo
 	auto fpsFont = ResourceManager::GetInstance().LoadFont("Lingua.otf", 20);
 
 	m_pTextComponent = std::make_shared<TextComponent>("Lives", fpsFont, color, object);
-	m_pPeter = object->GetComponent<PeterPepperComponent>();
+	m_pPeter = peterPepper->GetComponent<PeterPepperComponent>().get();
 
 	SetScoreText();
 
 }
 
-dae::ScoreComponent::~ScoreComponent()
-{
 
-}
 
 
 void dae::ScoreComponent::OnNotify(const GameObject& , Event action)
@@ -44,6 +41,7 @@ void dae::ScoreComponent::SetTextLocation(glm::vec3 location)
 void dae::ScoreComponent::Update()
 {
 	m_pTextComponent->Update();
+	SetScoreText();
 }
 
 void dae::ScoreComponent::Render() const
