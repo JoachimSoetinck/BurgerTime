@@ -150,6 +150,9 @@
     <ClInclude Include="LadderComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="IngredientComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MiniginPCH.cpp">
@@ -264,6 +267,9 @@
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="PlatformComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="IngredientComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>

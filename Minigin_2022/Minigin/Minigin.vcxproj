@@ -493,6 +493,7 @@
     <ClInclude Include="..\3rdParty\imgui-master\imstb_truetype.h" />
     <ClInclude Include="BaseComponent.h" />
     <ClInclude Include="Command.h" />
+    <ClInclude Include="IngredientComponent.h" />
     <ClInclude Include="LadderComponent.h" />
     <ClInclude Include="LivesComponent.h" />
     <ClInclude Include="Enums.h" />
@@ -663,6 +664,7 @@
     </ClCompile>
     <ClCompile Include="BaseComponent.cpp" />
     <ClCompile Include="Command.cpp" />
+    <ClCompile Include="IngredientComponent.cpp" />
     <ClCompile Include="LadderComponent.cpp" />
     <ClCompile Include="LivesComponent.cpp" />
     <ClCompile Include="Font.cpp" />

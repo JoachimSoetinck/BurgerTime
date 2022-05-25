@@ -1,7 +1,9 @@
 #pragma once
+#include "IngredientComponent.h"
 struct SDL_Window;
 
 #include <string>
+
 
 namespace dae
 {
@@ -24,5 +26,8 @@ namespace dae
 		void CreatePlatform(Scene& scene, float x, float y, std::string texture) const;
 		void CreateLadder(Scene& scene, float x, float y, std::string texture) const;
 		void CreateLevel(Scene& scene) const;
+
+		void CreateIngredient(Scene& scene, float x, float y, IngredientComponent::Type ingredient)const;
+
 	};
 }
