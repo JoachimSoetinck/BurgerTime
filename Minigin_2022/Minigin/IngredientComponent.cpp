@@ -35,7 +35,7 @@ void dae::IngredientComponent::ChooseTexture(Type ingredient)
 		break;
 
 	case Type::Patty:
-		//m_pRender->SetTexture("Patty.png");
+		m_pRender->SetTexture("Patty.png");
 		break;
 
 	case Type::Tomato:

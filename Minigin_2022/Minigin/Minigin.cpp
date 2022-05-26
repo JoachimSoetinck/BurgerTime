@@ -95,7 +95,7 @@ void dae::Minigin::LoadGame() const
 	auto peterPepper = std::make_shared<GameObject>();
 	auto player = std::make_shared<PeterPepperComponent>(peterPepper);
 	peterPepper->AddComponent(player);
-	peterPepper->GetComponent<TransformComponent>()->SetPosition(glm::vec3{ 0, 0, 0 });
+	peterPepper->GetComponent<TransformComponent>()->SetPosition(glm::vec3{ 375, 550, 0 });
 
 
 	auto healthText = std::make_shared<GameObject>();
@@ -121,24 +121,8 @@ void dae::Minigin::LoadGame() const
 
 	scene.Add(peterPepper);
 
-	InputManager::GetInstance().AddCommand(ControllerButton::ButtonA, new LoseLive(), peterPepper, 0);
-	InputManager::GetInstance().AddCommand(ControllerButton::ButtonB, new GivePointsCommand(), peterPepper, 0);
-
-	InputManager::GetInstance().AddCommand(ControllerButton::ButtonRight, new MoveRight(), peterPepper, 0, ButtonPressType::IsDown);
-	InputManager::GetInstance().AddCommand(ControllerButton::ButtonRight, new StopMoving(), peterPepper, 0, ButtonPressType::IsUp);
-
-	InputManager::GetInstance().AddCommand(ControllerButton::ButtonLeft, new MoveLeft(), peterPepper, 0, ButtonPressType::IsDown);
-	InputManager::GetInstance().AddCommand(ControllerButton::ButtonLeft, new StopMoving(), peterPepper, 0, ButtonPressType::IsUp);
-
-	InputManager::GetInstance().AddCommand(ControllerButton::ButtonDown, new MoveDown(), peterPepper, 0, ButtonPressType::IsDown);
-	InputManager::GetInstance().AddCommand(ControllerButton::ButtonDown, new StopMoving(), peterPepper, 0, ButtonPressType::IsUp);
-
-	InputManager::GetInstance().AddCommand(ControllerButton::ButtonUp, new MoveUp(), peterPepper, 0, ButtonPressType::IsDown);
-	InputManager::GetInstance().AddCommand(ControllerButton::ButtonUp, new StopMoving(), peterPepper, 0, ButtonPressType::IsUp);
 
 	InputManager::GetInstance().AddCommand(ControllerButton::ButtonY, new PlaySound(), peterPepper, 0, ButtonPressType::IsUp);
-
-
 
 
 
@@ -289,7 +273,7 @@ void dae::Minigin::CreateLevel(Scene& scene) const
 	CreatePlatform(scene, 90, 90, "BluePlatform.png");
 	CreatePlatform(scene, 130, 90, "BluePlatform.png");
 	CreatePlatform(scene, 170, 90, "BluePlatform.png");
-	CreatePlatform(scene, 215, 90, "LightBluePlatform.png");
+	CreatePlatform(scene, 210, 90, "LightBluePlatform.png");
 	CreatePlatform(scene, 250, 90, "BluePlatform.png");
 	CreatePlatform(scene, 290, 90, "BluePlatform.png");
 	CreatePlatform(scene, 330, 90, "BluePlatform.png");
@@ -379,6 +363,30 @@ void dae::Minigin::CreateLevel(Scene& scene) const
 
 
 	CreateIngredient(scene, 93, 85, IngredientComponent::Type::TopBun);
+	CreateIngredient(scene, 93, 190, IngredientComponent::Type::Lettuce);
+	CreateIngredient(scene, 93, 300, IngredientComponent::Type::Patty);
+	CreateIngredient(scene, 93, 470, IngredientComponent::Type::Tomato);
+	CreateIngredient(scene, 93, 575, IngredientComponent::Type::BottomBun);
+
+	CreateIngredient(scene, 255, 85, IngredientComponent::Type::TopBun);
+	CreateIngredient(scene, 255, 245, IngredientComponent::Type::Lettuce);
+	CreateIngredient(scene, 255, 355, IngredientComponent::Type::Patty);
+	CreateIngredient(scene, 255, 470, IngredientComponent::Type::Tomato);
+	CreateIngredient(scene, 255, 575, IngredientComponent::Type::BottomBun);
+
+
+	CreateIngredient(scene, 420, 85, IngredientComponent::Type::TopBun);
+	CreateIngredient(scene, 420, 190, IngredientComponent::Type::Lettuce);
+	CreateIngredient(scene, 420, 355, IngredientComponent::Type::Patty);
+	CreateIngredient(scene, 420, 470, IngredientComponent::Type::Tomato);
+	CreateIngredient(scene, 420, 575, IngredientComponent::Type::BottomBun);
+
+	CreateIngredient(scene, 580, 85, IngredientComponent::Type::TopBun);
+	CreateIngredient(scene, 580, 190, IngredientComponent::Type::Lettuce);
+	CreateIngredient(scene, 580, 300, IngredientComponent::Type::Patty);
+	CreateIngredient(scene, 580, 410, IngredientComponent::Type::Tomato);
+	CreateIngredient(scene, 580, 575, IngredientComponent::Type::BottomBun);
+
 
 }
 
