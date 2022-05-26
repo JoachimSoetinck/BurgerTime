@@ -32,18 +32,19 @@ namespace dae
 
 		void Update() override;
 		void Render() const override;
+		Type GetType()const { return m_Type; }
+		void SetType(Type type) {  m_Type = type; }
 
 		void CheckHitPoints(glm::vec3 positionPP, int height, int width);
 		void SetIsFalling(bool isFalling) { m_canFall = isFalling; }
+		void ChooseTexture(Type ingredient);
 
 	private:
 		std::shared_ptr<RenderComponent> m_pRender{};
 
-		void ChooseTexture(Type ingredient);
-
 		bool m_canFall{ false };
 		bool m_canCollide{ true };
-		
+		Type m_Type{};
 
 		bool m_RightCornerHit{false};
 		bool m_CenterHit{ false };

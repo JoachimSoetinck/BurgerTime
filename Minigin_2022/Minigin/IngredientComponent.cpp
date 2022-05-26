@@ -7,7 +7,7 @@
 #include "SceneManager.h"
 #include "Time.h"
 
-dae::IngredientComponent::IngredientComponent(std::shared_ptr<GameObject> object, Type ingredient)
+dae::IngredientComponent::IngredientComponent(std::shared_ptr<GameObject> object, Type ingredient): m_Type(ingredient)
 {
 	m_pGameObject = object.get();
 
@@ -124,14 +124,13 @@ void dae::IngredientComponent::HandleCollision()
 		{
 			if (IsOnPlatform(object.get()) && object.get() != m_pGameObject)
 			{
-				m_RightCornerHit = false;
-				m_CenterHit = false;
-				m_LeftCornerHit = false;
-
-				m_canFall = false;
-
-				object->GetComponent<IngredientComponent>()->SetIsFalling(true);
-
+				auto prevType = m_Type;
+				auto objType = object->GetComponent<IngredientComponent>()->GetType();
+				m_Type = objType;
+				object->GetComponent<IngredientComponent>()->SetType(prevType);
+				object->GetComponent<IngredientComponent>()->ChooseTexture(prevType);
+				ChooseTexture(objType);
+				
 			}
 
 
