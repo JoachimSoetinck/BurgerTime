@@ -24,9 +24,8 @@ void dae::IngredientComponent::Update()
 	{
 		HandleCollision();
 
+		Fall();
 
-		if (m_LeftCornerHit && m_CenterHit )
-			Fall();
 	}
 
 }
@@ -93,55 +92,49 @@ void dae::IngredientComponent::ChooseTexture(Type ingredient)
 	}
 }
 
-bool dae::IngredientComponent::IsOnPlatform(GameObject* o2)
+bool dae::IngredientComponent::IsOnPlatform(GameObject* object)
 {
-	const int otherObjectWidth = o2->GetComponent<RenderComponent>()->GetWidth();
-	auto& otherObjectPos = o2->GetComponent<TransformComponent>()->GetPosition();
-	const auto otherObjectheight = o2->GetComponent<RenderComponent>()->GetHeight() / 2;
+	int otherObjectWidth = object->GetComponent<RenderComponent>()->GetWidth();
+	auto otherObjectPos = object->GetComponent<TransformComponent>()->GetPosition();
+	auto otherObjectheight = object->GetComponent<RenderComponent>()->GetHeight();
 
-	auto& ingredientPos = m_pGameObject->GetComponent<TransformComponent>()->GetPosition();
-	const int ingredientWidth = m_pGameObject->GetComponent<RenderComponent>()->GetWidth();
-	const int ingredientHeight = m_pGameObject->GetComponent<RenderComponent>()->GetHeight();
+	auto PeterPepperPos = m_pGameObject->GetComponent<TransformComponent>()->GetPosition();
+	int PeterPepperWidth = m_pGameObject->GetComponent<RenderComponent>()->GetWidth();
+	int PeterPepperHeight = m_pGameObject->GetComponent<RenderComponent>()->GetHeight();
 
+	int offset = 15;
 
-
-	if ((ingredientPos.y > otherObjectPos.y &&
-		ingredientPos.y + ingredientHeight <= otherObjectPos.y + otherObjectheight) &&
-		(ingredientPos.x >= otherObjectPos.x &&
-			ingredientPos.x + ingredientWidth <= otherObjectPos.x + otherObjectWidth))
+	if ((PeterPepperPos.x >= otherObjectPos.x - offset && PeterPepperPos.x + PeterPepperWidth <= otherObjectPos.x + otherObjectWidth) &&
+		(PeterPepperPos.y + PeterPepperHeight + 10 >= otherObjectPos.y && PeterPepperPos.y + PeterPepperHeight <= otherObjectPos.y + otherObjectheight))
 	{
 		return true;
 	}
 
-	else return false;
+	return false;
 }
 
-void dae::IngredientComponent::DelayCollision()
-{
-	m_canCollide = false;
-}
 
 void dae::IngredientComponent::HandleCollision()
 {
 	auto objects = SceneManager::GetInstance().GetScene(0)->GetObjects();
 
-
-
 	for (const auto& object : objects)
 	{
 		if (object.get()->GetComponent<IngredientComponent>() != nullptr)
 		{
-			if (IsOnPlatform(object.get()))
+			if (IsOnPlatform(object.get()) && object.get() != m_pGameObject)
 			{
+				m_RightCornerHit = false;
+				m_CenterHit = false;
+				m_LeftCornerHit = false;
 
-				object->GetComponent<IngredientComponent>()->SetIsFalling(false);
-				object->GetComponent<IngredientComponent>()->DelayCollision();
+				m_canFall = false;
 
-				object->GetComponent<TransformComponent>()->SetPosition(m_pTransform->GetPosition());
-
-				m_canFall = true;
+				object->GetComponent<IngredientComponent>()->SetIsFalling(true);
 
 			}
+
+
 		}
 
 
@@ -151,8 +144,14 @@ void dae::IngredientComponent::HandleCollision()
 
 void dae::IngredientComponent::Fall()
 {
-	m_pTransform->SetPosition(m_pTransform->GetPosition().x,
-		m_pTransform->GetPosition().y + m_fallSpeed * Time::GetDeltaTime(),
-		m_pTransform->GetPosition().z);
+	if ((m_LeftCornerHit && m_CenterHit)  || m_canFall)
+	{
+		m_pTransform->SetPosition(m_pTransform->GetPosition().x,
+			m_pTransform->GetPosition().y + m_fallSpeed * Time::GetDeltaTime(),
+			m_pTransform->GetPosition().z);
+
+		m_canFall = true;
+	}
+
 
 }

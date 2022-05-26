@@ -54,8 +54,9 @@ namespace dae
 		std::shared_ptr<TransformComponent> m_pTransform{};
 
 		bool IsOnPlatform(GameObject* o2);
+
 		float m_elapsedSec;
-		void DelayCollision();
+	
 		void HandleCollision();
 		void Fall();
 	};
