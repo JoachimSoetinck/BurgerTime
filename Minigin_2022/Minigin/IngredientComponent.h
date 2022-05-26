@@ -2,9 +2,13 @@
 #include "BaseComponent.h"
 #include <memory>
 
+#include <glm/detail/type_vec.hpp>
+
+
 namespace dae
 {
 	class RenderComponent;
+	class TransformComponent;
 
 	class IngredientComponent final : public BaseComponent
 	{
@@ -29,11 +33,31 @@ namespace dae
 		void Update() override;
 		void Render() const override;
 
+		void CheckHitPoints(glm::vec3 positionPP, int height, int width);
+		void SetIsFalling(bool isFalling) { m_canFall = isFalling; }
 
 	private:
 		std::shared_ptr<RenderComponent> m_pRender{};
 
 		void ChooseTexture(Type ingredient);
+
+		bool m_canFall{ false };
+		bool m_canCollide{ true };
+		
+
+		bool m_RightCornerHit{false};
+		bool m_CenterHit{ false };
+		bool m_LeftCornerHit{ false };
+
+		int m_fallSpeed{ 50 };
+
+		std::shared_ptr<TransformComponent> m_pTransform{};
+
+		bool IsOnPlatform(GameObject* o2);
+		float m_elapsedSec;
+		void DelayCollision();
+		void HandleCollision();
+		void Fall();
 	};
 }
 

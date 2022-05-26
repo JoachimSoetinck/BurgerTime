@@ -135,7 +135,7 @@ public:
 
 		std::shared_ptr<dae::PeterPepperComponent> pepperComp = actor->GetComponent<dae::PeterPepperComponent>();
 
-		pepperComp->GivePoints();
+		pepperComp->GivePoints(50);
 	};
 };
 

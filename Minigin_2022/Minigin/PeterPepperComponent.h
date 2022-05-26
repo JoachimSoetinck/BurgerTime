@@ -41,7 +41,7 @@ namespace dae
 		int GetScore()const;
 		bool IsOnLadder() const { return m_isOnLadder; }
 
-		void GivePoints();
+		void GivePoints(int nrOfPoints);
 
 		void LoseLive();
 		void SetState(PlayerState state);
@@ -65,6 +65,7 @@ namespace dae
 		void HandleMovement();
 		bool IsOnLadder(GameObject* get);
 		bool IsOnGround(GameObject* object);
+		bool IsOverlapping(GameObject* object);
 		void SetOnGround(bool isOnGround);
 		void HandleCollision();
 		glm::vec2 m_direction{ 0,0 };

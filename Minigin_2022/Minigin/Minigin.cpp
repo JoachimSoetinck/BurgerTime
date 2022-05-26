@@ -365,26 +365,26 @@ void dae::Minigin::CreateLevel(Scene& scene) const
 	CreateIngredient(scene, 93, 85, IngredientComponent::Type::TopBun);
 	CreateIngredient(scene, 93, 190, IngredientComponent::Type::Lettuce);
 	CreateIngredient(scene, 93, 300, IngredientComponent::Type::Patty);
-	CreateIngredient(scene, 93, 470, IngredientComponent::Type::Tomato);
+	CreateIngredient(scene, 93, 470, IngredientComponent::Type::Patty);
 	CreateIngredient(scene, 93, 575, IngredientComponent::Type::BottomBun);
 
 	CreateIngredient(scene, 255, 85, IngredientComponent::Type::TopBun);
 	CreateIngredient(scene, 255, 245, IngredientComponent::Type::Lettuce);
 	CreateIngredient(scene, 255, 355, IngredientComponent::Type::Patty);
-	CreateIngredient(scene, 255, 470, IngredientComponent::Type::Tomato);
+	CreateIngredient(scene, 255, 470, IngredientComponent::Type::Patty);
 	CreateIngredient(scene, 255, 575, IngredientComponent::Type::BottomBun);
 
 
 	CreateIngredient(scene, 420, 85, IngredientComponent::Type::TopBun);
 	CreateIngredient(scene, 420, 190, IngredientComponent::Type::Lettuce);
 	CreateIngredient(scene, 420, 355, IngredientComponent::Type::Patty);
-	CreateIngredient(scene, 420, 470, IngredientComponent::Type::Tomato);
+	CreateIngredient(scene, 420, 470, IngredientComponent::Type::Patty);
 	CreateIngredient(scene, 420, 575, IngredientComponent::Type::BottomBun);
 
 	CreateIngredient(scene, 580, 85, IngredientComponent::Type::TopBun);
 	CreateIngredient(scene, 580, 190, IngredientComponent::Type::Lettuce);
 	CreateIngredient(scene, 580, 300, IngredientComponent::Type::Patty);
-	CreateIngredient(scene, 580, 410, IngredientComponent::Type::Tomato);
+	CreateIngredient(scene, 580, 410, IngredientComponent::Type::Patty);
 	CreateIngredient(scene, 580, 575, IngredientComponent::Type::BottomBun);
 
 

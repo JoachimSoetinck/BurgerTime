@@ -3,6 +3,7 @@
 
 #include "InputManager.h"
 #include "Command.h"
+#include "IngredientComponent.h"
 #include "LadderComponent.h"
 #include "Scene.h"
 #include "SceneManager.h"
@@ -137,6 +138,28 @@ bool dae::PeterPepperComponent::IsOnGround(GameObject* object)
 	return false;
 }
 
+bool dae::PeterPepperComponent::IsOverlapping(GameObject* object)
+{
+	int otherObjectWidth = object->GetComponent<RenderComponent>()->GetWidth();
+	auto otherObjectPos = object->GetComponent<TransformComponent>()->GetPosition();
+	auto otherObjectheight = object->GetComponent<RenderComponent>()->GetHeight();
+
+	auto PeterPepperPos = m_pGameObject->GetComponent<TransformComponent>()->GetPosition();
+	int PeterPepperWidth = m_pGameObject->GetComponent<RenderComponent>()->GetWidth();
+	int PeterPepperHeight = m_pGameObject->GetComponent<RenderComponent>()->GetHeight();
+	int offset = 15;
+
+	if ((PeterPepperPos.x >= otherObjectPos.x - offset && PeterPepperPos.x + PeterPepperWidth <= otherObjectPos.x + otherObjectWidth ) &&
+		(PeterPepperPos.y  + PeterPepperHeight +10 >= otherObjectPos.y && PeterPepperPos.y + PeterPepperHeight <= otherObjectPos.y + otherObjectheight))
+	{
+		return true;
+	}
+
+	return false;
+}
+
+
+
 void dae::PeterPepperComponent::SetOnGround(bool isOnGround)
 {
 	m_isOnGround = isOnGround;
@@ -185,6 +208,15 @@ void dae::PeterPepperComponent::HandleCollision()
 				isOnLadder = true;
 			}
 		}
+
+		if (o2.get()->GetComponent<IngredientComponent>() != nullptr)
+		{
+			if (IsOverlapping(o2.get()))
+			{
+				o2.get()->GetComponent<IngredientComponent>()->CheckHitPoints(m_TransformComponent->GetPosition(), m_pGameObject->GetComponent<RenderComponent>()->GetHeight(), m_pGameObject->GetComponent<RenderComponent>()->GetWidth());
+				
+			}
+		}
 	}
 
 	m_isOnGround = isOnGround;
@@ -213,11 +245,11 @@ bool dae::PeterPepperComponent::IsOnLadder(GameObject* obj)
 }
 
 
-void dae::PeterPepperComponent::GivePoints()
+void dae::PeterPepperComponent::GivePoints(int nrOfPoints)
 {
-	const int earnedPoints = 100;
+	
 
-	m_score += earnedPoints;
+	m_score += nrOfPoints;
 	NotifyAllObservers(*m_pGameObject, Event::GivePoints);
 }
 
