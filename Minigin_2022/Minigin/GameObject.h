@@ -2,6 +2,8 @@
 #include "Transform.h"
 #include "SceneObject.h"
 #include "BaseComponent.h"
+# include <vector>
+
 
 namespace dae
 {

@@ -13,7 +13,7 @@ namespace dae
 	{
 	public:
 		void Initialize();
-		void LoadGame() const;
+		virtual void LoadGame() const;
 		void Cleanup();
 		void Run();
 		void FixedUpdate(float fixedTimeStep);
