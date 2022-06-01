@@ -49,6 +49,11 @@ namespace dae
 		void RemoveChild(std::shared_ptr<GameObject> child);
 
 		GameObject* GetParent() const;
+		GameObject* GetChild(int i) const
+		{
+			if(m_Children.size() > 0)return  m_Children[i].get();
+			return nullptr;
+		}  ;
 		void SetParent(GameObject* parent) ;
 
 	private:

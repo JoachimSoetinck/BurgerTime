@@ -10,6 +10,8 @@
 #include "BurgerTimePCH.h"
 #include <iostream>
 
+#include "SaltComponent.h"
+
 
 dae::EnemyComponent::EnemyComponent(std::shared_ptr<GameObject> gameObject, const glm::ivec2 spawn) :
 	m_spawnPoint{ spawn }
@@ -58,6 +60,16 @@ void dae::EnemyComponent::HandleCollision()
 			if (IsOverlapping(object.get()))
 			{
 
+				break;
+			}
+		}
+
+
+		if (object->GetComponent<SaltComponent>() != nullptr)
+		{
+			if (IsOverlapping(object.get()))
+			{
+				std::cout << "test";
 				break;
 			}
 		}

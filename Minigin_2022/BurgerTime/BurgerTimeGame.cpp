@@ -70,6 +70,7 @@ void BurgerTimeGame::LoadGame() const
 	auto saltComp = std::make_shared<dae::SaltComponent>(salt, peterPepper->GetComponent<dae::PeterPepperComponent>());
 
 	salt->AddComponent(saltComp);
+	scene.Add(salt);
 
 	peterPepper->AddChild(salt);
 

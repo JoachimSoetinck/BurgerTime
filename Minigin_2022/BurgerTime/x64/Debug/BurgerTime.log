@@ -1,5 +1,4 @@
-﻿  BurgerTime.cpp
-  BurgerTimeGame.cpp
+﻿  BurgerTimeGame.cpp
 C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec2.hpp(45,22): warning C4201: nonstandard extension used: nameless struct/union
 C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec2.hpp(206): message : see reference to class template instantiation 'glm::tvec2<T,P>' being compiled
 C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec2.hpp(46,22): warning C4201: nonstandard extension used: nameless struct/union
@@ -12,7 +11,7 @@ C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\typ
 C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec4.hpp(272): message : see reference to class template instantiation 'glm::tvec4<T,P>' being compiled
 C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec4.hpp(46,29): warning C4201: nonstandard extension used: nameless struct/union
 C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec4.hpp(47,29): warning C4201: nonstandard extension used: nameless struct/union
-  CustomCommands.cpp
+  EnemyComponent.cpp
 C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec2.hpp(45,22): warning C4201: nonstandard extension used: nameless struct/union
 C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec2.hpp(206): message : see reference to class template instantiation 'glm::tvec2<T,P>' being compiled
 C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec2.hpp(46,22): warning C4201: nonstandard extension used: nameless struct/union
@@ -25,7 +24,7 @@ C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\typ
 C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec4.hpp(272): message : see reference to class template instantiation 'glm::tvec4<T,P>' being compiled
 C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec4.hpp(46,29): warning C4201: nonstandard extension used: nameless struct/union
 C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec4.hpp(47,29): warning C4201: nonstandard extension used: nameless struct/union
-  ScoreComponent.cpp
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\EnemyComponent.cpp(26,12): warning C4244: 'argument': conversion from 'time_t' to 'unsigned int', possible loss of data
   Generating Code...
   BurgerTime.vcxproj -> C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\x64\Debug\BurgerTime.exe
   C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\SDL2\lib\x64\SDL2.dll

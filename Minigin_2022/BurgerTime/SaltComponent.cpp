@@ -2,6 +2,10 @@
 #include "SaltComponent.h"
 
 #include "PeterPepperComponent.h"
+#include "EnemyComponent.h"
+#include "IngredientComponent.h"
+#include "LadderComponent.h"
+#include "PlatformComponent.h"
 
 #include "Scene.h"
 #include "SceneManager.h"
@@ -17,8 +21,6 @@ dae::SaltComponent::SaltComponent(std::shared_ptr<GameObject> object, std::share
 
 	m_RenderComponent = m_pGameObject->GetComponent<RenderComponent>();
 	m_TransformComponent = m_pGameObject->GetComponent<TransformComponent>();
-
-	m_Parent = m_pGameObject->GetParent()->GetParent();
 
 	 m_peterPepper =pp;
 	
@@ -44,19 +46,18 @@ void dae::SaltComponent::Render() const
 
 bool dae::SaltComponent::IsOverlapping(GameObject* object)
 {
-	const float otherObjectWidth = static_cast<float>(object->GetComponent<RenderComponent>()->GetWidth());
-	const auto otherObjectPos = object->GetComponent<TransformComponent>()->GetPosition();
-	const float otherObjectheight = static_cast<float>(object->GetComponent<RenderComponent>()->GetHeight());
+	int otherObjectWidth = object->GetComponent<RenderComponent>()->GetWidth();
+	auto& otherObjectPos = object->GetComponent<TransformComponent>()->GetPosition();
+	auto otherObjectheight = object->GetComponent<RenderComponent>()->GetHeight();
 
-	auto& PeterPepperPos = m_pGameObject->GetComponent<TransformComponent>()->GetPosition();
-	const float PeterPepperWidth = static_cast<float>(m_pGameObject->GetComponent<RenderComponent>()->GetWidth());
-	const float PeterPepperHeight = static_cast<float>(m_pGameObject->GetComponent<RenderComponent>()->GetHeight());
+	auto PeterPepperPos = m_pGameObject->GetComponent<TransformComponent>()->GetPosition();
+	int PeterPepperWidth = m_pGameObject->GetComponent<RenderComponent>()->GetWidth();
+	int PeterPepperHeight = m_pGameObject->GetComponent<RenderComponent>()->GetHeight();
+	int offset = 15;
 
-
-	if ((PeterPepperPos.x >= otherObjectPos.x && PeterPepperPos.x + PeterPepperWidth <= otherObjectPos.x + otherObjectWidth) &&
-		(PeterPepperPos.y + PeterPepperHeight >= otherObjectPos.y && PeterPepperPos.y + PeterPepperHeight <= otherObjectPos.y + otherObjectheight))
+	if ((PeterPepperPos.x >= otherObjectPos.x - offset && PeterPepperPos.x + PeterPepperWidth <= otherObjectPos.x + otherObjectWidth + offset) &&
+		(PeterPepperPos.y + PeterPepperHeight >= otherObjectPos.y && PeterPepperPos.y + PeterPepperHeight <= otherObjectPos.y + otherObjectheight + 3))
 	{
-
 		return true;
 	}
 
@@ -65,8 +66,7 @@ bool dae::SaltComponent::IsOverlapping(GameObject* object)
 
 void dae::SaltComponent::HandleCollision()
 {
-	auto objects = SceneManager::GetInstance().GetScene(0)->GetObjects();
-
+	
 	
 
 }
