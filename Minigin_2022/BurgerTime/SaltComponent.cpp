@@ -31,9 +31,17 @@ void dae::SaltComponent::Update()
 	if(m_peterPepper != nullptr && m_RenderComponent != nullptr)
 	{
 		if (m_peterPepper->IsThrowing())
+		{
 			m_RenderComponent->SetVisibility(true);
+			m_isActive = true;
+		}
+			
 		else
+		{
 			m_RenderComponent->SetVisibility(false);
+			m_isActive = false;
+		}
+			
 	}
 
 	HandleCollision();

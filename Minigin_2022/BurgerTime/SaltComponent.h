@@ -18,7 +18,8 @@ namespace dae
 		void Update() override;
 
 		void Render() const override;
-		void SetVisibilitySalt(bool isVisible) { m_isActive = isVisible; }
+
+		bool GetVisibility() const { return m_isActive; }
 		
 	private:
 		

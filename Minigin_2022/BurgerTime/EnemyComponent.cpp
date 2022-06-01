@@ -67,7 +67,7 @@ void dae::EnemyComponent::HandleCollision()
 
 		if (object->GetComponent<SaltComponent>() != nullptr)
 		{
-			if (IsOverlapping(object.get()))
+			if (IsOverlapping(object.get()) && object->GetComponent<SaltComponent>()->GetVisibility())
 			{
 				std::cout << "test";
 				break;
