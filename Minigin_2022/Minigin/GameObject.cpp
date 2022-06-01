@@ -26,6 +26,9 @@ void dae::GameObject::Update()
 	for (auto& child : m_Children)
 	{
 		child->Update();
+
+		child->GetComponent<TransformComponent>()->SetPosition(GetComponent<TransformComponent>()->GetPosition() + child->GetComponent<TransformComponent>()->GetWorldPosition());
+		
 	}
 }
 
@@ -59,6 +62,8 @@ void dae::GameObject::AddChild(std::shared_ptr<GameObject> child)
 {
 	m_Children.push_back(child);
 	child->SetParent(this);
+
+	child->GetComponent<TransformComponent>()->SetPosition(this->GetComponent<TransformComponent>()->GetPosition() + child->GetComponent<TransformComponent>()->GetWorldPosition());
 }
 
 void dae::GameObject::RemoveChild(std::shared_ptr<GameObject> child)

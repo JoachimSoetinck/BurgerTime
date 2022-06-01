@@ -1,7 +1,8 @@
 ﻿#include "MiniginPCH.h"
 #include "RigidBodyComponent.h"
 
-#include "Time.h"
+
+#include "Timer.h"
 
 dae::RigidBodyComponent::RigidBodyComponent(std::shared_ptr<GameObject> object)
 {

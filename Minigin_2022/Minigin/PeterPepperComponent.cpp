@@ -36,6 +36,9 @@ dae::PeterPepperComponent::PeterPepperComponent(std::shared_ptr<GameObject> obje
 	InputManager::GetInstance().AddCommand(ControllerButton::ButtonUp, new StopMoving(), object, 0, ButtonPressType::IsUp);
 
 
+	InputManager::GetInstance().AddCommand(ControllerButton::ButtonA, new Attack(), object, 0, ButtonPressType::IsUp);
+
+
 }
 
 dae::PeterPepperComponent::~PeterPepperComponent()
@@ -45,8 +48,26 @@ dae::PeterPepperComponent::~PeterPepperComponent()
 
 void dae::PeterPepperComponent::Update()
 {
-	HandleMovement();
-	HandleCollision();
+	if(!m_isThrowing)
+	{
+		HandleMovement();
+		HandleCollision();
+	}
+
+	if(m_isThrowing)
+	{
+		m_elapsedSec += Time::GetDeltaTime();
+
+		if (m_elapsedSec >= m_throwDuration)
+		{
+			m_state = PlayerState::Idle;
+			m_isThrowing = false;
+			m_elapsedSec = 0.0f;
+			std::cout << "idle";
+		}
+			
+	}
+	
 }
 
 void dae::PeterPepperComponent::Render() const
@@ -85,17 +106,17 @@ void dae::PeterPepperComponent::SetState(PlayerState state)
 	}
 	case PlayerState::MovingLeft:
 	{
-		m_direction.x = -50 ;
+		m_direction.x = -50;
 		break;
 	}
 	case PlayerState::MovingRight:
 	{
-		m_direction.x =  50;
+		m_direction.x = 50;
 		break;
 	}
 	case PlayerState::ClimbingUp:
 	{
-		m_direction.y =  -50 ;
+		m_direction.y = -50;
 		break;
 	}
 	case PlayerState::ClimbingDown:
@@ -109,10 +130,14 @@ void dae::PeterPepperComponent::SetState(PlayerState state)
 	}
 	case PlayerState::ThrowingSaltLeft:
 	{
+		m_direction = { 0,0 };
+		m_isThrowing = true;
 		break;
 	}
 	case PlayerState::ThrowingSaltRight:
 	{
+		m_direction = { 0,0 };
+		m_isThrowing = true;
 		break;
 	}
 	}
@@ -120,7 +145,7 @@ void dae::PeterPepperComponent::SetState(PlayerState state)
 
 bool dae::PeterPepperComponent::IsOnGround(GameObject* object)
 {
-	int otherObjectWidth = object->GetComponent<RenderComponent>()->GetWidth() ;
+	int otherObjectWidth = object->GetComponent<RenderComponent>()->GetWidth();
 	auto otherObjectPos = object->GetComponent<TransformComponent>()->GetPosition();
 	auto otherObjectheight = object->GetComponent<RenderComponent>()->GetHeight();
 
@@ -149,8 +174,8 @@ bool dae::PeterPepperComponent::IsOverlapping(GameObject* object)
 	int PeterPepperHeight = m_pGameObject->GetComponent<RenderComponent>()->GetHeight();
 	int offset = 15;
 
-	if ((PeterPepperPos.x >= otherObjectPos.x - offset && PeterPepperPos.x + PeterPepperWidth <= otherObjectPos.x + otherObjectWidth ) &&
-		(PeterPepperPos.y  + PeterPepperHeight +10 >= otherObjectPos.y && PeterPepperPos.y + PeterPepperHeight <= otherObjectPos.y + otherObjectheight))
+	if ((PeterPepperPos.x >= otherObjectPos.x - offset && PeterPepperPos.x + PeterPepperWidth <= otherObjectPos.x + otherObjectWidth) &&
+		(PeterPepperPos.y + PeterPepperHeight + 10 >= otherObjectPos.y && PeterPepperPos.y + PeterPepperHeight <= otherObjectPos.y + otherObjectheight))
 	{
 		return true;
 	}
@@ -174,11 +199,11 @@ void dae::PeterPepperComponent::HandleMovement()
 			m_TransformComponent->SetPosition(m_TransformComponent->GetPosition().x + m_direction.x * Time::GetDeltaTime(), m_TransformComponent->GetPosition().y + m_direction.y * Time::GetDeltaTime(), m_TransformComponent->GetPosition().z);
 		}
 
-		if (m_isOnGround == false && m_isOnLadder == false )
+		if (m_isOnGround == false && m_isOnLadder == false)
 		{
 			m_TransformComponent->SetPosition(m_TransformComponent->GetPosition().x, m_TransformComponent->GetPosition().y + 9.81f * Time::GetDeltaTime(), m_TransformComponent->GetPosition().z);
 		}
-		
+
 	}
 
 }
@@ -214,7 +239,7 @@ void dae::PeterPepperComponent::HandleCollision()
 			if (IsOverlapping(o2.get()))
 			{
 				o2.get()->GetComponent<IngredientComponent>()->CheckHitPoints(m_TransformComponent->GetPosition(), m_pGameObject->GetComponent<RenderComponent>()->GetHeight(), m_pGameObject->GetComponent<RenderComponent>()->GetWidth());
-				
+
 			}
 		}
 	}
@@ -226,7 +251,7 @@ void dae::PeterPepperComponent::HandleCollision()
 
 bool dae::PeterPepperComponent::IsOnLadder(GameObject* obj)
 {
-	int otherObjectWidth = obj->GetComponent<RenderComponent>()->GetWidth() ;
+	int otherObjectWidth = obj->GetComponent<RenderComponent>()->GetWidth();
 	auto otherObjectPos = obj->GetComponent<TransformComponent>()->GetPosition();
 	auto otherObjectheight = obj->GetComponent<RenderComponent>()->GetHeight();
 
@@ -235,8 +260,8 @@ bool dae::PeterPepperComponent::IsOnLadder(GameObject* obj)
 	int PeterPepperHeight = m_pGameObject->GetComponent<RenderComponent>()->GetHeight();
 	int offset = 15;
 
-	if ((PeterPepperPos.x >= otherObjectPos.x - offset && PeterPepperPos.x + PeterPepperWidth <= otherObjectPos.x + otherObjectWidth + offset ) &&
-		(PeterPepperPos.y + PeterPepperHeight >= otherObjectPos.y && PeterPepperPos.y + PeterPepperHeight <= otherObjectPos.y + otherObjectheight +3 ))
+	if ((PeterPepperPos.x >= otherObjectPos.x - offset && PeterPepperPos.x + PeterPepperWidth <= otherObjectPos.x + otherObjectWidth + offset) &&
+		(PeterPepperPos.y + PeterPepperHeight >= otherObjectPos.y && PeterPepperPos.y + PeterPepperHeight <= otherObjectPos.y + otherObjectheight + 3))
 	{
 		return true;
 	}
@@ -247,7 +272,7 @@ bool dae::PeterPepperComponent::IsOnLadder(GameObject* obj)
 
 void dae::PeterPepperComponent::GivePoints(int nrOfPoints)
 {
-	
+
 
 	m_score += nrOfPoints;
 	NotifyAllObservers(*m_pGameObject, Event::GivePoints);

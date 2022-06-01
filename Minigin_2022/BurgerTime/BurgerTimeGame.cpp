@@ -15,6 +15,7 @@
 #include "BarrierComponent.h"
 #include "EnemyComponent.h"
 #include "PlatformComponent.h"
+#include "SaltComponent.h"
 
 void BurgerTimeGame::LoadGame() const
 {
@@ -37,6 +38,7 @@ void BurgerTimeGame::LoadGame() const
 	peterPepper->AddComponent(player);
 	peterPepper->GetComponent<dae::TransformComponent>()->SetPosition(glm::vec3{ 375, 550, 0 });
 
+	//score bord
 	auto healthText = std::make_shared<dae::GameObject>();
 	healthText->GetComponent<dae::TransformComponent>()->SetPosition(150, 10, 0);
 	auto lives = std::make_shared<dae::LivesComponent>(healthText, SDL_Color{ 255,255,0 }, player);
@@ -46,7 +48,7 @@ void BurgerTimeGame::LoadGame() const
 
 	player->AddObserver(lives);
 
-
+	
 	auto scoreText = std::make_shared<dae::GameObject>();
 	scoreText->GetComponent<dae::TransformComponent>()->SetPosition(250, 10, 0);
 	auto score = std::make_shared<dae::ScoreComponent>(peterPepper, SDL_Color{ 255,255,0 }, peterPepper);
@@ -58,6 +60,18 @@ void BurgerTimeGame::LoadGame() const
 
 	const auto peterPepperImage = std::make_shared<dae::RenderComponent>("PeterPepper/PlayerIdle.png", peterPepper);
 	peterPepper->AddComponent(peterPepperImage);
+
+
+	//attack part salt
+	auto salt = std::make_shared<dae::GameObject>();
+	salt->GetComponent<dae::TransformComponent>()->SetPosition(-50, 10, -0);
+	salt->AddComponent(std::make_shared<dae::RenderComponent>("PeterPepper/Salt.png", salt));
+	auto saltComp = std::make_shared<dae::SaltComponent>(salt, peterPepper->GetComponent<dae::PeterPepperComponent>());
+
+	salt->AddComponent(saltComp);
+
+	peterPepper->AddChild(salt);
+
 
 	auto enemy1 = std::make_shared<dae::GameObject>();
 	enemy1->AddComponent(std::make_shared<dae::RenderComponent>("Enemies/Sausage.png", enemy1));

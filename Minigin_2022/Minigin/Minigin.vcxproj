@@ -511,6 +511,7 @@
     <ClInclude Include="PlatformComponent.h" />
     <ClInclude Include="RenderComponent.h" />
     <ClInclude Include="RigidBodyComponent.h" />
+    <ClInclude Include="SaltComponent.h" />
     <ClInclude Include="SceneObject.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="ResourceManager.h" />
@@ -698,6 +699,7 @@
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="RigidBodyComponent.cpp" />
+    <ClCompile Include="SaltComponent.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
     <ClCompile Include="ScoreComponent.cpp" />

@@ -9,7 +9,8 @@ dae::TransformComponent::TransformComponent()
 }
 
 dae::TransformComponent::TransformComponent(const glm::vec3& pos) :
-	m_Position{ pos }
+	m_Position{ pos },
+	m_WorldPos{  }
 {
 }
 

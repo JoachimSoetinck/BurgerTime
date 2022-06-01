@@ -29,6 +29,7 @@ namespace dae
 		void Render() const override;
 
 		void SetTexture(const std::string& file);
+		void SetVisibility( bool isVisible) { m_isVisible = isVisible; }
 		int GetWidth() const;
 		int GetHeight() const;
 

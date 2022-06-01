@@ -17,9 +17,12 @@ namespace dae {
 		void SetPosition(float x, float y, float z);
 		void SetPosition(const glm::vec3& newPos);
 
+		void SetWorldPos(const glm::vec3& newPos) { m_WorldPos = newPos; }
+
+
 	private:
 		 glm::vec3 m_Position;
-		 glm::vec3 m_WorldPos;
+		 glm::vec3 m_WorldPos{0,0,0};
 	};
 
 }

@@ -36,6 +36,7 @@ void dae::IngredientComponent::Render() const
 
 void dae::IngredientComponent::CheckHitPoints(glm::vec3 positionPP, int height, int width)
 {
+	
 	if (m_pTransform->GetPosition().x > positionPP.x &&
 		m_pTransform->GetPosition().x <  positionPP.x + width &&
 		m_pTransform->GetPosition().y > positionPP.y &&
@@ -51,12 +52,12 @@ void dae::IngredientComponent::CheckHitPoints(glm::vec3 positionPP, int height, 
 		m_CenterHit = true;
 	}
 
-	if (m_pTransform->GetPosition().x + m_pRender->GetWidth() < positionPP.x &&
-		m_pTransform->GetPosition().x + m_pRender->GetWidth() > positionPP.x + width &&
+	float width2 = 105;
+	if (m_pTransform->GetPosition().x  + width2 > positionPP.x &&
+		m_pTransform->GetPosition().x + width2 < positionPP.x + width2 &&
 		m_pTransform->GetPosition().y > positionPP.y &&
 		m_pTransform->GetPosition().y < positionPP.y + height)
 	{
-		std::cout << "Right Corner Hit\n";
 		m_RightCornerHit = true;
 	}
 
@@ -130,12 +131,9 @@ void dae::IngredientComponent::HandleCollision()
 				object->GetComponent<IngredientComponent>()->SetType(prevType);
 				object->GetComponent<IngredientComponent>()->ChooseTexture(prevType);
 				ChooseTexture(objType);
-				
+
 			}
-
-
 		}
-
 
 	}
 
@@ -143,7 +141,7 @@ void dae::IngredientComponent::HandleCollision()
 
 void dae::IngredientComponent::Fall()
 {
-	if ((m_LeftCornerHit && m_CenterHit)  || m_canFall)
+	if ((m_LeftCornerHit && m_CenterHit && m_RightCornerHit)  || m_canFall)
 	{
 		m_pTransform->SetPosition(m_pTransform->GetPosition().x,
 			m_pTransform->GetPosition().y + m_fallSpeed * Time::GetDeltaTime(),

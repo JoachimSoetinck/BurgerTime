@@ -45,6 +45,7 @@ namespace dae
 
 		void LoseLive();
 		void SetState(PlayerState state);
+		bool IsThrowing() { return m_isThrowing; };
 
 		
 		
@@ -54,13 +55,15 @@ namespace dae
 		int m_score{ 0 };
 		bool m_isOnGround {false};
 		bool m_isOnLadder{false};
+		bool m_isThrowing{ false };
 		PlayerState m_state = PlayerState::Idle;
 
 		std::shared_ptr<RigidBodyComponent> m_pRigidBody{};
 		std::shared_ptr<TransformComponent> m_TransformComponent{};
 		std::shared_ptr<RenderComponent> m_pRenderComponent{};
 		
-
+		float m_throwDuration{ 1.0f};
+		float m_elapsedSec{};
 
 		void HandleMovement();
 		bool IsOnLadder(GameObject* get);

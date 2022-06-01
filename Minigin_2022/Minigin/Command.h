@@ -52,11 +52,11 @@ public:
 		{
 
 			object->GetComponent<dae::PeterPepperComponent>()->SetState(dae::PeterPepperComponent::PlayerState::Idle);
-			
-		}
-			
 
-		
+		}
+
+
+
 	};
 };
 
@@ -71,6 +71,17 @@ public:
 		{
 			object->GetComponent<dae::PeterPepperComponent>()->SetState(dae::PeterPepperComponent::PlayerState::Idle);
 		}
+	};
+};
+
+class Attack : public Command
+{
+public:
+	virtual void Execute(std::shared_ptr<dae::GameObject> object) override
+	{
+
+		object->GetComponent<dae::PeterPepperComponent>()->SetState(dae::PeterPepperComponent::PlayerState::ThrowingSaltRight);
+
 	};
 };
 
