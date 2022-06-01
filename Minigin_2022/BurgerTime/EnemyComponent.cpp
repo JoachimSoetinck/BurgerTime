@@ -1,11 +1,14 @@
 
 #include "EnemyComponent.h"
+
+#include "BarrierComponent.h"
 #include "LadderComponent.h"
 #include "PlatformComponent.h"
 #include "Scene.h"
 #include "SceneManager.h"
 #include "Timer.h"
 #include "BurgerTimePCH.h"
+#include <iostream>
 
 
 dae::EnemyComponent::EnemyComponent(std::shared_ptr<GameObject> gameObject, const glm::ivec2 spawn) :
@@ -17,6 +20,8 @@ dae::EnemyComponent::EnemyComponent(std::shared_ptr<GameObject> gameObject, cons
 	m_TransformComponent = gameObject->GetComponent<TransformComponent>();
 
 	m_pGameObject->GetComponent<TransformComponent>()->SetPosition(static_cast<float>(spawn.x), static_cast<float>(spawn.y), 0);
+
+	srand(time(NULL));
 }
 
 void dae::EnemyComponent::Update()
@@ -41,7 +46,9 @@ void dae::EnemyComponent::HandleCollision()
 {
 	auto objects = SceneManager::GetInstance().GetScene(0)->GetObjects();
 
-	bool isOnGround = false;
+
+	int random{rand() };
+
 
 
 	for (auto object : objects)
@@ -50,14 +57,22 @@ void dae::EnemyComponent::HandleCollision()
 		{
 			if (IsOverlapping(object.get()))
 			{
-				isOnGround = true;
-				m_state = EnemyState::MovingRight;
+
+				break;
+			}
+		}
+
+		if (object->GetComponent<LadderComponent>() != nullptr)
+		{
+			if (IsOverlapping(object.get()) && (random == 1 || m_state == EnemyState::MovingRight))
+			{
+				//m_state = EnemyState::Climbing;
+				break;
 			}
 		}
 
 	}
 
-	m_isOnGround = isOnGround;
 
 
 
@@ -66,23 +81,26 @@ void dae::EnemyComponent::HandleCollision()
 
 bool dae::EnemyComponent::IsOverlapping(GameObject* object)
 {
-	const float otherObjectWidth = object->GetComponent<RenderComponent>()->GetWidth();
+	const float otherObjectWidth = static_cast<float>(object->GetComponent<RenderComponent>()->GetWidth());
 	const auto otherObjectPos = object->GetComponent<TransformComponent>()->GetPosition();
-	const float otherObjectheight = object->GetComponent<RenderComponent>()->GetHeight();
+	const float otherObjectheight = static_cast<float>(object->GetComponent<RenderComponent>()->GetHeight());
 
 	auto& PeterPepperPos = m_pGameObject->GetComponent<TransformComponent>()->GetPosition();
-	const float PeterPepperWidth = m_pGameObject->GetComponent<RenderComponent>()->GetWidth();
-	const float PeterPepperHeight = m_pGameObject->GetComponent<RenderComponent>()->GetHeight();
+	const float PeterPepperWidth = static_cast<float>(m_pGameObject->GetComponent<RenderComponent>()->GetWidth());
+	const float PeterPepperHeight = static_cast<float>(m_pGameObject->GetComponent<RenderComponent>()->GetHeight());
 
 
 	if ((PeterPepperPos.x >= otherObjectPos.x && PeterPepperPos.x + PeterPepperWidth <= otherObjectPos.x + otherObjectWidth) &&
 		(PeterPepperPos.y + PeterPepperHeight >= otherObjectPos.y && PeterPepperPos.y + PeterPepperHeight <= otherObjectPos.y + otherObjectheight))
 	{
+		
 		return true;
 	}
 
 	return false;
 }
+
+
 
 void dae::EnemyComponent::DoMovement()
 {

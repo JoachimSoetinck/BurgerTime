@@ -6,7 +6,7 @@
 #include "ResourceManager.h"
 #include <memory.h>
 
-dae::RenderComponent::RenderComponent(const std::string& file, std::shared_ptr<GameObject> object)
+dae::RenderComponent::RenderComponent(const std::string& file, std::shared_ptr<GameObject> object, bool isVisible): m_isVisible{isVisible}
 {
 	m_pGameObject = object.get();
 
@@ -20,8 +20,12 @@ void dae::RenderComponent::Update()
 
 void dae::RenderComponent::Render() const
 {
+	if(m_isVisible)
+	{
 		const glm::vec3 pos = m_TransformComponent->GetPosition();
 		Renderer::GetInstance().RenderTexture(*m_Texture, pos.x, pos.y);
+	}
+		
 }
 
 void dae::RenderComponent::SetTexture(const std::string& file)

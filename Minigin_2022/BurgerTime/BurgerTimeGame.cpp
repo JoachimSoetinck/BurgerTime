@@ -12,6 +12,7 @@
 #include "ScoreComponent.h"
 #include <LadderComponent.h>
 
+#include "BarrierComponent.h"
 #include "EnemyComponent.h"
 #include "PlatformComponent.h"
 
@@ -62,9 +63,22 @@ void BurgerTimeGame::LoadGame() const
 	enemy1->AddComponent(std::make_shared<dae::RenderComponent>("Enemies/Sausage.png", enemy1));
 	enemy1->AddComponent(std::make_shared<dae::EnemyComponent>( enemy1, glm::ivec2(50,60)));
 
+	auto barrier1 = std::make_shared<dae::GameObject>();
+	barrier1->AddComponent(std::make_shared<dae::RenderComponent>("Enemies/Sausage.png", barrier1, false));
+	barrier1->AddComponent(std::make_shared<dae::BarrierComponent>( barrier1, false));
+	barrier1->GetComponent<dae::TransformComponent>()->SetPosition( 725, 60, 0);
+	
+	scene.Add(barrier1);
+
+	auto barrier2 = std::make_shared<dae::GameObject>();
+	barrier2->AddComponent(std::make_shared<dae::RenderComponent>("Enemies/Sausage.png", barrier2, false));
+	barrier2->AddComponent(std::make_shared<dae::BarrierComponent>(barrier2, true));
+	barrier2->GetComponent<dae::TransformComponent>()->SetPosition(14, 60, 0);
+
+	scene.Add(barrier2);
+
+
 	scene.Add(enemy1);
-
-
 	scene.Add(peterPepper);
 }
 
@@ -72,9 +86,9 @@ void BurgerTimeGame::CreatePlatform(dae::Scene& scene, float x, float y, std::st
 {
 	auto platform = std::make_shared<dae::GameObject>();
 
-	platform.get()->AddComponent(std::make_shared<dae::RenderComponent>(texture, platform));
-	platform.get()->AddComponent(std::make_unique<dae::PlatformComponent>(platform));
-	platform.get()->GetComponent<dae::TransformComponent>()->SetPosition(x, y, 0);
+	platform->AddComponent(std::make_shared<dae::RenderComponent>(texture, platform));
+	platform->AddComponent(std::make_unique<dae::PlatformComponent>(platform));
+	platform ->GetComponent<dae::TransformComponent>()->SetPosition(x, y, 0);
 	scene.Add(platform);
 }
 
@@ -82,9 +96,9 @@ void BurgerTimeGame::CreateLadder(dae::Scene& scene, float x, float y, std::stri
 {
 	auto ladder = std::make_shared<dae::GameObject>();
 
-	ladder.get()->AddComponent(std::make_shared<dae::RenderComponent>(texture, ladder));
-	ladder.get()->AddComponent(std::make_unique<dae::LadderComponent>(ladder));
-	ladder.get()->GetComponent<dae::TransformComponent>()->SetPosition(x, y, 0);
+	ladder->AddComponent(std::make_shared<dae::RenderComponent>(texture, ladder));
+	ladder->AddComponent(std::make_unique<dae::LadderComponent>(ladder));
+	ladder->GetComponent<dae::TransformComponent>()->SetPosition(x, y, 0);
 	scene.Add(ladder);
 }
 
@@ -271,9 +285,9 @@ void BurgerTimeGame::CreateIngredient(dae::Scene& scene, float x, float y, dae::
 {
 	auto ingredients = std::make_shared<dae::GameObject>();
 
-	ingredients.get()->AddComponent(std::make_shared<dae::RenderComponent>("LightBluePlatform.png", ingredients));
-	ingredients.get()->AddComponent(std::make_unique<dae::IngredientComponent>(ingredients, ingredient));
-	ingredients.get()->GetComponent<dae::TransformComponent>()->SetPosition(x, y, 0);
+	ingredients->AddComponent(std::make_shared<dae::RenderComponent>("LightBluePlatform.png", ingredients));
+	ingredients->AddComponent(std::make_unique<dae::IngredientComponent>(ingredients, ingredient));
+	ingredients->GetComponent<dae::TransformComponent>()->SetPosition(x, y, 0);
 	scene.Add(ingredients);
 }
 

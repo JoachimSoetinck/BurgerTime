@@ -15,7 +15,7 @@ namespace dae
 	{
 	public:
 		//Render Needs file to load
-		RenderComponent(const std::string& file,  std::shared_ptr<GameObject> object);
+		RenderComponent(const std::string& file,  std::shared_ptr<GameObject> object, bool isVisible = true);
 
 
 		
@@ -35,6 +35,7 @@ namespace dae
 	private:
 		std::shared_ptr<Texture2D> m_Texture;
 		std::shared_ptr<TransformComponent> m_TransformComponent;
+		bool m_isVisible{true};
 		int m_Width{};
 		int m_Height{};
 

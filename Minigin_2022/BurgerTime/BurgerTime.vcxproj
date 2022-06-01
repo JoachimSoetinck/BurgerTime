@@ -159,12 +159,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BarrierComponent.cpp" />
     <ClCompile Include="BurgerTime.cpp" />
     <ClCompile Include="BurgerTimeGame.cpp" />
     <ClCompile Include="BurgerTimePCH.cpp" />
     <ClCompile Include="EnemyComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BarrierComponent.h" />
     <ClInclude Include="BurgerTimeGame.h" />
     <ClInclude Include="BurgerTimePCH.h" />
     <ClInclude Include="EnemyComponent.h" />

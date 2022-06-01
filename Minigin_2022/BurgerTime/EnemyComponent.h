@@ -31,6 +31,7 @@ namespace  dae
 
 		void OnDeath();
 		void Respawn();
+		void SetState(EnemyState state) { m_state = state; }
 		
 
 	private:
@@ -41,6 +42,7 @@ namespace  dae
 		std::shared_ptr<dae::GameObject> m_Target;
 
 		bool m_isOnGround{false};
+		bool m_isOnLadder{false};
 		int m_Speed{ 40 };
 		glm::vec2 m_direction{ 0,0 };
 		glm::ivec2 m_spawnPoint{};
@@ -53,9 +55,10 @@ namespace  dae
 		std::shared_ptr<TransformComponent> m_TransformComponent{};
 
 		bool IsOverlapping(GameObject* obj);
+	
 		void DoMovement();
 
-		EnemyState m_state{EnemyState::MovingRight};
+		EnemyState m_state{EnemyState::MovingLeft};
 
 	};
 }

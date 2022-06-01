@@ -26,6 +26,7 @@
 #include "RigidBodyComponent.h"
 #include "ServiceLocator.h"
 #include "Sound.h"
+#include "Timer.h"
 
 
 using namespace std;
