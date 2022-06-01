@@ -3,6 +3,8 @@
 #include "SceneObject.h"
 #include "BaseComponent.h"
 # include <vector>
+# include <memory>
+
 
 
 namespace dae

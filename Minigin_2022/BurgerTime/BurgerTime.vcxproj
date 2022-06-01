@@ -163,13 +163,29 @@
     <ClCompile Include="BurgerTime.cpp" />
     <ClCompile Include="BurgerTimeGame.cpp" />
     <ClCompile Include="BurgerTimePCH.cpp" />
+    <ClCompile Include="CustomCommands.cpp" />
     <ClCompile Include="EnemyComponent.cpp" />
+    <ClCompile Include="IngredientComponent.cpp" />
+    <ClCompile Include="LadderComponent.cpp" />
+    <ClCompile Include="LivesComponent.cpp" />
+    <ClCompile Include="PeterPepperComponent.cpp" />
+    <ClCompile Include="PlatformComponent.cpp" />
+    <ClCompile Include="SaltComponent.cpp" />
+    <ClCompile Include="ScoreComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BarrierComponent.h" />
     <ClInclude Include="BurgerTimeGame.h" />
     <ClInclude Include="BurgerTimePCH.h" />
+    <ClInclude Include="CustomCommands.h" />
     <ClInclude Include="EnemyComponent.h" />
+    <ClInclude Include="IngredientComponent.h" />
+    <ClInclude Include="LadderComponent.h" />
+    <ClInclude Include="LivesComponent.h" />
+    <ClInclude Include="PeterPepperComponent.h" />
+    <ClInclude Include="PlatformComponent.h" />
+    <ClInclude Include="SaltComponent.h" />
+    <ClInclude Include="ScoreComponent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

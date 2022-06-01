@@ -1,8 +1,7 @@
 #include "MiniginPCH.h"
 #include "Scene.h"
 #include "GameObject.h"
-#include "PeterPepperComponent.h"
-#include "PlatformComponent.h"
+
 
 using namespace dae;
 

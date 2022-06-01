@@ -33,6 +33,30 @@
     <ClCompile Include="BarrierComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
+    <ClCompile Include="ScoreComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="SaltComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="PlatformComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="PeterPepperComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="LivesComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="LadderComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="IngredientComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="CustomCommands.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BurgerTimePCH.h">
@@ -46,6 +70,30 @@
     </ClInclude>
     <ClInclude Include="BarrierComponent.h">
       <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="IngredientComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="LadderComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="LivesComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PeterPepperComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="PlatformComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="SaltComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="ScoreComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
+    <ClInclude Include="CustomCommands.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

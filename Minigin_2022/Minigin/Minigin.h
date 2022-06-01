@@ -1,5 +1,5 @@
 #pragma once
-#include "IngredientComponent.h"
+
 struct SDL_Window;
 
 #include <string>

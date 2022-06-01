@@ -117,15 +117,6 @@
     <ClInclude Include="Enums.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="PeterPepperComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="LivesComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="ScoreComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
     <ClInclude Include="Observer.h">
       <Filter>Observers</Filter>
     </ClInclude>
@@ -143,18 +134,6 @@
     </ClInclude>
     <ClInclude Include="ServiceLocator.h">
       <Filter>Sound</Filter>
-    </ClInclude>
-    <ClInclude Include="PlatformComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="LadderComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="IngredientComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
-    <ClInclude Include="SaltComponent.h">
-      <Filter>Components</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -203,9 +182,6 @@
     <ClCompile Include="TransformComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
-    <ClCompile Include="TextComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="RenderComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
@@ -239,15 +215,6 @@
     <ClCompile Include="Command.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PeterPepperComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="LivesComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="ScoreComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
     <ClCompile Include="Observer.cpp">
       <Filter>Observers</Filter>
     </ClCompile>
@@ -266,17 +233,8 @@
     <ClCompile Include="ServiceLocator.cpp">
       <Filter>Sound</Filter>
     </ClCompile>
-    <ClCompile Include="LadderComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="PlatformComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="IngredientComponent.cpp">
-      <Filter>Components</Filter>
-    </ClCompile>
-    <ClCompile Include="SaltComponent.cpp">
-      <Filter>Components</Filter>
+    <ClCompile Include="TextComponent.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

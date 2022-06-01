@@ -496,9 +496,6 @@
     <ClInclude Include="..\3rdParty\imgui-master\imstb_truetype.h" />
     <ClInclude Include="BaseComponent.h" />
     <ClInclude Include="Command.h" />
-    <ClInclude Include="IngredientComponent.h" />
-    <ClInclude Include="LadderComponent.h" />
-    <ClInclude Include="LivesComponent.h" />
     <ClInclude Include="Enums.h" />
     <ClInclude Include="Font.h" />
     <ClInclude Include="FPSComponent.h" />
@@ -507,17 +504,13 @@
     <ClInclude Include="Minigin.h" />
     <ClInclude Include="MiniginPCH.h" />
     <ClInclude Include="Observer.h" />
-    <ClInclude Include="PeterPepperComponent.h" />
-    <ClInclude Include="PlatformComponent.h" />
     <ClInclude Include="RenderComponent.h" />
     <ClInclude Include="RigidBodyComponent.h" />
-    <ClInclude Include="SaltComponent.h" />
     <ClInclude Include="SceneObject.h" />
     <ClInclude Include="Renderer.h" />
     <ClInclude Include="ResourceManager.h" />
     <ClInclude Include="Scene.h" />
     <ClInclude Include="SceneManager.h" />
-    <ClInclude Include="ScoreComponent.h" />
     <ClInclude Include="ServiceLocator.h" />
     <ClInclude Include="Singleton.h" />
     <ClInclude Include="Sound.h" />
@@ -668,9 +661,6 @@
     </ClCompile>
     <ClCompile Include="BaseComponent.cpp" />
     <ClCompile Include="Command.cpp" />
-    <ClCompile Include="IngredientComponent.cpp" />
-    <ClCompile Include="LadderComponent.cpp" />
-    <ClCompile Include="LivesComponent.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="FPSComponent.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -693,16 +683,12 @@
       <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Batch Build all|ARM'">MiniginPCH.h</PrecompiledHeaderFile>
     </ClCompile>
     <ClCompile Include="Observer.cpp" />
-    <ClCompile Include="PeterPepperComponent.cpp" />
-    <ClCompile Include="PlatformComponent.cpp" />
     <ClCompile Include="RenderComponent.cpp" />
     <ClCompile Include="Renderer.cpp" />
     <ClCompile Include="ResourceManager.cpp" />
     <ClCompile Include="RigidBodyComponent.cpp" />
-    <ClCompile Include="SaltComponent.cpp" />
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="SceneManager.cpp" />
-    <ClCompile Include="ScoreComponent.cpp" />
     <ClCompile Include="ServiceLocator.cpp" />
     <ClCompile Include="Sound.cpp" />
     <ClCompile Include="SoundSystem.cpp" />

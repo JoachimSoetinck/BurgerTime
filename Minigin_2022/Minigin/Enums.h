@@ -1,4 +1,5 @@
 #pragma once
+#include "GameObject.h"
 
 enum class Event
 {
@@ -7,3 +8,4 @@ enum class Event
 	Died
 	
 };
+

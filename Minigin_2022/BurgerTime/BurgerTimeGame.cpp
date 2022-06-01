@@ -10,12 +10,13 @@
 #include "Scene.h"
 #include "SceneManager.h"
 #include "ScoreComponent.h"
-#include <LadderComponent.h>
-
 #include "BarrierComponent.h"
 #include "EnemyComponent.h"
+#include "IngredientComponent.h"
+#include "LadderComponent.h"
 #include "PlatformComponent.h"
 #include "SaltComponent.h"
+#include "TransformComponent.h"
 
 void BurgerTimeGame::LoadGame() const
 {
