@@ -2,11 +2,12 @@
 #include "BaseComponent.h"
 #include <memory>
 
-#include "RenderComponent.h"
+
 
 
 namespace  dae
 {
+	class RenderComponent;
 	class BarrierComponent: public BaseComponent
 	{
 	public:

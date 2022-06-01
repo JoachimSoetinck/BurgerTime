@@ -14,6 +14,7 @@
 #include "EnemyComponent.h"
 #include "IngredientComponent.h"
 #include "LadderComponent.h"
+#include "LevelParser.h"
 #include "PlatformComponent.h"
 #include "SaltComponent.h"
 #include "TransformComponent.h"
@@ -120,154 +121,8 @@ void BurgerTimeGame::CreateLadder(dae::Scene& scene, float x, float y, std::stri
 
 void BurgerTimeGame::CreateLevel(dae::Scene& scene) const
 {
-	CreateLadder(scene, 50, 90, "Ladder.png");
-	CreateLadder(scene, 50, 145, "Ladder.png");
-	CreateLadder(scene, 50, 310, "Ladder.png");
-	CreateLadder(scene, 50, 365, "Ladder.png");
-	CreateLadder(scene, 50, 420, "Ladder.png");
-	CreateLadder(scene, 50, 475, "Ladder.png");
-	CreateLadder(scene, 50, 530, "Ladder.png");
-	CreateLadder(scene, 130, 200, "Ladder.png");
-	CreateLadder(scene, 130, 255, "Ladder.png");
-	CreateLadder(scene, 130, 310, "Ladder.png");
-	CreateLadder(scene, 130, 365, "Ladder.png");
-	CreateLadder(scene, 130, 420, "Ladder.png");
-	CreateLadder(scene, 210, 90, "Ladder.png");
-	CreateLadder(scene, 210, 145, "Ladder.png");
-	CreateLadder(scene, 210, 200, "Ladder.png");
-	CreateLadder(scene, 210, 255, "Ladder.png");
-	CreateLadder(scene, 210, 310, "Ladder.png");
-	CreateLadder(scene, 210, 365, "Ladder.png");
-	CreateLadder(scene, 210, 420, "Ladder.png");
-	CreateLadder(scene, 210, 475, "Ladder.png");
-	CreateLadder(scene, 210, 530, "Ladder.png");
-	CreateLadder(scene, 290, 90, "Ladder.png");
-	CreateLadder(scene, 290, 145, "Ladder.png");
-	CreateLadder(scene, 290, 200, "Ladder.png");
-	CreateLadder(scene, 370, 90, "Ladder.png");
-	CreateLadder(scene, 370, 145, "Ladder.png");
-	CreateLadder(scene, 370, 200, "Ladder.png");
-	CreateLadder(scene, 370, 255, "Ladder.png");
-	CreateLadder(scene, 370, 310, "Ladder.png");
-	CreateLadder(scene, 370, 365, "Ladder.png");
-	CreateLadder(scene, 370, 420, "Ladder.png");
-	CreateLadder(scene, 370, 475, "Ladder.png");
-	CreateLadder(scene, 370, 530, "Ladder.png");
-	CreateLadder(scene, 450, 200, "Ladder.png");
-	CreateLadder(scene, 450, 255, "Ladder.png");
-	CreateLadder(scene, 450, 310, "Ladder.png");
-	CreateLadder(scene, 530, 90, "Ladder.png");
-	CreateLadder(scene, 530, 145, "Ladder.png");
-	CreateLadder(scene, 530, 200, "Ladder.png");
-	CreateLadder(scene, 530, 255, "Ladder.png");
-	CreateLadder(scene, 530, 310, "Ladder.png");
-	CreateLadder(scene, 530, 365, "Ladder.png");
-	CreateLadder(scene, 530, 420, "Ladder.png");
-	CreateLadder(scene, 530, 475, "Ladder.png");
-	CreateLadder(scene, 530, 530, "Ladder.png");
-	CreateLadder(scene, 610, 310, "Ladder.png");
-	CreateLadder(scene, 610, 365, "Ladder.png");
-	CreateLadder(scene, 610, 420, "Ladder.png");
-	CreateLadder(scene, 610, 475, "Ladder.png");
-	CreateLadder(scene, 610, 530, "Ladder.png");
-	CreateLadder(scene, 690, 90, "Ladder.png");
-	CreateLadder(scene, 690, 145, "Ladder.png");
-	CreateLadder(scene, 690, 200, "Ladder.png");
-	CreateLadder(scene, 690, 255, "Ladder.png");
-	CreateLadder(scene, 690, 420, "Ladder.png");
-	CreateLadder(scene, 690, 475, "Ladder.png");
-	CreateLadder(scene, 690, 530, "Ladder.png");
+	bool r = dae::LevelParser::ParseOBJ("../Data/Level/Level01.txt", scene);
 
-	CreatePlatform(scene, 50, 90, "LightBluePlatform.png");
-	CreatePlatform(scene, 90, 90, "BluePlatform.png");
-	CreatePlatform(scene, 130, 90, "BluePlatform.png");
-	CreatePlatform(scene, 170, 90, "BluePlatform.png");
-	CreatePlatform(scene, 210, 90, "LightBluePlatform.png");
-	CreatePlatform(scene, 250, 90, "BluePlatform.png");
-	CreatePlatform(scene, 290, 90, "BluePlatform.png");
-	CreatePlatform(scene, 330, 90, "BluePlatform.png");
-	CreatePlatform(scene, 370, 90, "LightBluePlatform.png");
-	CreatePlatform(scene, 410, 90, "BluePlatform.png");
-	CreatePlatform(scene, 450, 90, "BluePlatform.png");
-	CreatePlatform(scene, 490, 90, "BluePlatform.png");
-	CreatePlatform(scene, 530, 90, "LightBluePlatform.png");
-	CreatePlatform(scene, 570, 90, "BluePlatform.png");
-	CreatePlatform(scene, 610, 90, "BluePlatform.png");
-	CreatePlatform(scene, 650, 90, "BluePlatform.png");
-	CreatePlatform(scene, 690, 90, "LightBluePlatform.png");
-	CreatePlatform(scene, 50, 200, "LightBluePlatform.png");
-	CreatePlatform(scene, 90, 200, "BluePlatform.png");
-	CreatePlatform(scene, 130, 200, "BluePlatform.png");
-	CreatePlatform(scene, 170, 200, "BluePlatform.png");
-	CreatePlatform(scene, 210, 200, "LightBluePlatform.png");
-	CreatePlatform(scene, 370, 200, "LightBluePlatform.png");
-	CreatePlatform(scene, 410, 200, "BluePlatform.png");
-	CreatePlatform(scene, 450, 200, "BluePlatform.png");
-	CreatePlatform(scene, 490, 200, "BluePlatform.png");
-	CreatePlatform(scene, 530, 200, "LightBluePlatform.png");
-	CreatePlatform(scene, 570, 200, "BluePlatform.png");
-	CreatePlatform(scene, 610, 200, "BluePlatform.png");
-	CreatePlatform(scene, 650, 200, "BluePlatform.png");
-	CreatePlatform(scene, 690, 200, "LightBluePlatform.png");
-	CreatePlatform(scene, 210, 255, "LightBluePlatform.png");
-	CreatePlatform(scene, 250, 255, "BluePlatform.png");
-	CreatePlatform(scene, 290, 255, "BluePlatform.png");
-	CreatePlatform(scene, 330, 255, "BluePlatform.png");
-	CreatePlatform(scene, 370, 255, "LightBluePlatform.png");
-	CreatePlatform(scene, 50, 310, "LightBluePlatform.png");
-	CreatePlatform(scene, 90, 310, "BluePlatform.png");
-	CreatePlatform(scene, 130, 310, "BluePlatform.png");
-	CreatePlatform(scene, 170, 310, "BluePlatform.png");
-	CreatePlatform(scene, 210, 310, "LightBluePlatform.png");
-	CreatePlatform(scene, 530, 310, "LightBluePlatform.png");
-	CreatePlatform(scene, 570, 310, "BluePlatform.png");
-	CreatePlatform(scene, 610, 310, "BluePlatform.png");
-	CreatePlatform(scene, 650, 310, "BluePlatform.png");
-	CreatePlatform(scene, 690, 310, "LightBluePlatform.png");
-	CreatePlatform(scene, 210, 365, "LightBluePlatform.png");
-	CreatePlatform(scene, 250, 365, "BluePlatform.png");
-	CreatePlatform(scene, 290, 365, "BluePlatform.png");
-	CreatePlatform(scene, 330, 365, "BluePlatform.png");
-	CreatePlatform(scene, 370, 365, "LightBluePlatform.png");
-	CreatePlatform(scene, 410, 365, "BluePlatform.png");
-	CreatePlatform(scene, 450, 365, "BluePlatform.png");
-	CreatePlatform(scene, 490, 365, "BluePlatform.png");
-	CreatePlatform(scene, 530, 365, "LightBluePlatform.png");
-	CreatePlatform(scene, 530, 420, "LightBluePlatform.png");
-	CreatePlatform(scene, 570, 420, "BluePlatform.png");
-	CreatePlatform(scene, 610, 420, "BluePlatform.png");
-	CreatePlatform(scene, 650, 420, "BluePlatform.png");
-	CreatePlatform(scene, 690, 420, "LightBluePlatform.png");
-	CreatePlatform(scene, 50, 475, "LightBluePlatform.png");
-	CreatePlatform(scene, 90, 475, "BluePlatform.png");
-	CreatePlatform(scene, 130, 475, "BluePlatform.png");
-	CreatePlatform(scene, 170, 475, "BluePlatform.png");
-	CreatePlatform(scene, 210, 475, "LightBluePlatform.png");
-	CreatePlatform(scene, 250, 475, "BluePlatform.png");
-	CreatePlatform(scene, 290, 475, "BluePlatform.png");
-	CreatePlatform(scene, 330, 475, "BluePlatform.png");
-	CreatePlatform(scene, 370, 475, "LightBluePlatform.png");
-	CreatePlatform(scene, 410, 475, "BluePlatform.png");
-	CreatePlatform(scene, 450, 475, "BluePlatform.png");
-	CreatePlatform(scene, 490, 475, "BluePlatform.png");
-	CreatePlatform(scene, 530, 475, "LightBluePlatform.png");
-	CreatePlatform(scene, 50, 585, "LightBluePlatform.png");
-	CreatePlatform(scene, 90, 585, "BluePlatform.png");
-	CreatePlatform(scene, 130, 585, "BluePlatform.png");
-	CreatePlatform(scene, 170, 585, "BluePlatform.png");
-	CreatePlatform(scene, 210, 585, "LightBluePlatform.png");
-	CreatePlatform(scene, 250, 585, "BluePlatform.png");
-	CreatePlatform(scene, 290, 585, "BluePlatform.png");
-	CreatePlatform(scene, 330, 585, "BluePlatform.png");
-	CreatePlatform(scene, 370, 585, "LightBluePlatform.png");
-	CreatePlatform(scene, 410, 585, "BluePlatform.png");
-	CreatePlatform(scene, 450, 585, "BluePlatform.png");
-	CreatePlatform(scene, 490, 585, "BluePlatform.png");
-	CreatePlatform(scene, 530, 585, "LightBluePlatform.png");
-	CreatePlatform(scene, 570, 585, "BluePlatform.png");
-	CreatePlatform(scene, 610, 585, "BluePlatform.png");
-	CreatePlatform(scene, 650, 585, "BluePlatform.png");
-	CreatePlatform(scene, 690, 585, "LightBluePlatform.png");
 
 
 

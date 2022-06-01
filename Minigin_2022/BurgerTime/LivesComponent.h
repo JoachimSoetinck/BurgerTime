@@ -5,6 +5,7 @@
 namespace dae
 {
 	class TextComponent;
+	class PeterPepperComponent;
 
 	class LivesComponent : public BaseComponent, public Observer
 	{

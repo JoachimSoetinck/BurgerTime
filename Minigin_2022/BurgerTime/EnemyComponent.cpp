@@ -4,6 +4,7 @@
 #include "BarrierComponent.h"
 #include "LadderComponent.h"
 #include "PlatformComponent.h"
+#include "PeterPepperComponent.h"
 #include "Scene.h"
 #include "SceneManager.h"
 #include "Timer.h"
@@ -30,6 +31,16 @@ void dae::EnemyComponent::Update()
 {
 	HandleCollision();
 	DoMovement();
+
+	if(m_IsDead)
+	{
+		m_elapsedSec += Time::GetDeltaTime();
+
+		if(m_elapsedSec >= m_respawnTimer)
+		{
+			m_pRenderComponent->SetVisibility(true);
+		}
+	}
 }
 
 void dae::EnemyComponent::Render() const
@@ -51,8 +62,6 @@ void dae::EnemyComponent::HandleCollision()
 
 	int random{rand() };
 
-
-
 	for (auto object : objects)
 	{
 		if (object->GetComponent<PlatformComponent>() != nullptr)
@@ -69,7 +78,10 @@ void dae::EnemyComponent::HandleCollision()
 		{
 			if (IsOverlapping(object.get()) && object->GetComponent<SaltComponent>()->GetVisibility())
 			{
-				std::cout << "test";
+				m_IsDead = true;
+				m_pRenderComponent->SetVisibility(false);
+				m_pGameObject->GetComponent<TransformComponent>()->SetPosition(m_spawnPoint.x, m_spawnPoint.y,  0);
+				m_pGameObject->GetParent()->GetComponent<PeterPepperComponent>()->GivePoints(100);
 				break;
 			}
 		}

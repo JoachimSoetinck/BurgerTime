@@ -1,6 +1,6 @@
 #pragma once
 
-#include "RigidBodyComponent.h"
+
 #include "Subject.h"
 #include "RenderComponent.h"
 
@@ -58,7 +58,6 @@ namespace dae
 		bool m_isThrowing{ false };
 		PlayerState m_state = PlayerState::Idle;
 
-		std::shared_ptr<RigidBodyComponent> m_pRigidBody{};
 		std::shared_ptr<TransformComponent> m_TransformComponent{};
 		std::shared_ptr<RenderComponent> m_pRenderComponent{};
 		

@@ -1,10 +1,11 @@
 #pragma once
 #include "BaseComponent.h"
-#include "PeterPepperComponent.h"
+
 #include "RenderComponent.h"
 
 namespace dae
 {
+	class PeterPepperComponent;
 	class SaltComponent: public BaseComponent
 	{
 	public:

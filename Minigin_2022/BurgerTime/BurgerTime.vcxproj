@@ -181,6 +181,7 @@
     <ClInclude Include="EnemyComponent.h" />
     <ClInclude Include="IngredientComponent.h" />
     <ClInclude Include="LadderComponent.h" />
+    <ClInclude Include="LevelParser.h" />
     <ClInclude Include="LivesComponent.h" />
     <ClInclude Include="PeterPepperComponent.h" />
     <ClInclude Include="PlatformComponent.h" />

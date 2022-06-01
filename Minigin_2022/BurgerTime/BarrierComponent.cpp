@@ -1,5 +1,4 @@
 #include "BarrierComponent.h"
-
 #include "EnemyComponent.h"
 #include "Scene.h"
 #include "SceneManager.h"

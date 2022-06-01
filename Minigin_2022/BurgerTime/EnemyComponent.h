@@ -36,7 +36,7 @@ namespace  dae
 
 	private:
 		bool m_IsDead{false};
-		float m_deadTimer{ 0 };
+		float m_elapsedSec{ 0 };
 		float m_respawnTimer{ 10 };
 
 		std::shared_ptr<dae::GameObject> m_Target;
