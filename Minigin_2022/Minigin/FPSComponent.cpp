@@ -4,7 +4,7 @@
 #include "TextComponent.h"
 #include "GameObject.h"
 #include "ResourceManager.h"
-#include "Time.h"
+#include "Timer.h"
 #include <memory.h>
 
 dae::FPSComponent::FPSComponent(std::shared_ptr<GameObject> object)

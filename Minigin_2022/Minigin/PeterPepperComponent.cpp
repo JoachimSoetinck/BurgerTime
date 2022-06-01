@@ -9,7 +9,7 @@
 #include "SceneManager.h"
 
 #include "TextComponent.h"
-#include "Time.h"
+#include "Timer.h"
 #include "PlatformComponent.h"
 
 dae::PeterPepperComponent::PeterPepperComponent(std::shared_ptr<GameObject> object)

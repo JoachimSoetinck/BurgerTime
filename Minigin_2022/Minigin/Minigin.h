@@ -23,11 +23,6 @@ namespace dae
 		float m_FixedTimeStep = 0.02f;
 		SDL_Window* m_Window{};
 
-		void CreatePlatform(Scene& scene, float x, float y, std::string texture) const;
-		void CreateLadder(Scene& scene, float x, float y, std::string texture) const;
-		void CreateLevel(Scene& scene) const;
-
-		void CreateIngredient(Scene& scene, float x, float y, IngredientComponent::Type ingredient)const;
 
 	};
 }

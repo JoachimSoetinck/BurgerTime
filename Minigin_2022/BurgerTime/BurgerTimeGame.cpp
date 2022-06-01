@@ -12,6 +12,7 @@
 #include "ScoreComponent.h"
 #include <LadderComponent.h>
 
+#include "EnemyComponent.h"
 #include "PlatformComponent.h"
 
 void BurgerTimeGame::LoadGame() const
@@ -56,6 +57,13 @@ void BurgerTimeGame::LoadGame() const
 
 	const auto peterPepperImage = std::make_shared<dae::RenderComponent>("PeterPepper/PlayerIdle.png", peterPepper);
 	peterPepper->AddComponent(peterPepperImage);
+
+	auto enemy1 = std::make_shared<dae::GameObject>();
+	enemy1->AddComponent(std::make_shared<dae::RenderComponent>("Enemies/Sausage.png", enemy1));
+	enemy1->AddComponent(std::make_shared<dae::EnemyComponent>( enemy1, glm::ivec2(50,60)));
+
+	scene.Add(enemy1);
+
 
 	scene.Add(peterPepper);
 }

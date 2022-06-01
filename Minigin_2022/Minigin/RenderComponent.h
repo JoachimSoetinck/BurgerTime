@@ -3,6 +3,7 @@
 #include "Texture2D.h"
 #include "GameObject.h"
 #include <memory.h>
+#include <string>
 
 #include "TransformComponent.h"
 

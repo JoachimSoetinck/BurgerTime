@@ -5,7 +5,7 @@
 #include "RenderComponent.h"
 #include "Scene.h"
 #include "SceneManager.h"
-#include "Time.h"
+#include "Timer.h"
 
 dae::IngredientComponent::IngredientComponent(std::shared_ptr<GameObject> object, Type ingredient): m_Type(ingredient)
 {
