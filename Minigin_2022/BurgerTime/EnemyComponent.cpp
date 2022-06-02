@@ -58,7 +58,9 @@ void dae::EnemyComponent::Respawn()
 
 void dae::EnemyComponent::HandleCollision()
 {
-	auto objects = SceneManager::GetInstance().GetScene(0)->GetObjects();
+	auto nr = SceneManager::GetInstance().GetActiveSceneNr();
+
+	auto objects = SceneManager::GetInstance().GetScene(nr)->GetObjects();
 
 
 	int random{ rand() };

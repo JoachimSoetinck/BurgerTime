@@ -211,7 +211,8 @@ void dae::PeterPepperComponent::HandleMovement()
 
 void dae::PeterPepperComponent::HandleCollision()
 {
-	auto objects = SceneManager::GetInstance().GetScene(0)->GetObjects();
+	auto nr = SceneManager::GetInstance().GetActiveSceneNr();
+	auto objects = SceneManager::GetInstance().GetScene(1)->GetObjects();
 
 	bool isOnGround = false;
 	bool isOnLadder = false;

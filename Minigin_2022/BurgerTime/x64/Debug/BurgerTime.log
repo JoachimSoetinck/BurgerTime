@@ -1,4 +1,4 @@
-﻿  BurgerTimeGame.cpp
+﻿  BarrierComponent.cpp
 C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec2.hpp(45,22): warning C4201: nonstandard extension used: nameless struct/union
 C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec2.hpp(206): message : see reference to class template instantiation 'glm::tvec2<T,P>' being compiled
 C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec2.hpp(46,22): warning C4201: nonstandard extension used: nameless struct/union
@@ -11,14 +11,12 @@ C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\typ
 C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec4.hpp(272): message : see reference to class template instantiation 'glm::tvec4<T,P>' being compiled
 C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec4.hpp(46,29): warning C4201: nonstandard extension used: nameless struct/union
 C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec4.hpp(47,29): warning C4201: nonstandard extension used: nameless struct/union
-C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\LevelParser.h(141,28): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\LevelParser.h(141,25): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\LevelParser.h(114,11): warning C4101: 'z': unreferenced local variable
-C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\LevelParser.h(121,11): warning C4101: 'z': unreferenced local variable
-C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\LevelParser.h(130,11): warning C4101: 'z': unreferenced local variable
-C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\LevelParser.h(138,11): warning C4101: 'z': unreferenced local variable
-C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\LevelParser.h(214,61): warning C4100: 'y': unreferenced formal parameter
-C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\LevelParser.h(214,52): warning C4100: 'x': unreferenced formal parameter
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\BarrierComponent.cpp(22,7): warning C4189: 'nr': local variable is initialized but not referenced
+  IngredientComponent.cpp
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\IngredientComponent.cpp(122,7): warning C4189: 'nr': local variable is initialized but not referenced
+  PeterPepperComponent.cpp
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\PeterPepperComponent.cpp(214,7): warning C4189: 'nr': local variable is initialized but not referenced
+  Generating Code...
   BurgerTime.vcxproj -> C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\x64\Debug\BurgerTime.exe
   C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\SDL2\lib\x64\SDL2.dll
   1 File(s) copied

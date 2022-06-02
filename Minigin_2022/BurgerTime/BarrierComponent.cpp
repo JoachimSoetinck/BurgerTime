@@ -19,7 +19,8 @@ void dae::BarrierComponent::Render() const
 
 void dae::BarrierComponent::Update()
 {
-	auto objects = SceneManager::GetInstance().GetScene(0)->GetObjects();
+	auto nr = SceneManager::GetInstance().GetActiveSceneNr();
+	auto objects = SceneManager::GetInstance().GetScene(1)->GetObjects();
 
 	if (m_canHit)
 	{

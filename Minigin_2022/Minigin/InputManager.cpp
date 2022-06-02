@@ -118,7 +118,7 @@ bool dae::InputManager::ProcessInput()
 		if (e.type == SDL_KEYUP) {
 			{
 				if (e.key.keysym.sym == SDLK_1) {
-					
+					SceneManager::GetInstance().SetActiveScene(SceneManager::GetInstance().GetScene(1).get());
 				}
 
 

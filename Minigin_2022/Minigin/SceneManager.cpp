@@ -5,10 +5,8 @@
 
 void dae::SceneManager::Update()
 {
-	for(auto& scene : m_Scenes)
-	{
-		scene->Update();
-	}
+	if (m_pActiveScene)
+		m_pActiveScene->Update();
 }
 
 void dae::SceneManager::FixedUpdate(float )
@@ -17,10 +15,8 @@ void dae::SceneManager::FixedUpdate(float )
 
 void dae::SceneManager::Render()
 {
-	for (const auto& scene : m_Scenes)
-	{
-		scene->Render();
-	}
+	if (m_pActiveScene)
+		m_pActiveScene->Render();
 }
 
 std::shared_ptr<dae::Scene> dae::SceneManager::GetScene(int nr)
@@ -31,6 +27,7 @@ std::shared_ptr<dae::Scene> dae::SceneManager::GetScene(int nr)
 void dae::SceneManager::SetActiveScene(Scene* scene)
 {
 	m_pActiveScene = scene;
+	m_ActiveSceneNr = scene->GetId();
 }
 
 
