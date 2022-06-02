@@ -17,7 +17,8 @@ namespace dae
 
 		std::vector <std::shared_ptr<GameObject>> GetObjects() { return  m_Objects; }
 		void DeleteObjects();
-		int GetId() { return m_IdCounter; };
+		int GetId() const{ return m_sceneNr; };
+		void SetNr(const int nr) { m_sceneNr = nr; };
 
 		~Scene();
 		Scene(const Scene& other) = default;
@@ -30,7 +31,7 @@ namespace dae
 
 		std::string m_Name;
 		std::vector <std::shared_ptr<GameObject>> m_Objects{};
-
+		int m_sceneNr{};
 		static unsigned int m_IdCounter;
 
 		

@@ -120,7 +120,7 @@ bool dae::IngredientComponent::IsOnPlatform(GameObject* object)
 void dae::IngredientComponent::HandleCollision()
 {
 	auto nr = SceneManager::GetInstance().GetActiveSceneNr();
-	auto objects = SceneManager::GetInstance().GetScene(1)->GetObjects();
+	auto objects = SceneManager::GetInstance().GetScene(nr)->GetObjects();
 
 	for (const auto& object : objects)
 	{

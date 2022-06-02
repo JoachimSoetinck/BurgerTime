@@ -19,6 +19,7 @@ Scene::~Scene() = default;
 void Scene::Add(const std::shared_ptr<GameObject>& object)
 {
 	m_Objects.push_back(object);
+	
 }
 
 void Scene::Update()

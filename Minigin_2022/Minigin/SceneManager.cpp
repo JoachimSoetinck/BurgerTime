@@ -27,13 +27,20 @@ std::shared_ptr<dae::Scene> dae::SceneManager::GetScene(int nr)
 void dae::SceneManager::SetActiveScene(Scene* scene)
 {
 	m_pActiveScene = scene;
-	m_ActiveSceneNr = scene->GetId();
+	
+}
+
+int dae::SceneManager::GetActiveSceneNr() const
+{
+	return m_pActiveScene->GetId()-1;
 }
 
 
 dae::Scene& dae::SceneManager::CreateScene(const std::string& name)
 {
 	const auto& scene = std::shared_ptr<Scene>(new Scene(name));
+	
 	m_Scenes.push_back(scene);
+	scene->SetNr(static_cast<int>(m_Scenes.size()));
 	return *scene;
 }
