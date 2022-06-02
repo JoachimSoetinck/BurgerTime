@@ -17,6 +17,7 @@
 #include "LadderComponent.h"
 #include "LevelParser.h"
 #include "PlatformComponent.h"
+#include "SpriteComponent.h"
 
 #include "TransformComponent.h"
 
@@ -50,6 +51,14 @@ void BurgerTimeGame::LoadGame() const
 	buttonStartSinglePlayer->GetComponent<dae::TransformComponent>()->SetPosition(280, 500, 0);
 	buttonStartSinglePlayer->AddComponent(std::make_shared<dae::ButtonComponent>(buttonStartSinglePlayer));
 	scene.Add(buttonStartSinglePlayer);
+
+	auto TestSprite = std::make_shared<dae::GameObject>();
+	TestSprite->GetComponent<dae::TransformComponent>()->SetPosition(0, 0, 0);
+	auto render = std::make_shared<dae::RenderComponent>("PeterPepper/PlayerIdle.png", TestSprite);
+	TestSprite->AddComponent(render);
+	TestSprite->AddComponent(std::make_shared<dae::SpriteComponent>(TestSprite, render,3, "PeterPepper/WalkLeft.png"));
+	scene.Add(TestSprite);
+
 
 	
 }

@@ -6,11 +6,13 @@
 #include <string>
 
 #include "TransformComponent.h"
+#include "SDL_rect.h"
 
 
 namespace dae
 {
-	
+
+
 	class RenderComponent final : public BaseComponent
 	{
 	public:
@@ -33,12 +35,16 @@ namespace dae
 		int GetWidth() const;
 		int GetHeight() const;
 
+		void SetRect(const SDL_Rect& rect);
+
 	private:
 		std::shared_ptr<Texture2D> m_Texture;
 		std::shared_ptr<TransformComponent> m_TransformComponent;
 		bool m_isVisible{true};
 		int m_Width{};
 		int m_Height{};
+
+		SDL_Rect m_srcRect;
 
 	};
 }

@@ -138,6 +138,9 @@
     <ClInclude Include="ButtonComponent.h">
       <Filter>Components</Filter>
     </ClInclude>
+    <ClInclude Include="SpriteComponent.h">
+      <Filter>Components</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="MiniginPCH.cpp">
@@ -240,6 +243,9 @@
       <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="TextComponent.cpp">
+      <Filter>Components</Filter>
+    </ClCompile>
+    <ClCompile Include="SpriteComponent.cpp">
       <Filter>Components</Filter>
     </ClCompile>
   </ItemGroup>

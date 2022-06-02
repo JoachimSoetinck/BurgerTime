@@ -111,14 +111,14 @@ namespace dae
 				else if (sCommand == "tr")
 				{
 					float x, y;
-					bool z;
+				
 					file >> x >> y;
 					CreateTray(scene, x, y);
 				}
 				else if (sCommand == "hot")
 				{
 					float x, y;
-					bool z;
+					
 					file >> x >> y;
 					if (isCoop)
 						CreateEnemy(scene, x, y);
@@ -127,7 +127,7 @@ namespace dae
 				else if (sCommand == "pet")
 				{
 					float x, y;
-					bool z;
+					
 					file >> x >> y;
 					CreatePeter(scene, x, y);
 				}
@@ -135,7 +135,7 @@ namespace dae
 				else if (sCommand == "sal")
 				{
 					float x, y;
-					bool z;
+					
 					file >> x >> y;
 					if (isCoop)
 						CreateSalt(scene, x, y);
@@ -217,7 +217,7 @@ namespace dae
 			auto peterPepper = std::make_shared<dae::GameObject>();
 			auto player = std::make_shared<dae::PeterPepperComponent>(peterPepper);
 			peterPepper->AddComponent(player);
-			peterPepper->GetComponent<dae::TransformComponent>()->SetPosition(glm::vec3{ 375, 550, 0 });
+			peterPepper->GetComponent<dae::TransformComponent>()->SetPosition(glm::vec3{ x, y, 0 });
 
 			//score bord
 			auto healthText = std::make_shared<dae::GameObject>();

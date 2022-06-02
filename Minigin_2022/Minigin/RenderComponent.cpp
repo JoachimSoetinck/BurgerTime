@@ -23,7 +23,17 @@ void dae::RenderComponent::Render() const
 	if(m_isVisible)
 	{
 		const glm::vec3 pos = m_TransformComponent->GetPosition();
-		Renderer::GetInstance().RenderTexture(*m_Texture, pos.x, pos.y);
+		//Renderer::GetInstance().RenderTexture(*m_Texture, pos.x, pos.y);
+
+		if (m_srcRect.h <= 0 || m_srcRect.w <= 0)
+		{
+			Renderer::GetInstance().RenderTexture(*m_Texture, pos.x, pos.y);
+		}
+
+		else
+		{
+			Renderer::GetInstance().RenderTexture(*m_Texture, m_srcRect, pos.x, pos.y);
+		}
 	}
 		
 }
@@ -51,4 +61,9 @@ int dae::RenderComponent::GetWidth() const
 int dae::RenderComponent::GetHeight() const
 {
 	return m_Height;
+}
+
+void dae::RenderComponent::SetRect(const SDL_Rect& rect)
+{
+	m_srcRect = rect;
 }
