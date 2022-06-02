@@ -14,8 +14,9 @@
 #include "SaltComponent.h"
 
 
-dae::EnemyComponent::EnemyComponent(std::shared_ptr<GameObject> gameObject, const glm::ivec2 spawn) :
-	m_spawnPoint{ spawn }
+dae::EnemyComponent::EnemyComponent(std::shared_ptr<GameObject> gameObject, const glm::ivec2 spawn, std::shared_ptr<dae::GameObject> target) :
+	m_spawnPoint{ spawn },
+	m_Target{ target }
 {
 	m_pGameObject = gameObject.get();
 
@@ -32,11 +33,11 @@ void dae::EnemyComponent::Update()
 	HandleCollision();
 	DoMovement();
 
-	if(m_IsDead)
+	if (m_IsDead)
 	{
 		m_elapsedSec += Time::GetDeltaTime();
 
-		if(m_elapsedSec >= m_respawnTimer)
+		if (m_elapsedSec >= m_respawnTimer)
 		{
 			m_pRenderComponent->SetVisibility(true);
 		}
@@ -60,7 +61,7 @@ void dae::EnemyComponent::HandleCollision()
 	auto objects = SceneManager::GetInstance().GetScene(0)->GetObjects();
 
 
-	int random{rand() };
+	int random{ rand() };
 
 	for (auto object : objects)
 	{
@@ -68,7 +69,7 @@ void dae::EnemyComponent::HandleCollision()
 		{
 			if (IsOverlapping(object.get()))
 			{
-
+				m_state = EnemyState::MovingRight;
 				break;
 			}
 		}
@@ -80,20 +81,31 @@ void dae::EnemyComponent::HandleCollision()
 			{
 				m_IsDead = true;
 				m_pRenderComponent->SetVisibility(false);
-				m_pGameObject->GetComponent<TransformComponent>()->SetPosition(m_spawnPoint.x, m_spawnPoint.y,  0);
-				m_pGameObject->GetParent()->GetComponent<PeterPepperComponent>()->GivePoints(100);
+				m_pGameObject->GetComponent<TransformComponent>()->SetPosition(m_spawnPoint.x, m_spawnPoint.y, 0);
+				auto pepper = object->GetComponent<SaltComponent>()->GetPeterPepper();
+				pepper->GivePoints(100);
 				break;
 			}
 		}
 
 		if (object->GetComponent<LadderComponent>() != nullptr)
 		{
-			if (IsOverlapping(object.get()) && (random == 1 || m_state == EnemyState::MovingRight))
+			if (IsOverlapping(object.get()) &&
+				m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y < m_Target->GetComponent<TransformComponent>()->GetPosition().y)
 			{
-				//m_state = EnemyState::Climbing;
+				
+				m_state = EnemyState::Climbing;
 				break;
 			}
+			else if (IsOverlapping(object.get()) &&
+				m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y > m_Target->GetComponent<TransformComponent>()->GetPosition().y)
+			{
+				m_state = EnemyState::ClimbingUP;
+				break;
+			}
+
 		}
+		
 
 	}
 
@@ -117,7 +129,7 @@ bool dae::EnemyComponent::IsOverlapping(GameObject* object)
 	if ((PeterPepperPos.x >= otherObjectPos.x && PeterPepperPos.x + PeterPepperWidth <= otherObjectPos.x + otherObjectWidth) &&
 		(PeterPepperPos.y + PeterPepperHeight >= otherObjectPos.y && PeterPepperPos.y + PeterPepperHeight <= otherObjectPos.y + otherObjectheight))
 	{
-		
+
 		return true;
 	}
 
@@ -152,6 +164,12 @@ void dae::EnemyComponent::DoMovement()
 		case EnemyState::Dying:
 		{
 			m_direction = { 0,0 };
+			break;
+		}
+
+		case EnemyState::ClimbingUP:
+		{
+			m_direction = { 0,-m_Speed };
 			break;
 		}
 		}

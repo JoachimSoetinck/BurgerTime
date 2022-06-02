@@ -274,7 +274,6 @@ bool dae::PeterPepperComponent::IsOnLadder(GameObject* obj)
 void dae::PeterPepperComponent::GivePoints(int nrOfPoints)
 {
 
-
 	m_score += nrOfPoints;
 	NotifyAllObservers(*m_pGameObject, Event::GivePoints);
 }

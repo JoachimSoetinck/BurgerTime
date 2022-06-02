@@ -172,6 +172,7 @@
     <ClCompile Include="PlatformComponent.cpp" />
     <ClCompile Include="SaltComponent.cpp" />
     <ClCompile Include="ScoreComponent.cpp" />
+    <ClCompile Include="TrayComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BarrierComponent.h" />
@@ -187,6 +188,7 @@
     <ClInclude Include="PlatformComponent.h" />
     <ClInclude Include="SaltComponent.h" />
     <ClInclude Include="ScoreComponent.h" />
+    <ClInclude Include="TrayComponent.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

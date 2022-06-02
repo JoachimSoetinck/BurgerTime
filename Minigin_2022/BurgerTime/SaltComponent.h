@@ -20,6 +20,8 @@ namespace dae
 
 		void Render() const override;
 
+		PeterPepperComponent* GetPeterPepper() const;
+
 		bool GetVisibility() const { return m_isActive; }
 		
 	private:

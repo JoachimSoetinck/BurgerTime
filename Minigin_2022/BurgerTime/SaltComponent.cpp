@@ -22,26 +22,26 @@ dae::SaltComponent::SaltComponent(std::shared_ptr<GameObject> object, std::share
 	m_RenderComponent = m_pGameObject->GetComponent<RenderComponent>();
 	m_TransformComponent = m_pGameObject->GetComponent<TransformComponent>();
 
-	 m_peterPepper =pp;
-	
+	m_peterPepper = pp;
+
 }
 
 void dae::SaltComponent::Update()
 {
-	if(m_peterPepper != nullptr && m_RenderComponent != nullptr)
+	if (m_peterPepper != nullptr && m_RenderComponent != nullptr)
 	{
 		if (m_peterPepper->IsThrowing())
 		{
 			m_RenderComponent->SetVisibility(true);
 			m_isActive = true;
 		}
-			
+
 		else
 		{
 			m_RenderComponent->SetVisibility(false);
 			m_isActive = false;
 		}
-			
+
 	}
 
 	HandleCollision();
@@ -50,6 +50,11 @@ void dae::SaltComponent::Update()
 void dae::SaltComponent::Render() const
 {
 
+}
+
+dae::PeterPepperComponent* dae::SaltComponent::GetPeterPepper() const
+{
+	return m_peterPepper.get();
 }
 
 bool dae::SaltComponent::IsOverlapping(GameObject* object)
@@ -74,7 +79,7 @@ bool dae::SaltComponent::IsOverlapping(GameObject* object)
 
 void dae::SaltComponent::HandleCollision()
 {
-	
-	
+
+
 
 }

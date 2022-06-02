@@ -4,7 +4,9 @@
 #include <iostream>  
 
 #include "PlatformComponent.h"
+#include "BarrierComponent.h"
 #include "Scene.h"
+#include "TrayComponent.h"
 
 namespace dae
 {
@@ -97,6 +99,21 @@ namespace dae
 					CreateIngredient(scene, x, y, IngredientComponent::Type::Tomato);
 				}
 
+				else if (sCommand == "b")
+				{
+					float x, y;
+					bool z;
+					file >> x >> y >> z  ;
+					CreateBarrier(scene, x, y, z );
+				}
+				else if(sCommand == "tr")
+				{
+					float x, y;
+					bool z;
+					file >> x >> y ;
+					CreateTray(scene, x, y);
+				}
+
 
 				
 			}
@@ -134,6 +151,27 @@ namespace dae
 			scene.Add(ingredients);
 		}
 
+		static void CreateBarrier(dae::Scene& scene, float x, float y, bool leftSide) 
+		{
+
+			auto barrier2 = std::make_shared<dae::GameObject>();
+			barrier2->AddComponent(std::make_shared<dae::RenderComponent>("Enemies/Sausage.png", barrier2, true));
+			barrier2->AddComponent(std::make_shared<dae::BarrierComponent>(barrier2, true));
+			barrier2->GetComponent<dae::TransformComponent>()->SetPosition(x, y, leftSide);
+
+			scene.Add(barrier2);
+
+		}
+		static void CreateTray(dae::Scene& scene, float x, float y) 
+		{
+
+			auto tray = std::make_shared<dae::GameObject>();
+			tray->AddComponent(std::make_shared<dae::RenderComponent>("Tray.png", tray));
+			tray->GetComponent<dae::TransformComponent>()->SetPosition(x, y, 0);
+			tray->AddComponent(std::make_shared<dae::TrayComponent>(tray));
+			scene.Add(tray);
+
+		}
 	};
 
 

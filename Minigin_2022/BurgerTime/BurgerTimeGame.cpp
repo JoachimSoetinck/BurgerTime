@@ -18,6 +18,7 @@
 #include "PlatformComponent.h"
 #include "SaltComponent.h"
 #include "TransformComponent.h"
+#include "TrayComponent.h"
 
 void BurgerTimeGame::LoadGame() const
 {
@@ -78,21 +79,33 @@ void BurgerTimeGame::LoadGame() const
 
 	auto enemy1 = std::make_shared<dae::GameObject>();
 	enemy1->AddComponent(std::make_shared<dae::RenderComponent>("Enemies/Sausage.png", enemy1));
-	enemy1->AddComponent(std::make_shared<dae::EnemyComponent>( enemy1, glm::ivec2(50,60)));
+	enemy1->AddComponent(std::make_shared<dae::EnemyComponent>( enemy1, glm::ivec2(50,60), peterPepper));
 
-	auto barrier1 = std::make_shared<dae::GameObject>();
-	barrier1->AddComponent(std::make_shared<dae::RenderComponent>("Enemies/Sausage.png", barrier1, false));
-	barrier1->AddComponent(std::make_shared<dae::BarrierComponent>( barrier1, false));
-	barrier1->GetComponent<dae::TransformComponent>()->SetPosition( 725, 60, 0);
+
+
+	CreateBarrier(scene, 14, 60, true);
+	CreateBarrier(scene, 14, 180, true);
+	CreateBarrier(scene, 14, 280, true);
+	CreateBarrier(scene, 14, 450, true);
+	CreateBarrier(scene, 14, 560, true);
+
+	CreateBarrier(scene, 14, 180, true);
+	CreateBarrier(scene, 250, 180, false);
+	CreateBarrier(scene, 340, 180, true);
+	CreateBarrier(scene, 180, 230, true);
+	CreateBarrier(scene, 410, 230, false);
+	CreateBarrier(scene, 250, 280, false);
+	CreateBarrier(scene, 500, 280, true);
+	CreateBarrier(scene, 180, 340, true);
+	CreateBarrier(scene, 570, 340, false);
+	CreateBarrier(scene, 500, 390, true);
+	CreateBarrier(scene, 570, 450, false);
+	CreateBarrier(scene, 725, 60, false);
+	CreateBarrier(scene, 725, 180, false);
+	CreateBarrier(scene, 725, 280, false);
+	CreateBarrier(scene, 725, 400, false);
+	CreateBarrier(scene, 725, 560, false);
 	
-	scene.Add(barrier1);
-
-	auto barrier2 = std::make_shared<dae::GameObject>();
-	barrier2->AddComponent(std::make_shared<dae::RenderComponent>("Enemies/Sausage.png", barrier2, false));
-	barrier2->AddComponent(std::make_shared<dae::BarrierComponent>(barrier2, true));
-	barrier2->GetComponent<dae::TransformComponent>()->SetPosition(14, 60, 0);
-
-	scene.Add(barrier2);
 
 
 	scene.Add(enemy1);
@@ -104,6 +117,17 @@ void BurgerTimeGame::LoadGame() const
 void BurgerTimeGame::CreateLevel(dae::Scene& scene) const
 {
 	bool r = dae::LevelParser::ParseOBJ("../Data/Level/Level01.txt", scene);
+
+}
+
+void BurgerTimeGame::CreateBarrier(dae::Scene& scene, float x, float y, bool leftSide) const
+{
+	auto barrier2 = std::make_shared<dae::GameObject>();
+	barrier2->AddComponent(std::make_shared<dae::RenderComponent>("Enemies/Sausage.png", barrier2, false));
+	barrier2->AddComponent(std::make_shared<dae::BarrierComponent>(barrier2, true));
+	barrier2->GetComponent<dae::TransformComponent>()->SetPosition(x, y, leftSide);
+
+	scene.Add(barrier2);
 
 }
 

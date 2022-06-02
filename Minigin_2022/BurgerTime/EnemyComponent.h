@@ -7,7 +7,7 @@
 
 namespace  dae
 {
-	class EnemyComponent: public BaseComponent
+	class EnemyComponent final: public BaseComponent
 	{
 	public:
 		enum class EnemyState
@@ -15,10 +15,11 @@ namespace  dae
 			MovingLeft,
 			MovingRight,
 			Dying,
-			Climbing
+			Climbing,
+			ClimbingUP
 		};
 
-		EnemyComponent(std::shared_ptr<GameObject> gameObject, const glm::ivec2 spawn);
+		EnemyComponent(std::shared_ptr<GameObject> gameObject, const glm::ivec2 spawn, std::shared_ptr<dae::GameObject> target);
 		~EnemyComponent() = default;
 		EnemyComponent(const EnemyComponent& other) = delete;
 		EnemyComponent(EnemyComponent&& other) noexcept = delete;
@@ -41,7 +42,6 @@ namespace  dae
 
 		std::shared_ptr<dae::GameObject> m_Target;
 
-		bool m_isOnGround{false};
 		bool m_isOnLadder{false};
 		int m_Speed{ 40 };
 		glm::vec2 m_direction{ 0,0 };
@@ -58,7 +58,7 @@ namespace  dae
 	
 		void DoMovement();
 
-		EnemyState m_state{EnemyState::MovingLeft};
+		EnemyState m_state{EnemyState::MovingRight};
 
 	};
 }
