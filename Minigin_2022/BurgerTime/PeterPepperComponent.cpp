@@ -13,7 +13,7 @@
 #include "Timer.h"
 #include "PlatformComponent.h"
 
-dae::PeterPepperComponent::PeterPepperComponent(std::shared_ptr<GameObject> object)
+dae::PeterPepperComponent::PeterPepperComponent(std::shared_ptr<GameObject> object, int index)
 {
 
 	//AddObserver(new PlayerObserver());
@@ -24,20 +24,20 @@ dae::PeterPepperComponent::PeterPepperComponent(std::shared_ptr<GameObject> obje
 	m_pRenderComponent = m_pGameObject->GetComponent<RenderComponent>();
 
 
-	InputManager::GetInstance().AddCommand(ControllerButton::ButtonRight, new MoveRight(), object, 0, ButtonPressType::IsDown);
-	InputManager::GetInstance().AddCommand(ControllerButton::ButtonRight, new StopMoving(), object, 0, ButtonPressType::IsUp);
+	InputManager::GetInstance().AddCommand(ControllerButton::ButtonRight, new MoveRight(), object, index, ButtonPressType::IsDown);
+	InputManager::GetInstance().AddCommand(ControllerButton::ButtonRight, new StopMoving(), object, index, ButtonPressType::IsUp);
 
-	InputManager::GetInstance().AddCommand(ControllerButton::ButtonLeft, new MoveLeft(), object, 0, ButtonPressType::IsDown);
-	InputManager::GetInstance().AddCommand(ControllerButton::ButtonLeft, new StopMoving(), object, 0, ButtonPressType::IsUp);
+	InputManager::GetInstance().AddCommand(ControllerButton::ButtonLeft, new MoveLeft(), object, index, ButtonPressType::IsDown);
+	InputManager::GetInstance().AddCommand(ControllerButton::ButtonLeft, new StopMoving(), object, index, ButtonPressType::IsUp);
 
-	InputManager::GetInstance().AddCommand(ControllerButton::ButtonDown, new MoveDown(), object, 0, ButtonPressType::IsDown);
-	InputManager::GetInstance().AddCommand(ControllerButton::ButtonDown, new StopMoving(), object, 0, ButtonPressType::IsUp);
+	InputManager::GetInstance().AddCommand(ControllerButton::ButtonDown, new MoveDown(), object, index, ButtonPressType::IsDown);
+	InputManager::GetInstance().AddCommand(ControllerButton::ButtonDown, new StopMoving(), object, index, ButtonPressType::IsUp);
 
-	InputManager::GetInstance().AddCommand(ControllerButton::ButtonUp, new MoveUp(), object, 0, ButtonPressType::IsDown);
-	InputManager::GetInstance().AddCommand(ControllerButton::ButtonUp, new StopMoving(), object, 0, ButtonPressType::IsUp);
+	InputManager::GetInstance().AddCommand(ControllerButton::ButtonUp, new MoveUp(), object, index, ButtonPressType::IsDown);
+	InputManager::GetInstance().AddCommand(ControllerButton::ButtonUp, new StopMoving(), object, index, ButtonPressType::IsUp);
 
 
-	InputManager::GetInstance().AddCommand(ControllerButton::ButtonA, new Attack(), object, 0, ButtonPressType::IsUp);
+	InputManager::GetInstance().AddCommand(ControllerButton::ButtonA, new Attack(), object, index, ButtonPressType::IsUp);
 
 
 }

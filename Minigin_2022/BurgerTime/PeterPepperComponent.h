@@ -25,7 +25,7 @@ namespace dae
 			Dying
 		};
 
-		PeterPepperComponent(std::shared_ptr<GameObject> object) ;
+		PeterPepperComponent(std::shared_ptr<GameObject> object, int index = 0) ;
 		virtual ~PeterPepperComponent() override;
 		
 		PeterPepperComponent(const PeterPepperComponent& other) = delete;
@@ -58,6 +58,7 @@ namespace dae
 		bool m_isThrowing{ false };
 		PlayerState m_state = PlayerState::Idle;
 
+		int playerIndex{0}; 
 		std::shared_ptr<TransformComponent> m_TransformComponent{};
 		std::shared_ptr<RenderComponent> m_pRenderComponent{};
 		

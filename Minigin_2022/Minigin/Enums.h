@@ -5,7 +5,8 @@ enum class Event
 {
 	GivePoints,
 	Killed,
-	Died
+	Died,
+	LOADLEVEL1
 	
 };
 

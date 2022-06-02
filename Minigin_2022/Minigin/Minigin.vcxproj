@@ -495,6 +495,7 @@
     <ClInclude Include="..\3rdParty\imgui-master\imstb_textedit.h" />
     <ClInclude Include="..\3rdParty\imgui-master\imstb_truetype.h" />
     <ClInclude Include="BaseComponent.h" />
+    <ClInclude Include="ButtonComponent.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="Enums.h" />
     <ClInclude Include="Font.h" />
@@ -660,6 +661,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="BaseComponent.cpp" />
+    <ClCompile Include="ButtonComponent.cpp" />
     <ClCompile Include="Command.cpp" />
     <ClCompile Include="Font.cpp" />
     <ClCompile Include="FPSComponent.cpp" />

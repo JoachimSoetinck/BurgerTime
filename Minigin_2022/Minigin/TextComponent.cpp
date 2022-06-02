@@ -84,3 +84,8 @@ void dae::TextComponent::SetLocation(glm::vec3 location)
 {
 	m_location = location;
 }
+
+std::shared_ptr<Texture2D> dae::TextComponent::GetTexture() const
+{
+	return m_TextTexture;
+}

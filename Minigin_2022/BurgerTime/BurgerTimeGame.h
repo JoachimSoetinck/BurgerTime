@@ -9,7 +9,7 @@ public:
 
 private:
 
-	void CreateLevel(dae::Scene& scene) const;
-	void CreateBarrier(dae::Scene& scene, float x, float y, bool leftSide) const;
+	void CreateLevel(dae::Scene& scene, bool isCoop) const;
+	
 };
 

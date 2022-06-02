@@ -9,6 +9,11 @@ unsigned int Scene::m_IdCounter = 0;
 
 Scene::Scene(const std::string& name) : m_Name(name) {}
 
+void dae::Scene::DeleteObjects()
+{
+	m_Objects.clear();
+}
+
 Scene::~Scene() = default;
 
 void Scene::Add(const std::shared_ptr<GameObject>& object)

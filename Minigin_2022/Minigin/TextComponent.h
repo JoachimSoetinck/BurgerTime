@@ -28,6 +28,12 @@ namespace dae {
 		void SetText(const std::string & text);
 		void SetFont(std::shared_ptr<Font> font);
 		void SetLocation(glm::vec3 location);
+		void SetColor(SDL_Color color)
+		{
+			m_Color = color; m_NeedsUpdate = true;
+		}
+		std::shared_ptr<Texture2D> GetTexture() const;
+		SDL_Color GetColor() const { return m_Color; }
 
 	private:
 		bool m_NeedsUpdate;

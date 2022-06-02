@@ -16,6 +16,7 @@ namespace dae
 		void Render() const;
 
 		std::vector <std::shared_ptr<GameObject>> GetObjects() { return  m_Objects; }
+		void DeleteObjects();
 
 		~Scene();
 		Scene(const Scene& other) = default;
@@ -31,7 +32,7 @@ namespace dae
 
 		static unsigned int m_IdCounter;
 
-		void HandleCollisions();
+		
 	};
 
 }

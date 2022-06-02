@@ -2,6 +2,7 @@
 #include "SceneManager.h"
 #include "Scene.h"
 
+
 void dae::SceneManager::Update()
 {
 	for(auto& scene : m_Scenes)
@@ -26,6 +27,12 @@ std::shared_ptr<dae::Scene> dae::SceneManager::GetScene(int nr)
 {
 	return m_Scenes[nr];
 }
+
+void dae::SceneManager::SetActiveScene(Scene* scene)
+{
+	m_pActiveScene = scene;
+}
+
 
 dae::Scene& dae::SceneManager::CreateScene(const std::string& name)
 {
