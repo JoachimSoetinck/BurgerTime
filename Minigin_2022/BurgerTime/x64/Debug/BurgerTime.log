@@ -11,15 +11,14 @@ C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\typ
 C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec4.hpp(272): message : see reference to class template instantiation 'glm::tvec4<T,P>' being compiled
 C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec4.hpp(46,29): warning C4201: nonstandard extension used: nameless struct/union
 C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec4.hpp(47,29): warning C4201: nonstandard extension used: nameless struct/union
-C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\LevelParser.h(131,28): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\LevelParser.h(131,25): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
-C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\LevelParser.h(113,11): warning C4101: 'z': unreferenced local variable
-C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\LevelParser.h(120,11): warning C4101: 'z': unreferenced local variable
-C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\LevelParser.h(128,11): warning C4101: 'z': unreferenced local variable
-C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\LevelParser.h(193,61): warning C4100: 'y': unreferenced formal parameter
-C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\LevelParser.h(193,52): warning C4100: 'x': unreferenced formal parameter
-C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\BurgerTimeGame.cpp(64,7): warning C4189: 'r': local variable is initialized but not referenced
-C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\LevelParser.h(138): warning C4715: 'dae::LevelParser::ParseOBJ': not all control paths return a value
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\LevelParser.h(141,28): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\LevelParser.h(141,25): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\LevelParser.h(114,11): warning C4101: 'z': unreferenced local variable
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\LevelParser.h(121,11): warning C4101: 'z': unreferenced local variable
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\LevelParser.h(130,11): warning C4101: 'z': unreferenced local variable
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\LevelParser.h(138,11): warning C4101: 'z': unreferenced local variable
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\LevelParser.h(214,61): warning C4100: 'y': unreferenced formal parameter
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\LevelParser.h(214,52): warning C4100: 'x': unreferenced formal parameter
   BurgerTime.vcxproj -> C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\x64\Debug\BurgerTime.exe
   C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\SDL2\lib\x64\SDL2.dll
   1 File(s) copied

@@ -1,6 +1,8 @@
 #include "MiniginPCH.h"
 #include "InputManager.h"
 
+#include "Scene.h"
+#include "SceneManager.h"
 #include "backends/imgui_impl_sdl.h"
 
 class dae::InputManager::ControllerImpl
@@ -113,8 +115,16 @@ bool dae::InputManager::ProcessInput()
 		if (e.type == SDL_MOUSEBUTTONDOWN) {
 
 		}
-	}
+		if (e.type == SDL_KEYUP) {
+			{
+				if (e.key.keysym.sym == SDLK_1) {
+					
+				}
 
+
+			}
+		}
+	}
 	pImpl->ProcessInput();
 
 	Update();

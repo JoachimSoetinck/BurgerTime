@@ -9,7 +9,7 @@ public:
 
 private:
 
-	void CreateLevel(dae::Scene& scene, bool isCoop) const;
+	
 	
 };
 

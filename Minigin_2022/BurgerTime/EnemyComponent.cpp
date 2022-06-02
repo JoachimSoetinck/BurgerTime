@@ -14,9 +14,9 @@
 #include "SaltComponent.h"
 
 
-dae::EnemyComponent::EnemyComponent(std::shared_ptr<GameObject> gameObject, const glm::ivec2 spawn, std::shared_ptr<dae::GameObject> target) :
-	m_spawnPoint{ spawn },
-	m_Target{ target }
+dae::EnemyComponent::EnemyComponent(std::shared_ptr<GameObject> gameObject, const glm::ivec2 spawn) :
+	m_spawnPoint{ spawn }
+	
 {
 	m_pGameObject = gameObject.get();
 
@@ -25,7 +25,7 @@ dae::EnemyComponent::EnemyComponent(std::shared_ptr<GameObject> gameObject, cons
 
 	m_pGameObject->GetComponent<TransformComponent>()->SetPosition(static_cast<float>(spawn.x), static_cast<float>(spawn.y), 0);
 
-	srand(time(NULL));
+
 }
 
 void dae::EnemyComponent::Update()
@@ -69,7 +69,7 @@ void dae::EnemyComponent::HandleCollision()
 		{
 			if (IsOverlapping(object.get()))
 			{
-				m_state = EnemyState::MovingRight;
+				
 				break;
 			}
 		}
@@ -88,23 +88,6 @@ void dae::EnemyComponent::HandleCollision()
 			}
 		}
 
-		if (object->GetComponent<LadderComponent>() != nullptr)
-		{
-			if (IsOverlapping(object.get()) &&
-				m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y < m_Target->GetComponent<TransformComponent>()->GetPosition().y)
-			{
-				
-				m_state = EnemyState::Climbing;
-				break;
-			}
-			else if (IsOverlapping(object.get()) &&
-				m_pGameObject->GetComponent<TransformComponent>()->GetPosition().y > m_Target->GetComponent<TransformComponent>()->GetPosition().y)
-			{
-				m_state = EnemyState::ClimbingUP;
-				break;
-			}
-
-		}
 		
 
 	}

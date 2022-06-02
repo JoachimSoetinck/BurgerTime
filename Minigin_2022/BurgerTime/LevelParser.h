@@ -5,6 +5,7 @@
 
 #include "PlatformComponent.h"
 #include "BarrierComponent.h"
+#include "EnemyComponent.h"
 #include "SaltComponent.h"
 #include "Scene.h"
 #include "TrayComponent.h"
@@ -114,6 +115,15 @@ namespace dae
 					file >> x >> y;
 					CreateTray(scene, x, y);
 				}
+				else if (sCommand == "hot")
+				{
+					float x, y;
+					bool z;
+					file >> x >> y;
+					if (isCoop)
+						CreateEnemy(scene, x, y);
+				}
+
 				else if (sCommand == "pet")
 				{
 					float x, y;
@@ -189,6 +199,17 @@ namespace dae
 			scene.Add(tray);
 
 		}
+		static void CreateEnemy(dae::Scene& scene, float x, float y)
+		{
+
+			auto enemy1 = std::make_shared<dae::GameObject>();
+			enemy1->AddComponent(std::make_shared<dae::RenderComponent>("Enemies/Sausage.png", enemy1));
+			enemy1->AddComponent(std::make_shared<dae::EnemyComponent>(enemy1, glm::ivec2(x, y)));
+			scene.Add(enemy1);
+
+		}
+
+		
 
 		static void CreatePeter(dae::Scene& scene, float x, float y)
 		{
@@ -234,6 +255,7 @@ namespace dae
 			peterPepper->AddChild(salt);
 			scene.Add(peterPepper);
 
+			
 		}
 
 		static void CreateSalt(dae::Scene& scene, int x, int y)
@@ -281,7 +303,9 @@ namespace dae
 			scene.Add(mssSalt);
 
 		}
+
+		
 	};
 
-
+	
 }

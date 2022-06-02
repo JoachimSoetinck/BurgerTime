@@ -19,7 +19,7 @@ namespace  dae
 			ClimbingUP
 		};
 
-		EnemyComponent(std::shared_ptr<GameObject> gameObject, const glm::ivec2 spawn, std::shared_ptr<dae::GameObject> target);
+		EnemyComponent(std::shared_ptr<GameObject> gameObject, const glm::ivec2 spawn);
 		~EnemyComponent() = default;
 		EnemyComponent(const EnemyComponent& other) = delete;
 		EnemyComponent(EnemyComponent&& other) noexcept = delete;
