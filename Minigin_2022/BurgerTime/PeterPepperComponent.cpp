@@ -16,8 +16,6 @@
 dae::PeterPepperComponent::PeterPepperComponent(std::shared_ptr<GameObject> object, int index)
 {
 
-	//AddObserver(new PlayerObserver());
-
 	m_pGameObject = object.get();
 
 	m_TransformComponent = m_pGameObject->GetComponent<TransformComponent>();

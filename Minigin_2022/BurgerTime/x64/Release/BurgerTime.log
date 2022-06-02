@@ -1,0 +1,111 @@
+﻿  BarrierComponent.cpp
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec2.hpp(45,22): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec2.hpp(206): message : see reference to class template instantiation 'glm::tvec2<T,P>' being compiled
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec2.hpp(46,22): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec2.hpp(47,22): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec3.hpp(45,25): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec3.hpp(227): message : see reference to class template instantiation 'glm::tvec3<T,P>' being compiled
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec3.hpp(46,25): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec3.hpp(47,25): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec4.hpp(45,28): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec4.hpp(272): message : see reference to class template instantiation 'glm::tvec4<T,P>' being compiled
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec4.hpp(46,29): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec4.hpp(47,29): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\BarrierComponent.cpp(22,7): warning C4189: 'nr': local variable is initialized but not referenced
+  BurgerTime.cpp
+  BurgerTimeGame.cpp
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec2.hpp(45,22): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec2.hpp(206): message : see reference to class template instantiation 'glm::tvec2<T,P>' being compiled
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec2.hpp(46,22): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec2.hpp(47,22): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec3.hpp(45,25): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec3.hpp(227): message : see reference to class template instantiation 'glm::tvec3<T,P>' being compiled
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec3.hpp(46,25): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec3.hpp(47,25): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec4.hpp(45,28): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec4.hpp(272): message : see reference to class template instantiation 'glm::tvec4<T,P>' being compiled
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec4.hpp(46,29): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec4.hpp(47,29): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\LevelParser.h(141,28): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\LevelParser.h(141,25): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\LevelParser.h(114,11): warning C4101: 'z': unreferenced local variable
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\LevelParser.h(121,11): warning C4101: 'z': unreferenced local variable
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\LevelParser.h(130,11): warning C4101: 'z': unreferenced local variable
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\LevelParser.h(138,11): warning C4101: 'z': unreferenced local variable
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\LevelParser.h(214,61): warning C4100: 'y': unreferenced formal parameter
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\LevelParser.h(214,52): warning C4100: 'x': unreferenced formal parameter
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\BurgerTimeGame.cpp(38,7): warning C4189: 'r': local variable is initialized but not referenced
+  BurgerTimePCH.cpp
+  CustomCommands.cpp
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec2.hpp(45,22): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec2.hpp(206): message : see reference to class template instantiation 'glm::tvec2<T,P>' being compiled
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec2.hpp(46,22): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec2.hpp(47,22): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec3.hpp(45,25): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec3.hpp(227): message : see reference to class template instantiation 'glm::tvec3<T,P>' being compiled
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec3.hpp(46,25): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec3.hpp(47,25): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec4.hpp(45,28): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec4.hpp(272): message : see reference to class template instantiation 'glm::tvec4<T,P>' being compiled
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec4.hpp(46,29): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec4.hpp(47,29): warning C4201: nonstandard extension used: nameless struct/union
+  EnemyComponent.cpp
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec2.hpp(45,22): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec2.hpp(206): message : see reference to class template instantiation 'glm::tvec2<T,P>' being compiled
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec2.hpp(46,22): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec2.hpp(47,22): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec3.hpp(45,25): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec3.hpp(227): message : see reference to class template instantiation 'glm::tvec3<T,P>' being compiled
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec3.hpp(46,25): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec3.hpp(47,25): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec4.hpp(45,28): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec4.hpp(272): message : see reference to class template instantiation 'glm::tvec4<T,P>' being compiled
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec4.hpp(46,29): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec4.hpp(47,29): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\EnemyComponent.cpp(86,96): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=int
+          ]
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\EnemyComponent.cpp(86,80): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
+          with
+          [
+              T=int
+          ]
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\EnemyComponent.cpp(66,6): warning C4189: 'random': local variable is initialized but not referenced
+  IngredientComponent.cpp
+  LadderComponent.cpp
+  LivesComponent.cpp
+  PeterPepperComponent.cpp
+  PlatformComponent.cpp
+  SaltComponent.cpp
+  ScoreComponent.cpp
+  TrayComponent.cpp
+  Generating code
+  Previous IPDB not found, fall back to full compilation.
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\LevelParser.h(148): warning C4715: 'dae::LevelParser::ParseOBJ': not all control paths return a value
+  All 2832 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
+  Finished generating code
+  BurgerTime.vcxproj -> C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\x64\Release\BurgerTime.exe
+  C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\SDL2\lib\x64\SDL2.dll
+  1 File(s) copied
+  C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\SDL2_image\lib\x64\libjpeg-9.dll
+  C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\SDL2_image\lib\x64\libpng16-16.dll
+  C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\SDL2_image\lib\x64\libtiff-5.dll
+  C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\SDL2_image\lib\x64\libwebp-7.dll
+  C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\SDL2_image\lib\x64\SDL2_image.dll
+  C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\SDL2_image\lib\x64\zlib1.dll
+  6 File(s) copied
+  C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\SDL2_ttf\lib\x64\libfreetype-6.dll
+  C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\SDL2_ttf\lib\x64\SDL2_ttf.dll
+  2 File(s) copied
+  C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\SDL2_mixer-2.0.4\lib\x64\libFLAC-8.dll
+  C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\SDL2_mixer-2.0.4\lib\x64\libmodplug-1.dll
+  C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\SDL2_mixer-2.0.4\lib\x64\libmpg123-0.dll
+  C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\SDL2_mixer-2.0.4\lib\x64\libogg-0.dll
+  C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\SDL2_mixer-2.0.4\lib\x64\libopus-0.dll
+  C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\SDL2_mixer-2.0.4\lib\x64\libopusfile-0.dll
+  C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\SDL2_mixer-2.0.4\lib\x64\libvorbis-0.dll
+  C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\SDL2_mixer-2.0.4\lib\x64\libvorbisfile-3.dll
+  C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\SDL2_mixer-2.0.4\lib\x64\SDL2_mixer.dll
+  9 File(s) copied
