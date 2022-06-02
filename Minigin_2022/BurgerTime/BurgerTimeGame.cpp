@@ -99,68 +99,14 @@ void BurgerTimeGame::LoadGame() const
 	scene.Add(peterPepper);
 }
 
-void BurgerTimeGame::CreatePlatform(dae::Scene& scene, float x, float y, std::string texture) const
-{
-	auto platform = std::make_shared<dae::GameObject>();
 
-	platform->AddComponent(std::make_shared<dae::RenderComponent>(texture, platform));
-	platform->AddComponent(std::make_unique<dae::PlatformComponent>(platform));
-	platform ->GetComponent<dae::TransformComponent>()->SetPosition(x, y, 0);
-	scene.Add(platform);
-}
-
-void BurgerTimeGame::CreateLadder(dae::Scene& scene, float x, float y, std::string texture) const
-{
-	auto ladder = std::make_shared<dae::GameObject>();
-
-	ladder->AddComponent(std::make_shared<dae::RenderComponent>(texture, ladder));
-	ladder->AddComponent(std::make_unique<dae::LadderComponent>(ladder));
-	ladder->GetComponent<dae::TransformComponent>()->SetPosition(x, y, 0);
-	scene.Add(ladder);
-}
 
 void BurgerTimeGame::CreateLevel(dae::Scene& scene) const
 {
 	bool r = dae::LevelParser::ParseOBJ("../Data/Level/Level01.txt", scene);
 
-
-
-
-	CreateIngredient(scene, 93, 85, dae::IngredientComponent::Type::TopBun);
-	CreateIngredient(scene, 93, 190, dae::IngredientComponent::Type::Lettuce);
-	CreateIngredient(scene, 93, 300, dae::IngredientComponent::Type::Patty);
-	CreateIngredient(scene, 93, 470, dae::IngredientComponent::Type::Patty);
-	CreateIngredient(scene, 93, 575, dae::IngredientComponent::Type::BottomBun);
-
-	CreateIngredient(scene, 255, 85, dae::IngredientComponent::Type::TopBun);
-	CreateIngredient(scene, 255, 245, dae::IngredientComponent::Type::Lettuce);
-	CreateIngredient(scene, 255, 355, dae::IngredientComponent::Type::Patty);
-	CreateIngredient(scene, 255, 470, dae::IngredientComponent::Type::Patty);
-	CreateIngredient(scene, 255, 575, dae::IngredientComponent::Type::BottomBun);
-
-
-	CreateIngredient(scene, 420, 85, dae::IngredientComponent::Type::TopBun);
-	CreateIngredient(scene, 420, 190, dae::IngredientComponent::Type::Lettuce);
-	CreateIngredient(scene, 420, 355, dae::IngredientComponent::Type::Patty);
-	CreateIngredient(scene, 420, 470, dae::IngredientComponent::Type::Patty);
-	CreateIngredient(scene, 420, 575, dae::IngredientComponent::Type::BottomBun);
-
-	CreateIngredient(scene, 580, 85, dae::IngredientComponent::Type::TopBun);
-	CreateIngredient(scene, 580, 190, dae::IngredientComponent::Type::Lettuce);
-	CreateIngredient(scene, 580, 300, dae::IngredientComponent::Type::Patty);
-	CreateIngredient(scene, 580, 410, dae::IngredientComponent::Type::Patty);
-	CreateIngredient(scene, 580, 575, dae::IngredientComponent::Type::BottomBun);
 }
 
-void BurgerTimeGame::CreateIngredient(dae::Scene& scene, float x, float y, dae::IngredientComponent::Type ingredient) const
-{
-	auto ingredients = std::make_shared<dae::GameObject>();
-
-	ingredients->AddComponent(std::make_shared<dae::RenderComponent>("LightBluePlatform.png", ingredients));
-	ingredients->AddComponent(std::make_unique<dae::IngredientComponent>(ingredients, ingredient));
-	ingredients->GetComponent<dae::TransformComponent>()->SetPosition(x, y, 0);
-	scene.Add(ingredients);
-}
 
 
 

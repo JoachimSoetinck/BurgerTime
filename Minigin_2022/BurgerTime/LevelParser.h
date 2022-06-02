@@ -55,10 +55,48 @@ namespace dae
 					CreatePlatform(scene, x, y, "BluePlatform.png");
 
 				}
-				else if (sCommand == "f")
+				else if (sCommand == "tb")
 				{
-
+					float x, y;
+					file >> x >> y;
+					CreateIngredient(scene, x, y, IngredientComponent::Type::TopBun);
 				}
+
+				else if (sCommand == "lt")
+				{
+					float x, y;
+					file >> x >> y;
+					CreateIngredient(scene, x, y, IngredientComponent::Type::Lettuce);
+				}
+
+				else if (sCommand == "pat")
+				{
+					float x, y;
+					file >> x >> y;
+					CreateIngredient(scene, x, y, IngredientComponent::Type::Patty);
+				}
+
+				else if (sCommand == "ch")
+				{
+					float x, y;
+					file >> x >> y;
+					CreateIngredient(scene, x, y, IngredientComponent::Type::Cheese);
+				}
+
+				else if (sCommand == "bb")
+				{
+					float x, y;
+					file >> x >> y;
+					CreateIngredient(scene, x, y, IngredientComponent::Type::BottomBun);
+				}
+
+				else if (sCommand == "tom")
+				{
+					float x, y;
+					file >> x >> y;
+					CreateIngredient(scene, x, y, IngredientComponent::Type::Tomato);
+				}
+
 
 				
 			}
@@ -84,6 +122,16 @@ namespace dae
 			ladder->AddComponent(std::make_unique<dae::LadderComponent>(ladder));
 			ladder->GetComponent<dae::TransformComponent>()->SetPosition(x, y, 0);
 			scene.Add(ladder);
+		}
+
+		static void CreateIngredient(dae::Scene& scene, float x, float y, dae::IngredientComponent::Type ingredient)
+		{
+			auto ingredients = std::make_shared<dae::GameObject>();
+
+			ingredients->AddComponent(std::make_shared<dae::RenderComponent>("LightBluePlatform.png", ingredients));
+			ingredients->AddComponent(std::make_unique<dae::IngredientComponent>(ingredients, ingredient));
+			ingredients->GetComponent<dae::TransformComponent>()->SetPosition(x, y, 0);
+			scene.Add(ingredients);
 		}
 
 	};
