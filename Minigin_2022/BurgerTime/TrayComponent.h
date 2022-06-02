@@ -16,6 +16,8 @@ namespace dae
 		void Update() override;
 		void Render() const override;
 
+	private:
+		
 	};
 }
 

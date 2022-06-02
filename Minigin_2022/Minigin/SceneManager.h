@@ -1,6 +1,7 @@
 #pragma once
 #include "Singleton.h"
 #include <vector>
+#include <iostream>
 
 namespace dae
 {

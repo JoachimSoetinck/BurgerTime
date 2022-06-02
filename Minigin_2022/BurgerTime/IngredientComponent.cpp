@@ -6,8 +6,9 @@
 #include "Scene.h"
 #include "SceneManager.h"
 #include "Timer.h"
+#include "TrayComponent.h"
 
-dae::IngredientComponent::IngredientComponent(std::shared_ptr<GameObject> object, Type ingredient): m_Type(ingredient)
+dae::IngredientComponent::IngredientComponent(std::shared_ptr<GameObject> object, Type ingredient) : m_Type(ingredient)
 {
 	m_pGameObject = object.get();
 
@@ -24,7 +25,8 @@ void dae::IngredientComponent::Update()
 	{
 		HandleCollision();
 
-		Fall();
+		if (m_isOnTray == false)
+			Fall();
 
 	}
 
@@ -36,7 +38,7 @@ void dae::IngredientComponent::Render() const
 
 void dae::IngredientComponent::CheckHitPoints(glm::vec3 positionPP, int height, int width)
 {
-	
+
 	if (m_pTransform->GetPosition().x > positionPP.x &&
 		m_pTransform->GetPosition().x <  positionPP.x + width &&
 		m_pTransform->GetPosition().y > positionPP.y &&
@@ -53,7 +55,7 @@ void dae::IngredientComponent::CheckHitPoints(glm::vec3 positionPP, int height, 
 	}
 
 	float width2 = 105;
-	if (m_pTransform->GetPosition().x  + width2 > positionPP.x &&
+	if (m_pTransform->GetPosition().x + width2 > positionPP.x &&
 		m_pTransform->GetPosition().x + width2 < positionPP.x + width2 &&
 		m_pTransform->GetPosition().y > positionPP.y &&
 		m_pTransform->GetPosition().y < positionPP.y + height)
@@ -125,13 +127,33 @@ void dae::IngredientComponent::HandleCollision()
 		{
 			if (IsOnPlatform(object.get()) && object.get() != m_pGameObject)
 			{
-				auto prevType = m_Type;
-				auto objType = object->GetComponent<IngredientComponent>()->GetType();
-				m_Type = objType;
-				object->GetComponent<IngredientComponent>()->SetType(prevType);
-				object->GetComponent<IngredientComponent>()->ChooseTexture(prevType);
-				ChooseTexture(objType);
+				if (object->GetComponent<IngredientComponent>()->IsOnTray())
+				{
+					m_isOnTray = true;
+					m_canFall = false;
+				}
 
+				if (m_isOnTray == false)
+				{
+					auto prevType = m_Type;
+					auto objType = object->GetComponent<IngredientComponent>()->GetType();
+					m_Type = objType;
+					object->GetComponent<IngredientComponent>()->SetType(prevType);
+					object->GetComponent<IngredientComponent>()->ChooseTexture(prevType);
+					ChooseTexture(objType);
+				}
+				
+
+
+			}
+		}
+
+		if (object.get()->GetComponent<TrayComponent>() != nullptr)
+		{
+			if (IsOnPlatform(object.get()) && object.get())
+			{
+				m_isOnTray = true;
+				m_canFall = false;
 			}
 		}
 
@@ -141,7 +163,7 @@ void dae::IngredientComponent::HandleCollision()
 
 void dae::IngredientComponent::Fall()
 {
-	if ((m_LeftCornerHit && m_CenterHit && m_RightCornerHit)  || m_canFall)
+	if ((m_LeftCornerHit && m_CenterHit && m_RightCornerHit))
 	{
 		m_pTransform->SetPosition(m_pTransform->GetPosition().x,
 			m_pTransform->GetPosition().y + m_fallSpeed * Time::GetDeltaTime(),
@@ -149,6 +171,7 @@ void dae::IngredientComponent::Fall()
 
 		m_canFall = true;
 	}
+	
 
 
 }

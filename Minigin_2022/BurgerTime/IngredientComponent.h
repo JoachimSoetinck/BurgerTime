@@ -33,7 +33,8 @@ namespace dae
 		void Update() override;
 		void Render() const override;
 		Type GetType()const { return m_Type; }
-		void SetType(Type type) {  m_Type = type; }
+		void SetType(Type type) { m_Type = type; }
+		bool IsOnTray() const { return m_isOnTray; }
 
 		void CheckHitPoints(glm::vec3 positionPP, int height, int width);
 		void SetIsFalling(bool isFalling) { m_canFall = isFalling; }
@@ -46,7 +47,7 @@ namespace dae
 		bool m_canCollide{ true };
 		Type m_Type{};
 
-		bool m_RightCornerHit{false};
+		bool m_RightCornerHit{ false };
 		bool m_CenterHit{ false };
 		bool m_LeftCornerHit{ false };
 
@@ -57,7 +58,8 @@ namespace dae
 		bool IsOnPlatform(GameObject* o2);
 
 		float m_elapsedSec;
-	
+		bool m_isOnTray{ false };
+
 		void HandleCollision();
 		void Fall();
 	};

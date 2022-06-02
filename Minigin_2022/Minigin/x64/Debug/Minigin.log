@@ -1,4 +1,5 @@
 ﻿  Minigin.cpp
+  Renderer.cpp
   Scene.cpp
   SceneManager.cpp
   Generating Code...
