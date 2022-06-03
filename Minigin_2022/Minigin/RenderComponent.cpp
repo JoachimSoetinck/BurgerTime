@@ -40,16 +40,20 @@ void dae::RenderComponent::Render() const
 
 void dae::RenderComponent::SetTexture(const std::string& file)
 {
-	m_Texture = ResourceManager::GetInstance().LoadTexture(file);
-
-	//setting Width and height
-	if (m_Texture != nullptr)
+	if(file.size() >0)
 	{
-		Uint32 format;
-		int access;
+		m_Texture = ResourceManager::GetInstance().LoadTexture(file);
 
-		SDL_QueryTexture(m_Texture.get()->GetSDLTexture(), &format, &access, &m_Width, &m_Height);
+		//setting Width and height
+		if (m_Texture != nullptr)
+		{
+			Uint32 format;
+			int access;
+
+			SDL_QueryTexture(m_Texture.get()->GetSDLTexture(), &format, &access, &m_Width, &m_Height);
+		}
 	}
+
 	
 }
 

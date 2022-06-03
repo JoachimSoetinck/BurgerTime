@@ -36,7 +36,7 @@ void dae::IngredientComponent::Render() const
 {
 }
 
-void dae::IngredientComponent::CheckHitPoints(glm::vec3 positionPP, int height, int width)
+void dae::IngredientComponent::CheckHitPoints(glm::vec3 positionPP, int height, int width, std::shared_ptr<PeterPepperComponent> pepper)
 {
 
 	if (m_pTransform->GetPosition().x > positionPP.x &&
@@ -63,13 +63,23 @@ void dae::IngredientComponent::CheckHitPoints(glm::vec3 positionPP, int height, 
 		m_RightCornerHit = true;
 	}
 
+	if ((m_LeftCornerHit && m_CenterHit && m_RightCornerHit) && m_hassFallen == false)
+	{
+		pepper->GivePoints(50);
+		m_pepper = pepper;
+		m_hassFallen = true;
+	}
+
+
 
 }
 
 void dae::IngredientComponent::ChooseTexture(Type ingredient)
 {
+	
 	switch (ingredient)
 	{
+		
 	case Type::BottomBun:
 		m_pRender->SetTexture("BottomBun.png");
 		break;
@@ -136,14 +146,29 @@ void dae::IngredientComponent::HandleCollision()
 
 				if (m_isOnTray == false)
 				{
-					auto prevType = m_Type;
-					auto objType = object->GetComponent<IngredientComponent>()->GetType();
-					m_Type = objType;
-					object->GetComponent<IngredientComponent>()->SetType(prevType);
-					object->GetComponent<IngredientComponent>()->ChooseTexture(prevType);
-					ChooseTexture(objType);
+					if(m_canSwap)
+					{
+						const auto prevType = m_Type;
+						const auto objType = object->GetComponent<IngredientComponent>()->GetType();
+						m_Type = objType;
+						object->GetComponent<IngredientComponent>()->SetType(prevType);
+						object->GetComponent<IngredientComponent>()->ChooseTexture(prevType);
+						ChooseTexture(objType);
+
+						if (object->GetComponent<IngredientComponent>() != m_previousIngredient)
+							if (m_pepper)
+								m_pepper->GivePoints(50);
+
+						m_previousIngredient = object->GetComponent<IngredientComponent>();
+
+
+					}
+					
+
+
+
 				}
-				
+
 
 
 			}
@@ -172,7 +197,7 @@ void dae::IngredientComponent::Fall()
 
 		m_canFall = true;
 	}
-	
+
 
 
 }

@@ -4,6 +4,8 @@
 
 #include <glm/detail/type_vec.hpp>
 
+#include "PeterPepperComponent.h"
+
 
 namespace dae
 {
@@ -36,7 +38,7 @@ namespace dae
 		void SetType(Type type) { m_Type = type; }
 		bool IsOnTray() const { return m_isOnTray; }
 
-		void CheckHitPoints(glm::vec3 positionPP, int height, int width);
+		void CheckHitPoints(glm::vec3 positionPP, int height, int width, std::shared_ptr<PeterPepperComponent> pepper);
 		void SetIsFalling(bool isFalling) { m_canFall = isFalling; }
 		void ChooseTexture(Type ingredient);
 
@@ -45,11 +47,15 @@ namespace dae
 
 		bool m_canFall{ false };
 		bool m_canCollide{ true };
-		Type m_Type{};
+		bool m_canSwap{ true };
+		Type m_Type;
+		float m_swapTimer{ 2.0f };
+
 
 		bool m_RightCornerHit{ false };
 		bool m_CenterHit{ false };
 		bool m_LeftCornerHit{ false };
+		bool m_hassFallen{ false };
 
 		int m_fallSpeed{ 50 };
 
@@ -59,6 +65,8 @@ namespace dae
 
 		float m_elapsedSec;
 		bool m_isOnTray{ false };
+		std::shared_ptr<PeterPepperComponent> m_pepper{};
+		std::shared_ptr<IngredientComponent> m_previousIngredient{};
 
 		void HandleCollision();
 		void Fall();

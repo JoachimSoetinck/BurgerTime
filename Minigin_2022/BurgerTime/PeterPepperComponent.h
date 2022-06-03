@@ -3,6 +3,7 @@
 
 #include "Subject.h"
 #include "RenderComponent.h"
+#include "SpriteComponent.h"
 
 namespace dae
 {
@@ -61,6 +62,7 @@ namespace dae
 		int playerIndex{0}; 
 		std::shared_ptr<TransformComponent> m_TransformComponent{};
 		std::shared_ptr<RenderComponent> m_pRenderComponent{};
+		std::shared_ptr<SpriteComponent> m_pSprite{};
 		
 		float m_throwDuration{ 1.0f};
 		float m_elapsedSec{};

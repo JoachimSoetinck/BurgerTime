@@ -11,6 +11,7 @@
 #include "BurgerTimePCH.h"
 #include <iostream>
 
+#include "IngredientComponent.h"
 #include "SaltComponent.h"
 
 
@@ -86,6 +87,15 @@ void dae::EnemyComponent::HandleCollision()
 				m_pGameObject->GetComponent<TransformComponent>()->SetPosition(m_spawnPoint.x, m_spawnPoint.y, 0);
 				auto pepper = object->GetComponent<SaltComponent>()->GetPeterPepper();
 				pepper->GivePoints(100);
+				break;
+			}
+		}
+
+		if (object->GetComponent<PeterPepperComponent>() != nullptr)
+		{
+			if (IsOverlapping(object.get()))
+			{
+				std::cout << "Hit";
 				break;
 			}
 		}

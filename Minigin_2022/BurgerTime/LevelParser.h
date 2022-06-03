@@ -8,6 +8,7 @@
 #include "EnemyComponent.h"
 #include "SaltComponent.h"
 #include "Scene.h"
+#include "SpriteComponent.h"
 #include "TrayComponent.h"
 
 namespace dae
@@ -215,6 +216,12 @@ namespace dae
 		{
 
 			auto peterPepper = std::make_shared<dae::GameObject>();
+
+			const auto peterPepperImage = std::make_shared<dae::RenderComponent>("PeterPepper/PlayerIdle.png", peterPepper);
+			peterPepper->AddComponent(peterPepperImage);
+
+			
+
 			auto player = std::make_shared<dae::PeterPepperComponent>(peterPepper);
 			peterPepper->AddComponent(player);
 			peterPepper->GetComponent<dae::TransformComponent>()->SetPosition(glm::vec3{ x, y, 0 });
@@ -239,9 +246,7 @@ namespace dae
 
 			player->AddObserver(score);
 
-			const auto peterPepperImage = std::make_shared<dae::RenderComponent>("PeterPepper/PlayerIdle.png", peterPepper);
-			peterPepper->AddComponent(peterPepperImage);
-
+			
 
 			//attack part salt
 			auto salt = std::make_shared<dae::GameObject>();

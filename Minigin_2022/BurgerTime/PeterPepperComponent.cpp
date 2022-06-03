@@ -12,6 +12,7 @@
 #include "TextComponent.h"
 #include "Timer.h"
 #include "PlatformComponent.h"
+#include <SpriteComponent.h>
 
 dae::PeterPepperComponent::PeterPepperComponent(std::shared_ptr<GameObject> object, int index)
 {
@@ -20,6 +21,7 @@ dae::PeterPepperComponent::PeterPepperComponent(std::shared_ptr<GameObject> obje
 
 	m_TransformComponent = m_pGameObject->GetComponent<TransformComponent>();
 	m_pRenderComponent = m_pGameObject->GetComponent<RenderComponent>();
+	m_pSprite = m_pGameObject->GetComponent<SpriteComponent>();
 
 
 	InputManager::GetInstance().AddCommand(ControllerButton::ButtonRight, new MoveRight(), object, index, ButtonPressType::IsDown);
@@ -47,13 +49,13 @@ dae::PeterPepperComponent::~PeterPepperComponent()
 
 void dae::PeterPepperComponent::Update()
 {
-	if(!m_isThrowing)
+	if (!m_isThrowing)
 	{
 		HandleMovement();
 		HandleCollision();
 	}
 
-	if(m_isThrowing)
+	if (m_isThrowing)
 	{
 		m_elapsedSec += Time::GetDeltaTime();
 
@@ -64,9 +66,9 @@ void dae::PeterPepperComponent::Update()
 			m_elapsedSec = 0.0f;
 			std::cout << "idle";
 		}
-			
+
 	}
-	
+
 }
 
 void dae::PeterPepperComponent::Render() const
@@ -100,11 +102,23 @@ void dae::PeterPepperComponent::SetState(PlayerState state)
 	{
 	case PlayerState::Idle:
 	{
+		if (m_pSprite)
+		{
+			m_pSprite->SetRows(1);
+			m_pSprite->SetFile("PeterPepper/PlayerIdle.png");
+
+		}
+
 		m_direction = { 0,0 };
 		break;
 	}
 	case PlayerState::MovingLeft:
 	{
+		if (m_pSprite)
+		{
+			m_pSprite->SetRows(3);
+			m_pSprite->SetFile("PeterPepper/WalkLeft.png");
+		}
 		m_direction.x = -50;
 		break;
 	}
@@ -238,7 +252,9 @@ void dae::PeterPepperComponent::HandleCollision()
 		{
 			if (IsOverlapping(o2.get()))
 			{
-				o2.get()->GetComponent<IngredientComponent>()->CheckHitPoints(m_TransformComponent->GetPosition(), m_pGameObject->GetComponent<RenderComponent>()->GetHeight(), m_pGameObject->GetComponent<RenderComponent>()->GetWidth());
+				o2.get()->GetComponent<IngredientComponent>()
+					->CheckHitPoints(m_TransformComponent->GetPosition(), m_pGameObject->GetComponent<RenderComponent>()->GetHeight(), m_pGameObject->GetComponent<RenderComponent>()->GetWidth(), m_pGameObject->GetComponent<PeterPepperComponent>());
+
 
 			}
 		}

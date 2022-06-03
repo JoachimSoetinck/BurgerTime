@@ -1,4 +1,21 @@
-﻿  BurgerTime.vcxproj -> C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\x64\Debug\BurgerTime.exe
+﻿  BurgerTimeGame.cpp
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec2.hpp(45,22): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec2.hpp(206): message : see reference to class template instantiation 'glm::tvec2<T,P>' being compiled
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec2.hpp(46,22): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec2.hpp(47,22): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec3.hpp(45,25): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec3.hpp(227): message : see reference to class template instantiation 'glm::tvec3<T,P>' being compiled
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec3.hpp(46,25): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec3.hpp(47,25): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec4.hpp(45,28): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec4.hpp(272): message : see reference to class template instantiation 'glm::tvec4<T,P>' being compiled
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec4.hpp(46,29): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\glm\glm\detail\type_vec4.hpp(47,29): warning C4201: nonstandard extension used: nameless struct/union
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\LevelParser.h(142,28): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\LevelParser.h(142,25): warning C4244: 'argument': conversion from 'float' to 'int', possible loss of data
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\BurgerTimeGame.cpp(41,7): warning C4189: 'r': local variable is initialized but not referenced
+C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\LevelParser.h(149): warning C4715: 'dae::LevelParser::ParseOBJ': not all control paths return a value
+  BurgerTime.vcxproj -> C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\x64\Debug\BurgerTime.exe
   C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\SDL2\lib\x64\SDL2.dll
   1 File(s) copied
   C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\SDL2_image\lib\x64\libjpeg-9.dll
