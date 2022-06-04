@@ -27,6 +27,11 @@ dae::PeterPepperComponent::PeterPepperComponent(std::shared_ptr<GameObject> obje
 	InputManager::GetInstance().AddCommand(ControllerButton::ButtonRight, new MoveRight(), object, index, ButtonPressType::IsDown);
 	InputManager::GetInstance().AddCommand(ControllerButton::ButtonRight, new StopMoving(), object, index, ButtonPressType::IsUp);
 
+	InputManager::GetInstance().AddCommand(KeyboardButton::W, new MoveRight(), object, ButtonPressType::IsPressed);
+	InputManager::GetInstance().AddCommand(KeyboardButton::W, new StopMoving(), object, ButtonPressType::IsUp);
+
+
+
 	InputManager::GetInstance().AddCommand(ControllerButton::ButtonLeft, new MoveLeft(), object, index, ButtonPressType::IsDown);
 	InputManager::GetInstance().AddCommand(ControllerButton::ButtonLeft, new StopMoving(), object, index, ButtonPressType::IsUp);
 

@@ -82,6 +82,10 @@ public:
 dae::InputManager::InputManager()
 {
 	pImpl = new ControllerImpl();
+
+	m_pKeys = new int();
+	m_pCurrentState = SDL_GetKeyboardState(m_pKeys);
+	m_pPreviousState = new UINT8[*m_pKeys];
 }
 
 dae::InputManager::~InputManager()
@@ -95,8 +99,23 @@ dae::InputManager::~InputManager()
 		}
 	}
 
+	for (auto pair : m_KeyboardCommandss)
+	{
+		if (pair.first != nullptr)
+		{
+			delete pair.first->command;
+			delete pair.first;
+		}
+	}
+
 	delete pImpl;
 	pImpl = nullptr;
+
+	delete m_pPreviousState;
+	m_pPreviousState = nullptr;
+
+	delete m_pKeys;
+	m_pKeys = nullptr;
 }
 
 bool dae::InputManager::ProcessInput()
@@ -148,6 +167,38 @@ bool dae::InputManager::IsDown(ControllerButton button, int player) const
 	return pImpl->IsDown(button, player);
 }
 
+bool dae::InputManager::IsPressed(unsigned int key)const
+{
+	if (m_pCurrentState[key])
+	{
+		return true;
+	}
+
+	return false;
+}
+
+bool dae::InputManager::IsDownThisFrame(unsigned int key)const
+{
+
+	if (!m_pCurrentState[key] && m_pPreviousState[key])
+	{
+		
+		return true;
+	}
+
+	return false;
+}
+
+bool dae::InputManager::IsUpThisFrame(unsigned int key)const
+{
+	if (!m_pCurrentState[key] && m_pPreviousState[key])
+	{
+		return true;
+	}
+
+	return false;
+}
+
 void dae::InputManager::AddCommand(ControllerButton button, Command* command, std::shared_ptr<dae::GameObject>  actor, int playerController, ButtonPressType type)
 {
 	CommandWithActor* command_with_actor = new CommandWithActor();
@@ -157,6 +208,17 @@ void dae::InputManager::AddCommand(ControllerButton button, Command* command, st
 	command_with_actor->type = type;
 
 	m_pCommands.insert({ command_with_actor, button });
+}
+
+void dae::InputManager::AddCommand(KeyboardButton button, Command* command, std::shared_ptr<dae::GameObject> object, ButtonPressType type)
+{
+	CommandWithActor* command_with_actor = new CommandWithActor();
+	command_with_actor->actor = object;
+	command_with_actor->command = command;
+	command_with_actor->playerController = 0;
+	command_with_actor->type = type;
+
+	m_KeyboardCommandss.insert({ command_with_actor, button });
 }
 
 void dae::InputManager::RemoveCommand(ControllerButton)
@@ -195,6 +257,34 @@ void dae::InputManager::Update()
 			}
 
 		}
+	}
+
+	for (auto pair : m_KeyboardCommandss)
+	{
+		switch (pair.first->type)
+		{
+		case ButtonPressType::IsPressed:
+			if (IsPressed(static_cast<unsigned int>(pair.second)))
+			{
+				pair.first->command->Execute(pair.first->actor);
+			}
+			break;
+
+		case ButtonPressType::IsDown:
+			if (IsDownThisFrame(static_cast<unsigned int>(pair.second)) )
+			{
+				pair.first->command->Execute(pair.first->actor);
+			}
+			break;
+
+		case ButtonPressType::IsUp:
+			if (IsUpThisFrame(static_cast<unsigned int>(pair.second)))
+			{
+				pair.first->command->Execute(pair.first->actor);
+			}
+			break;
+		}
+
 	}
 
 
