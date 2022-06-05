@@ -180,22 +180,19 @@ bool dae::InputManager::IsPressed(unsigned int key)const
 bool dae::InputManager::IsDownThisFrame(unsigned int key)const
 {
 
-	if (!m_pCurrentState[key] && m_pPreviousState[key])
+	if (m_pCurrentState[key] && !m_pPreviousState[key])
 	{
-		
 		return true;
 	}
-
 	return false;
 }
 
 bool dae::InputManager::IsUpThisFrame(unsigned int key)const
 {
-	if (!m_pCurrentState[key] && m_pPreviousState[key])
+	if (m_pCurrentState[key] && !m_pPreviousState[key])
 	{
 		return true;
 	}
-
 	return false;
 }
 
@@ -227,6 +224,8 @@ void dae::InputManager::RemoveCommand(ControllerButton)
 
 void dae::InputManager::Update()
 {
+	std::memcpy(m_pPreviousState, m_pCurrentState, *m_pKeys);
+
 	int players = pImpl->GetNrOfPlayers();
 	for (int i = 0; i < players; ++i)
 	{
@@ -259,6 +258,13 @@ void dae::InputManager::Update()
 		}
 	}
 
+	ProcessInputKeyboard();
+
+
+}
+
+void dae::InputManager::ProcessInputKeyboard()
+{
 	for (auto pair : m_KeyboardCommandss)
 	{
 		switch (pair.first->type)
@@ -267,25 +273,26 @@ void dae::InputManager::Update()
 			if (IsPressed(static_cast<unsigned int>(pair.second)))
 			{
 				pair.first->command->Execute(pair.first->actor);
+				break;
 			}
-			break;
+			
 
 		case ButtonPressType::IsDown:
-			if (IsDownThisFrame(static_cast<unsigned int>(pair.second)) )
+			if (IsDownThisFrame(static_cast<unsigned int>(pair.second)))
 			{
 				pair.first->command->Execute(pair.first->actor);
+				break;
 			}
-			break;
+		
 
 		case ButtonPressType::IsUp:
 			if (IsUpThisFrame(static_cast<unsigned int>(pair.second)))
 			{
 				pair.first->command->Execute(pair.first->actor);
+				break;
 			}
-			break;
+		
 		}
 
 	}
-
-
 }

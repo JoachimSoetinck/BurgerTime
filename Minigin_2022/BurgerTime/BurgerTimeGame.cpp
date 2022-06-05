@@ -15,6 +15,7 @@
 #include "EnemyComponent.h"
 #include "IngredientComponent.h"
 #include "LadderComponent.h"
+#include "LevelChanger.h"
 #include "LevelParser.h"
 #include "PlatformComponent.h"
 #include "SpriteComponent.h"
@@ -25,11 +26,11 @@
 void BurgerTimeGame::LoadGame() const
 {
 	auto& scene = dae::SceneManager::GetInstance().CreateScene("Demo");
-	//auto& scene2 = dae::SceneManager::GetInstance().CreateScene("Level1");
-	//auto& scene3 = dae::SceneManager::GetInstance().CreateScene("Level2");
+	auto& scene2 = dae::SceneManager::GetInstance().CreateScene("Level1");
+	auto& scene3 = dae::SceneManager::GetInstance().CreateScene("Level2");
 	auto& scene4 = dae::SceneManager::GetInstance().CreateScene("Level3");
 	dae::SceneManager::GetInstance().SetActiveScene(dae::SceneManager::GetInstance().GetScene(0).get());
-	
+
 
 	auto fpsObject = std::make_shared<dae::GameObject>();
 	auto fpsFont = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 20);
@@ -38,18 +39,21 @@ void BurgerTimeGame::LoadGame() const
 	scene.Add(fpsObject);
 
 
-	//bool r = dae::LevelParser::ParseOBJ("../Data/Level/Level01.txt", scene2, true);
-	//bool r = dae::LevelParser::ParsBJ("../Data/Level/Level02.txt", scene3 true);
-	bool r = dae::LevelParser::ParseOBJ("../Data/Level/Level03.txt", scene4, true);
+	bool r = dae::LevelParser::ParseOBJ("../Data/Level/Level01.txt", scene2, false);
+	r = dae::LevelParser::ParseOBJ("../Data/Level/Level02.txt", scene3 , false);
+	auto level = std::make_shared<dae::GameObject>();
+	level->AddComponent(std::make_shared<dae::LevelChanger>(1, 2));
+	scene2.Add(level);
+	r = dae::LevelParser::ParseOBJ("../Data/Level/Level03.txt", scene4, false);
 
 	auto backGround = std::make_shared<dae::GameObject>();
 	backGround->GetComponent<dae::TransformComponent>()->SetPosition(0, 0, 0);
 	backGround->AddComponent(std::make_shared<dae::RenderComponent>("BurgerTime.jpg", backGround));
 	scene.Add(backGround);
-	
+
 
 	auto font = dae::ResourceManager::GetInstance().LoadFont("BurgerTimeFont.otf", 20);
-	auto buttonStartSinglePlayer  = std::make_shared<dae::GameObject>();
+	auto buttonStartSinglePlayer = std::make_shared<dae::GameObject>();
 	auto textComp = std::make_shared<dae::TextComponent>("Start SinglePlayer", font, SDL_Color{ 255, 255, 0 }, buttonStartSinglePlayer);
 	buttonStartSinglePlayer->AddComponent(textComp);
 	buttonStartSinglePlayer->GetComponent<dae::TransformComponent>()->SetPosition(280, 500, 0);
@@ -60,11 +64,11 @@ void BurgerTimeGame::LoadGame() const
 	TestSprite->GetComponent<dae::TransformComponent>()->SetPosition(0, 0, 0);
 	auto render = std::make_shared<dae::RenderComponent>("PeterPepper/PlayerIdle.png", TestSprite);
 	TestSprite->AddComponent(render);
-	TestSprite->AddComponent(std::make_shared<dae::SpriteComponent>(TestSprite, render,3, "PeterPepper/WalkLeft.png"));
+	TestSprite->AddComponent(std::make_shared<dae::SpriteComponent>(TestSprite, render, 3, "PeterPepper/WalkLeft.png"));
 	scene.Add(TestSprite);
 
 
-	
+
 }
 
 

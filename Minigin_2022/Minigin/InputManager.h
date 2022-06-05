@@ -126,6 +126,8 @@ namespace dae
 		const Uint8* m_pCurrentState{};
 		Uint8* m_pPreviousState{};
 
+		void ProcessInputKeyboard();
+
 		std::map< CommandWithActor*, ControllerButton> m_pCommands;
 		std::map<CommandWithActor*, KeyboardButton> m_KeyboardCommandss{};
 

@@ -27,8 +27,19 @@ dae::PeterPepperComponent::PeterPepperComponent(std::shared_ptr<GameObject> obje
 	InputManager::GetInstance().AddCommand(ControllerButton::ButtonRight, new MoveRight(), object, index, ButtonPressType::IsDown);
 	InputManager::GetInstance().AddCommand(ControllerButton::ButtonRight, new StopMoving(), object, index, ButtonPressType::IsUp);
 
-	InputManager::GetInstance().AddCommand(KeyboardButton::W, new MoveRight(), object, ButtonPressType::IsPressed);
-	InputManager::GetInstance().AddCommand(KeyboardButton::W, new StopMoving(), object, ButtonPressType::IsUp);
+
+	//InputManager::GetInstance().AddCommand(KeyboardButton::D, new MoveRight(), object, ButtonPressType::IsPressed);
+	//InputManager::GetInstance().AddCommand(KeyboardButton::D, new StopMoving(), object, ButtonPressType::IsUp);
+
+	//InputManager::GetInstance().AddCommand(KeyboardButton::A, new MoveLeft(), object, ButtonPressType::IsPressed);
+	//InputManager::GetInstance().AddCommand(KeyboardButton::A, new StopMoving(), object, ButtonPressType::IsUp);
+
+	//InputManager::GetInstance().AddCommand(KeyboardButton::W, new MoveUp(), object, ButtonPressType::IsPressed);
+	//InputManager::GetInstance().AddCommand(KeyboardButton::W, new StopMoving(), object, ButtonPressType::IsUp);
+
+	//InputManager::GetInstance().AddCommand(KeyboardButton::S, new MoveDown(), object, ButtonPressType::IsPressed);
+	//InputManager::GetInstance().AddCommand(KeyboardButton::S, new StopMoving(), object, ButtonPressType::IsUp);
+
 
 
 
