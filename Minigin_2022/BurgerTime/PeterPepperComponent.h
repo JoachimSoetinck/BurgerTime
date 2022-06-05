@@ -58,6 +58,7 @@ namespace dae
 		bool m_isOnLadder{false};
 		bool m_isThrowing{ false };
 		bool m_isDamaged{ false };
+		float m_speed{ 50 };
 		PlayerState m_state = PlayerState::Idle;
 
 		int playerIndex{0}; 

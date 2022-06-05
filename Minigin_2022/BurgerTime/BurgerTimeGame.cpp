@@ -34,8 +34,17 @@ void BurgerTimeGame::CreateMenu(dae::Scene& scene) const
 
 
 	auto font = dae::ResourceManager::GetInstance().LoadFont("BurgerTimeFont.otf", 20);
+
+	auto guide = std::make_shared<dae::GameObject>();
+	auto textCompGuide = std::make_shared<dae::TextComponent>("Press 1 or 2 to start", font, SDL_Color{ 255, 255, 0 }, guide);
+	guide->AddComponent(textCompGuide);
+	guide->GetComponent<dae::TransformComponent>()->SetPosition(250, 450, 0);
+	guide->AddComponent(std::make_shared<dae::ButtonComponent>(guide));
+	scene.Add(guide);
+
+
 	auto buttonStartSinglePlayer = std::make_shared<dae::GameObject>();
-	auto textComp = std::make_shared<dae::TextComponent>("Start SinglePlayer", font, SDL_Color{ 255, 255, 0 }, buttonStartSinglePlayer);
+	auto textComp = std::make_shared<dae::TextComponent>("1:Start SinglePlayer", font, SDL_Color{ 255, 255, 0 }, buttonStartSinglePlayer);
 	buttonStartSinglePlayer->AddComponent(textComp);
 	buttonStartSinglePlayer->GetComponent<dae::TransformComponent>()->SetPosition(280, 500, 0);
 	buttonStartSinglePlayer->AddComponent(std::make_shared<dae::ButtonComponent>(buttonStartSinglePlayer));

@@ -143,21 +143,23 @@ void dae::PeterPepperComponent::SetState(PlayerState state)
 	}
 	case PlayerState::MovingLeft:
 	{
-		m_direction.x = -50;
+		m_direction.x = -m_speed;
 		break;
 	}
 	case PlayerState::MovingRight:
 	{
-		m_direction.x = 50;
+		m_direction.x = m_speed;
 		break;
 	}
 	case PlayerState::ClimbingUp:
 	{
-		m_direction.y = -50;
+		m_direction.x = 0;
+		m_direction.y = -m_speed;
 		break;
 	}
 	case PlayerState::ClimbingDown:
 	{
+		m_direction.x = 0;
 		m_direction.y = 50;
 		break;
 	}
@@ -209,10 +211,10 @@ bool dae::PeterPepperComponent::IsOverlapping(GameObject* object)
 	auto PeterPepperPos = m_pGameObject->GetComponent<TransformComponent>()->GetPosition();
 	int PeterPepperWidth = m_pGameObject->GetComponent<RenderComponent>()->GetWidth();
 	int PeterPepperHeight = m_pGameObject->GetComponent<RenderComponent>()->GetHeight();
-	int offset = 15;
+	int offset = 10;
 
 	if ((PeterPepperPos.x >= otherObjectPos.x - offset && PeterPepperPos.x + PeterPepperWidth <= otherObjectPos.x + otherObjectWidth) &&
-		(PeterPepperPos.y + PeterPepperHeight + 10 >= otherObjectPos.y && PeterPepperPos.y + PeterPepperHeight <= otherObjectPos.y + otherObjectheight))
+		(PeterPepperPos.y + PeterPepperHeight + offset >= otherObjectPos.y && PeterPepperPos.y + PeterPepperHeight <= otherObjectPos.y + otherObjectheight))
 	{
 		return true;
 	}
@@ -239,7 +241,7 @@ void dae::PeterPepperComponent::HandleMovement()
 
 		if (m_isOnGround == false && m_isOnLadder == false)
 		{
-			m_TransformComponent->SetPosition(static_cast<float>(m_TransformComponent->GetPosition().x), m_TransformComponent->GetPosition().y + 50.0f * Time::GetDeltaTime(), 0.0f);
+			m_TransformComponent->SetPosition(static_cast<float>(m_TransformComponent->GetPosition().x), m_TransformComponent->GetPosition().y + m_speed * Time::GetDeltaTime(), 0.0f);
 		}
 
 	}
@@ -312,7 +314,7 @@ bool dae::PeterPepperComponent::IsOverlapping2(GameObject* obj)
 	int offset = 15;
 
 	if ((PeterPepperPos.x >= otherObjectPos.x - offset && PeterPepperPos.x + PeterPepperWidth <= otherObjectPos.x + otherObjectWidth + offset) &&
-		(PeterPepperPos.y + PeterPepperHeight >= otherObjectPos.y && PeterPepperPos.y + PeterPepperHeight <= otherObjectPos.y + otherObjectheight + 3))
+		(PeterPepperPos.y + PeterPepperHeight >= otherObjectPos.y && PeterPepperPos.y + PeterPepperHeight <= otherObjectPos.y + otherObjectheight ))
 	{
 		return true;
 	}
