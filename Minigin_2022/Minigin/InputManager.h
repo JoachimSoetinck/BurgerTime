@@ -113,8 +113,8 @@ namespace dae
 		bool IsDown(ControllerButton button, int playerIndex) const;
 
 		bool IsPressed(unsigned int key) const;
-		bool IsDownThisFrame(unsigned int key)const;
-		bool IsUpThisFrame(unsigned int key)const;
+		bool IsDown(unsigned int key)const;
+		bool IsUp(unsigned int key)const;
 
 		void AddCommand(ControllerButton button, Command* command, std::shared_ptr<dae::GameObject> object, int playerController = 0, ButtonPressType type = ButtonPressType::IsPressed);
 		void AddCommand(KeyboardButton button, Command* command, std::shared_ptr<dae::GameObject> object, ButtonPressType type = ButtonPressType::IsPressed);

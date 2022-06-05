@@ -12,7 +12,7 @@ namespace  dae
 	{
 	public:
 		virtual ~BaseSoundSystem() = default;
-		virtual void RegisterSound(const std::string& path) = 0;
+		virtual void RegisterSound(const std::string& path, bool canLoop) = 0;
 		virtual void CheckQueue() = 0;
 
 	protected:
@@ -26,7 +26,7 @@ namespace  dae
 	class Null_SoundSystem final : public BaseSoundSystem
 	{
 	public:
-		void RegisterSound(const std::string& path) override;
+		void RegisterSound(const std::string& path, bool canLoop) override;
 		void CheckQueue() override;
 	};
 
@@ -40,7 +40,7 @@ namespace  dae
 		SoundSystem& operator=(const SoundSystem& other) = default;
 		SoundSystem& operator=(SoundSystem&& other) = default;
 
-		void RegisterSound(const std::string& path) override;
+		void RegisterSound(const std::string& path, bool canLoop) override;
 		void CheckQueue() override;
 
 	private:
@@ -57,7 +57,7 @@ namespace  dae
 		SoundSystemDebug& operator=(const SoundSystemDebug& other) = delete;
 		SoundSystemDebug& operator=(SoundSystemDebug&& other) noexcept = delete;
 
-		void RegisterSound(const std::string& path) override;
+		void RegisterSound(const std::string& path, bool canLoop) override;
 		void CheckQueue();
 
 \

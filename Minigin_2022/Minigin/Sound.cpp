@@ -6,10 +6,12 @@ class Sound::SoundImpl
 {
 	Mix_Chunk* m_pChunk{};
 	std::string m_Path;
+	bool m_isLooping;
 
 public:
-	SoundImpl(const std::string& path)
-		:m_Path(path)
+	SoundImpl(const std::string& path, bool isLooping)
+		:m_Path(path),
+		m_isLooping(isLooping)
 	{}
 
 	~SoundImpl()
@@ -40,7 +42,17 @@ public:
 		if (!IsLoaded())
 			return false;
 
-		int channel = Mix_PlayChannel(-1, m_pChunk,0);
+		int channel{};
+		if (m_isLooping)
+		{
+			channel = Mix_PlayChannel(-1, m_pChunk, -1);
+		}
+
+		else
+		{
+			channel = Mix_PlayChannel(-1, m_pChunk, 0);
+		}
+
 		return channel == -1 ? false : true;
 	}
 
@@ -62,9 +74,9 @@ public:
 	}
 };
 
-Sound::Sound(const std::string& path)
+Sound::Sound(const std::string& path, bool isLooping)
 {
-	pImpl = new SoundImpl(path);
+	pImpl = new SoundImpl(path, isLooping);
 }
 
 Sound::~Sound()

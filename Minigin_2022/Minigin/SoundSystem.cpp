@@ -30,9 +30,9 @@ dae::SoundSystem::~SoundSystem()
 	Mix_CloseAudio();
 }
 
-void dae::SoundSystem::RegisterSound(const std::string& path)
+void dae::SoundSystem::RegisterSound(const std::string& path, bool canLoop)
 {
-	m_Sounds.emplace(new Sound(path));
+	m_Sounds.emplace(new Sound(path, canLoop));
 }
 
 void dae::SoundSystem::CheckQueue()
@@ -54,7 +54,7 @@ void dae::SoundSystem::CheckQueue()
 	}
 }
 
-void dae::Null_SoundSystem::RegisterSound(const std::string& )
+void dae::Null_SoundSystem::RegisterSound(const std::string& , bool )
 {
 	
 }
@@ -92,9 +92,9 @@ dae::SoundSystemDebug::~SoundSystemDebug()
 	Mix_CloseAudio();
 }
 
-void dae::SoundSystemDebug::RegisterSound(const std::string& path)
+void dae::SoundSystemDebug::RegisterSound(const std::string& path, bool canLoop)
 {
-	m_Sounds.emplace(new Sound(path));
+	m_Sounds.emplace(new Sound(path, canLoop));
 	std::size_t botDirPos = path.find_last_of("/");
 	// get directory
 	std::string dir = path.substr(botDirPos + 1, path.length());

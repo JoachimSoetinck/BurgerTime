@@ -9,7 +9,7 @@ namespace dae
 	class LevelChanger : public BaseComponent
 	{
 	public:
-		LevelChanger(int Currentscene, int nextScene);
+		LevelChanger(int Currentscene, int nextScene, bool  playMusic = false);
 		~LevelChanger() = default;
 		LevelChanger(const LevelChanger& other) = delete;
 		LevelChanger(LevelChanger&& other) noexcept = delete;
@@ -27,6 +27,7 @@ namespace dae
 
 		int m_nrOnTrays;
 		std::shared_ptr<PeterPepperComponent> m_pPeterPepper;
+		bool m_canPlayMusic{};
 	};
 
 }

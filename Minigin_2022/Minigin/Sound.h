@@ -2,7 +2,7 @@
 class Sound final
 {
 public:
-	Sound(const std::string& path);
+	Sound(const std::string& path, bool isLooping = false);
 	~Sound();
 	Sound(const Sound& other) = delete;
 	Sound(Sound&& other) noexcept = delete;

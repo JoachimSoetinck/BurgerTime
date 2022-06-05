@@ -1,6 +1,8 @@
 #include "LevelChanger.h"
 
-dae::LevelChanger::LevelChanger(int Currentscene, int nextScene): m_CurrentScene{Currentscene}, m_nextSceneNr{nextScene}
+#include "ServiceLocator.h"
+
+dae::LevelChanger::LevelChanger(int Currentscene, int nextScene, bool playmusic): m_CurrentScene{Currentscene}, m_nextSceneNr{nextScene}, m_canPlayMusic{playmusic}
 {
 	auto objects = SceneManager::GetInstance().GetScene(m_CurrentScene)->GetObjects();
 
@@ -45,5 +47,12 @@ void dae::LevelChanger::Update()
 		SceneManager::GetInstance().SetActiveScene(SceneManager::GetInstance().GetScene(m_nextSceneNr).get());
 	}
 
+	
+
+	if (dae::SceneManager::GetInstance().GetActiveSceneNr() >= 1 && m_canPlayMusic)
+	{
+		ServiceLocator::GetSoundSystem().RegisterSound("../Data/Sound/background.mp3", true);
+		m_canPlayMusic = false;
+	}
 	m_nrOnTrays = 0;
 }

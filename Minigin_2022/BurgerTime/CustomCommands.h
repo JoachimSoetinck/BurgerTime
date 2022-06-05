@@ -81,14 +81,7 @@ public:
 	};
 };
 
-class PlaySound : public Command
-{
-public:
-	virtual void Execute(std::shared_ptr<dae::GameObject> object) override
-	{
-		dae::ServiceLocator::GetSoundSystem().RegisterSound("../Data/Sound/burgertime_dies.wav");
-	};
-};
+
 
 
 class DuckCommand : public Command

@@ -181,7 +181,7 @@ bool dae::InputManager::IsPressed(unsigned int key)const
 	return false;
 }
 
-bool dae::InputManager::IsDownThisFrame(unsigned int key)const
+bool dae::InputManager::IsDown(unsigned int key)const
 {
 
 	if (m_pCurrentState[key] && !m_pPreviousState[key])
@@ -191,7 +191,7 @@ bool dae::InputManager::IsDownThisFrame(unsigned int key)const
 	return false;
 }
 
-bool dae::InputManager::IsUpThisFrame(unsigned int key)const
+bool dae::InputManager::IsUp(unsigned int key)const
 {
 	if (m_pCurrentState[key] && !m_pPreviousState[key])
 	{
@@ -282,7 +282,7 @@ void dae::InputManager::ProcessInputKeyboard()
 			
 
 		case ButtonPressType::IsDown:
-			if (IsDownThisFrame(static_cast<unsigned int>(pair.second)))
+			if (IsDown(static_cast<unsigned int>(pair.second)))
 			{
 				pair.first->command->Execute(pair.first->actor);
 				break;
@@ -290,7 +290,7 @@ void dae::InputManager::ProcessInputKeyboard()
 		
 
 		case ButtonPressType::IsUp:
-			if (IsUpThisFrame(static_cast<unsigned int>(pair.second)))
+			if (IsUp(static_cast<unsigned int>(pair.second)))
 			{
 				pair.first->command->Execute(pair.first->actor);
 				break;

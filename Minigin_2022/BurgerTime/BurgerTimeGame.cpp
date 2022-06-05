@@ -19,6 +19,7 @@
 #include "LevelChanger.h"
 #include "LevelParser.h"
 #include "PlatformComponent.h"
+#include "ServiceLocator.h"
 #include "SpriteComponent.h"
 
 #include "TransformComponent.h"
@@ -60,6 +61,10 @@ void BurgerTimeGame::LoadGame() const
 	auto& scene7 = dae::SceneManager::GetInstance().CreateScene("Level3Coop");
 	dae::SceneManager::GetInstance().SetActiveScene(dae::SceneManager::GetInstance().GetScene(0).get());
 
+	dae::ServiceLocator::GetSoundSystem().RegisterSound("../Data/Sound/burgertime_dies.wav", false);
+
+
+
 
 	auto fpsObject = std::make_shared<dae::GameObject>();
 	auto fpsFont = dae::ResourceManager::GetInstance().LoadFont("Lingua.otf", 20);
@@ -70,7 +75,7 @@ void BurgerTimeGame::LoadGame() const
 	bool r = dae::LevelParser::ParseOBJ("../Data/Level/Level01.txt", scene2, false);
 
 	auto level = std::make_shared<dae::GameObject>();
-	level->AddComponent(std::make_shared<dae::LevelChanger>(1, 2));
+	level->AddComponent(std::make_shared<dae::LevelChanger>(1, 2, true));
 	scene2.Add(level);
 
 
