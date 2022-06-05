@@ -53,7 +53,7 @@ void dae::EnemyComponent::OnDeath()
 {
 	m_IsDead = true;
 	m_pRenderComponent->SetVisibility(false);
-	m_pGameObject->GetComponent<TransformComponent>()->SetPosition(m_spawnPoint.x, m_spawnPoint.y, 0);
+	m_pGameObject->GetComponent<TransformComponent>()->SetPosition(static_cast<float>(m_spawnPoint.x), static_cast<float>(m_spawnPoint.y), 0);
 }
 
 void dae::EnemyComponent::Respawn()
@@ -62,12 +62,10 @@ void dae::EnemyComponent::Respawn()
 
 void dae::EnemyComponent::HandleCollision()
 {
-	auto nr = SceneManager::GetInstance().GetActiveSceneNr();
+	const auto nr = SceneManager::GetInstance().GetActiveSceneNr();
 
-	auto objects = SceneManager::GetInstance().GetScene(nr)->GetObjects();
+	const auto objects = SceneManager::GetInstance().GetScene(nr)->GetObjects();
 
-
-	int random{ rand() };
 
 	for (auto object : objects)
 	{
@@ -183,7 +181,7 @@ void dae::EnemyComponent::DoMovement()
 
 	}
 
-	m_TransformComponent->SetPosition(m_TransformComponent->GetPosition().x + m_direction.x * Time::GetDeltaTime(), m_TransformComponent->GetPosition().y + m_direction.y * Time::GetDeltaTime(), m_TransformComponent->GetPosition().z);
+	m_TransformComponent->SetPosition(m_TransformComponent->GetPosition().x + m_direction.x * Time::GetDeltaTime(), (m_TransformComponent->GetPosition().y + m_direction.y * Time::GetDeltaTime()), 0.0f);
 
 
 

@@ -123,9 +123,6 @@
     <ClInclude Include="Subject.h">
       <Filter>Observers</Filter>
     </ClInclude>
-    <ClInclude Include="RigidBodyComponent.h">
-      <Filter>Components</Filter>
-    </ClInclude>
     <ClInclude Include="Sound.h">
       <Filter>Sound</Filter>
     </ClInclude>
@@ -226,9 +223,6 @@
     </ClCompile>
     <ClCompile Include="Subject.cpp">
       <Filter>Observers</Filter>
-    </ClCompile>
-    <ClCompile Include="RigidBodyComponent.cpp">
-      <Filter>Components</Filter>
     </ClCompile>
     <ClCompile Include="Sound.cpp">
       <Filter>Sound</Filter>

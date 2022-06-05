@@ -97,7 +97,7 @@ void dae::PeterPepperComponent::Update()
 			m_isDamaged = false;
 			m_pRenderComponent->SetVisibility(true);
 			m_elapsedSec = 0;
-			m_TransformComponent->SetPosition(m_startPos.x, m_startPos.y, 0);
+			m_TransformComponent->SetPosition(static_cast<float>(m_startPos.x), static_cast<float>(m_startPos.y), 0);
 			LoseLive();
 		}
 	}
@@ -232,12 +232,13 @@ void dae::PeterPepperComponent::HandleMovement()
 	{
 		if (abs(m_direction.x) > 0.01f || abs(m_direction.y) > 0.01f)
 		{
-			m_TransformComponent->SetPosition(m_TransformComponent->GetPosition().x + m_direction.x * Time::GetDeltaTime(), m_TransformComponent->GetPosition().y + m_direction.y * Time::GetDeltaTime(), m_TransformComponent->GetPosition().z);
+			m_TransformComponent->SetPosition(m_TransformComponent->GetPosition().x + m_direction.x * Time::GetDeltaTime(),
+				m_TransformComponent->GetPosition().y + m_direction.y * Time::GetDeltaTime(),0.0f);
 		}
 
 		if (m_isOnGround == false && m_isOnLadder == false)
 		{
-			m_TransformComponent->SetPosition(m_TransformComponent->GetPosition().x, m_TransformComponent->GetPosition().y + 9.81f * Time::GetDeltaTime(), m_TransformComponent->GetPosition().z);
+			m_TransformComponent->SetPosition(static_cast<float>(m_TransformComponent->GetPosition().x), m_TransformComponent->GetPosition().y + 50.0f * Time::GetDeltaTime(), 0.0f);
 		}
 
 	}

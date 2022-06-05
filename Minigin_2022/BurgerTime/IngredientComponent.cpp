@@ -191,9 +191,9 @@ void dae::IngredientComponent::Fall()
 {
 	if ((m_LeftCornerHit && m_CenterHit && m_RightCornerHit))
 	{
-		m_pTransform->SetPosition(m_pTransform->GetPosition().x,
+		m_pTransform->SetPosition(static_cast<float>(m_pTransform->GetPosition().x),
 			m_pTransform->GetPosition().y + m_fallSpeed * Time::GetDeltaTime(),
-			m_pTransform->GetPosition().z);
+			0.0f);
 
 		m_canFall = true;
 	}

@@ -1,14 +1,4 @@
-﻿  PeterPepperComponent.cpp
-C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\PeterPepperComponent.cpp(100,62): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-          with
-          [
-              T=int
-          ]
-C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\BurgerTime\PeterPepperComponent.cpp(100,48): warning C4244: 'argument': conversion from 'T' to 'float', possible loss of data
-          with
-          [
-              T=int
-          ]
+﻿  EnemyComponent.cpp
   BurgerTime.vcxproj -> C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\x64\Debug\BurgerTime.exe
   C:\2DAE14_Programming4_Soetinck_Joachim\Minigin_2022\3rdParty\SDL2\lib\x64\SDL2.dll
   1 File(s) copied

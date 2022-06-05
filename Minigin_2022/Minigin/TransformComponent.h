@@ -13,7 +13,7 @@ namespace dae {
 		virtual void Render() const override;
 
 		const glm::vec3& GetPosition() const;
-		const  glm::vec3& GetWorldPosition() ;
+		const  glm::vec3& GetWorldPosition() const ;
 		void SetPosition(float x, float y, float z);
 		void SetPosition(const glm::vec3& newPos);
 
@@ -21,7 +21,7 @@ namespace dae {
 
 
 	private:
-		 glm::vec3 m_Position;
+		 glm::vec3 m_Position{};
 		 glm::vec3 m_WorldPos{0,0,0};
 	};
 

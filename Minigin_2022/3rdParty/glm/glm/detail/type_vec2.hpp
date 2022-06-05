@@ -3,6 +3,7 @@
 
 #pragma once
 
+
 #include "type_vec.hpp"
 #if GLM_SWIZZLE == GLM_SWIZZLE_ENABLED
 #	if GLM_HAS_UNRESTRICTED_UNIONS
@@ -12,6 +13,7 @@
 #	endif
 #endif //GLM_SWIZZLE
 #include <cstddef>
+
 
 namespace glm
 {

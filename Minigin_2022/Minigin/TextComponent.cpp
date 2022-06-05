@@ -65,7 +65,10 @@ void dae::TextComponent::Render() const
 			Renderer::GetInstance().RenderTexture(*m_TextTexture, m_location.x, m_location.y);
 		}
 		else
-		Renderer::GetInstance().RenderTexture(*m_TextTexture, pos.x, pos.y);
+		{
+			Renderer::GetInstance().RenderTexture(*m_TextTexture, static_cast<float>(pos.x), static_cast<float>(pos.y));
+		}
+		
 	}
 }
 

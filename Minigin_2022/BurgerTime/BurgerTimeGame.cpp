@@ -1,3 +1,4 @@
+
 #include "BurgerTimeGame.h"
 
 #include <SDL_pixels.h>
@@ -38,6 +39,13 @@ void BurgerTimeGame::CreateMenu(dae::Scene& scene) const
 	buttonStartSinglePlayer->GetComponent<dae::TransformComponent>()->SetPosition(280, 500, 0);
 	buttonStartSinglePlayer->AddComponent(std::make_shared<dae::ButtonComponent>(buttonStartSinglePlayer));
 	scene.Add(buttonStartSinglePlayer);
+
+	auto buttonStartCoop = std::make_shared<dae::GameObject>();
+	textComp = std::make_shared<dae::TextComponent>("2:Start Coop", font, SDL_Color{ 255, 255, 0 }, buttonStartCoop);
+	buttonStartCoop->AddComponent(textComp);
+	buttonStartCoop->GetComponent<dae::TransformComponent>()->SetPosition(280, 570, 0);
+	buttonStartCoop->AddComponent(std::make_shared<dae::ButtonComponent>(buttonStartCoop));
+	scene.Add(buttonStartCoop);
 }
 
 void BurgerTimeGame::LoadGame() const
@@ -46,6 +54,10 @@ void BurgerTimeGame::LoadGame() const
 	auto& scene2 = dae::SceneManager::GetInstance().CreateScene("Level1");
 	auto& scene3 = dae::SceneManager::GetInstance().CreateScene("Level2");
 	auto& scene4 = dae::SceneManager::GetInstance().CreateScene("Level3");
+
+	auto& scene5 = dae::SceneManager::GetInstance().CreateScene("Level1Coop");
+	auto& scene6 = dae::SceneManager::GetInstance().CreateScene("Level2Coop");
+	auto& scene7 = dae::SceneManager::GetInstance().CreateScene("Level3Coop");
 	dae::SceneManager::GetInstance().SetActiveScene(dae::SceneManager::GetInstance().GetScene(0).get());
 
 
@@ -62,7 +74,7 @@ void BurgerTimeGame::LoadGame() const
 	scene2.Add(level);
 
 
-	r = dae::LevelParser::ParseOBJ("../Data/Level/Level02.txt", scene3 , false);
+	r = dae::LevelParser::ParseOBJ("../Data/Level/Level02.txt", scene3, false);
 	auto level2 = std::make_shared<dae::GameObject>();
 	level2->AddComponent(std::make_shared<dae::LevelChanger>(2, 3));
 	scene3.Add(level2);
@@ -74,14 +86,29 @@ void BurgerTimeGame::LoadGame() const
 	scene4.Add(level3);
 
 
+
+	r = dae::LevelParser::ParseOBJ("../Data/Level/Level01.txt", scene5, true);
+
+	auto levelcoop = std::make_shared<dae::GameObject>();
+	levelcoop->AddComponent(std::make_shared<dae::LevelChanger>(4, 5));
+	scene5.Add(levelcoop);
+
+
+	r = dae::LevelParser::ParseOBJ("../Data/Level/Level02.txt", scene6, true);
+	auto level2coop = std::make_shared<dae::GameObject>();
+	level2coop->AddComponent(std::make_shared<dae::LevelChanger>(5, 6));
+	scene6.Add(level2coop);
+
+
+	r = dae::LevelParser::ParseOBJ("../Data/Level/Level03.txt", scene7, true);
+	auto level3coop = std::make_shared<dae::GameObject>();
+	level3coop->AddComponent(std::make_shared<dae::LevelChanger>(6, 0));
+	scene7.Add(level3coop);
+
+
 	CreateMenu(scene);
 
-	auto TestSprite = std::make_shared<dae::GameObject>();
-	TestSprite->GetComponent<dae::TransformComponent>()->SetPosition(0, 0, 0);
-	auto render = std::make_shared<dae::RenderComponent>("PeterPepper/PlayerIdle.png", TestSprite);
-	TestSprite->AddComponent(render);
-	TestSprite->AddComponent(std::make_shared<dae::SpriteComponent>(TestSprite, render, 3, "PeterPepper/WalkLeft.png"));
-	scene.Add(TestSprite);
+
 
 
 

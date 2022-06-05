@@ -37,7 +37,6 @@ namespace dae
 				}
 				else if (sCommand == "l")
 				{
-					//Vertex
 					float x, y;
 					file >> x >> y;
 
@@ -134,17 +133,18 @@ namespace dae
 
 				else if (sCommand == "sal")
 				{
-					float x, y;
+				float x, y;
 
 					file >> x >> y;
 					if (isCoop)
 						CreateSalt(scene, x, y);
 				}
 				sCommand = "";
-
+				
 
 			}
-
+			
+			return  true;
 		}
 
 	private:
@@ -262,7 +262,7 @@ namespace dae
 
 		}
 
-		static void CreateSalt(dae::Scene& scene, int x, int y)
+		static void CreateSalt(dae::Scene& scene, float x, float y)
 		{
 
 			auto mssSalt = std::make_shared<dae::GameObject>();

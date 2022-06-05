@@ -18,7 +18,6 @@
 #include "FPSComponent.h"
 #include "Command.h"
 #include "Observer.h"
-#include "RigidBodyComponent.h"
 #include "ServiceLocator.h"
 #include "Sound.h"
 #include "Timer.h"

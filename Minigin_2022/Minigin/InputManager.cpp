@@ -140,6 +140,10 @@ bool dae::InputManager::ProcessInput()
 					SceneManager::GetInstance().SetActiveScene(SceneManager::GetInstance().GetScene(1).get());
 				}
 
+				if (e.key.keysym.sym == SDLK_2) {
+					SceneManager::GetInstance().SetActiveScene(SceneManager::GetInstance().GetScene(4).get());
+				}
+
 
 			}
 		}

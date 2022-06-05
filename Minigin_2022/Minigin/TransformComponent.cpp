@@ -27,7 +27,7 @@ const glm::vec3& dae::TransformComponent::GetPosition() const
 	return m_Position;
 }
 
-const glm::vec3& dae::TransformComponent::GetWorldPosition()
+const glm::vec3& dae::TransformComponent::GetWorldPosition() const
 {
 	
 	return  m_WorldPos;
@@ -35,9 +35,9 @@ const glm::vec3& dae::TransformComponent::GetWorldPosition()
 
 void dae::TransformComponent::SetPosition(float x, float y, float z)
 {
-	m_Position.x = x;
-	m_Position.y = y;
-	m_Position.z = z;
+	m_Position.x = static_cast<float>(x);
+	m_Position.y = static_cast<float>(y);
+	m_Position.z = static_cast<float>(z);
 }
 
 void dae::TransformComponent::SetPosition(const glm::vec3& newPos)

@@ -3,7 +3,7 @@
 
 #include "GameObject.h"
 
-#include "RigidBodyComponent.h"
+
 #include "ServiceLocator.h"
 
 class Command
