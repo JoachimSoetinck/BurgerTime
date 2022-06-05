@@ -266,9 +266,15 @@ namespace dae
 		{
 
 			auto mssSalt = std::make_shared<dae::GameObject>();
+
+			const auto peterPepperImage = std::make_shared<dae::RenderComponent>("PeterPepper/mssPepper.png", mssSalt);
+			mssSalt->AddComponent(peterPepperImage);
+
 			auto player = std::make_shared<dae::PeterPepperComponent>(mssSalt,  glm::ivec2{ x,y },1);
 			mssSalt->AddComponent(player);
 			mssSalt->GetComponent<dae::TransformComponent>()->SetPosition(glm::vec3{ x, y, 0 });
+
+
 
 			//score bord
 			auto healthText = std::make_shared<dae::GameObject>();
@@ -290,8 +296,7 @@ namespace dae
 
 			player->AddObserver(score);
 
-			const auto peterPepperImage = std::make_shared<dae::RenderComponent>("PeterPepper/PlayerIdle.png", mssSalt);
-			mssSalt->AddComponent(peterPepperImage);
+		
 
 
 			//attack part salt

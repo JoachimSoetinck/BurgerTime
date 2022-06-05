@@ -20,6 +20,7 @@ dae::SoundSystem::~SoundSystem()
 {
 	m_Continue = false;
 
+
 	thread.join();
 	for (size_t i = 0; i < m_soundsPlayed.size(); i++)
 	{

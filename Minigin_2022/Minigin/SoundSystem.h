@@ -18,6 +18,7 @@ namespace  dae
 	protected:
 		std::vector<Sound*> m_soundsPlayed{};
 		std::queue<Sound*> m_Sounds{};
+		std::condition_variable m_Cv;
 		std::mutex mutex;
 		std::thread thread;
 		bool m_Continue = true;

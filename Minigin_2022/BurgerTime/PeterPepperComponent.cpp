@@ -123,7 +123,7 @@ int dae::PeterPepperComponent::GetScore() const
 
 void dae::PeterPepperComponent::LoseLive()
 {
-	ServiceLocator::GetSoundSystem().RegisterSound("../Data/Sound/burgertime_dies.wav", false);
+	
 	if (m_nrOfLives > 0)
 		--m_nrOfLives;
 
@@ -289,6 +289,7 @@ void dae::PeterPepperComponent::HandleCollision()
 			{
 				m_isDamaged = true;
 				m_pRenderComponent->SetVisibility(false);
+				ServiceLocator::GetSoundSystem().RegisterSound("../Data/Sound/burgertime_dies.wav", false);
 				
 			}
 		}
