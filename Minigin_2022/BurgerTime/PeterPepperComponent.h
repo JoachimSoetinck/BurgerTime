@@ -26,7 +26,7 @@ namespace dae
 			Dying
 		};
 
-		PeterPepperComponent(std::shared_ptr<GameObject> object, int index = 0) ;
+		PeterPepperComponent(std::shared_ptr<GameObject> object, glm::ivec2 startPos,int index = 0) ;
 		virtual ~PeterPepperComponent() override;
 		
 		PeterPepperComponent(const PeterPepperComponent& other) = delete;
@@ -57,6 +57,7 @@ namespace dae
 		bool m_isOnGround {false};
 		bool m_isOnLadder{false};
 		bool m_isThrowing{ false };
+		bool m_isDamaged{ false };
 		PlayerState m_state = PlayerState::Idle;
 
 		int playerIndex{0}; 
@@ -65,10 +66,13 @@ namespace dae
 		std::shared_ptr<SpriteComponent> m_pSprite{};
 		
 		float m_throwDuration{ 1.0f};
+		float m_DeathTimer{ 3.0f};
 		float m_elapsedSec{};
 
+		glm::ivec2 m_startPos{};
+
 		void HandleMovement();
-		bool IsOnLadder(GameObject* get);
+		bool IsOverlapping2(GameObject* get);
 		bool IsOnGround(GameObject* object);
 		bool IsOverlapping(GameObject* object);
 		void SetOnGround(bool isOnGround);

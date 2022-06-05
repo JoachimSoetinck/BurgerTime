@@ -14,7 +14,10 @@
 #include "PlatformComponent.h"
 #include <SpriteComponent.h>
 
-dae::PeterPepperComponent::PeterPepperComponent(std::shared_ptr<GameObject> object, int index)
+#include "EnemyComponent.h"
+
+dae::PeterPepperComponent::PeterPepperComponent(std::shared_ptr<GameObject> object, glm::ivec2 startPos,int index)
+	:m_startPos{startPos}
 {
 
 	m_pGameObject = object.get();
@@ -85,6 +88,22 @@ void dae::PeterPepperComponent::Update()
 
 	}
 
+	if(m_isDamaged&& m_nrOfLives >0)
+	{
+		m_elapsedSec += Time::GetDeltaTime();
+
+		if(m_elapsedSec >= m_DeathTimer )
+		{
+			m_isDamaged = false;
+			m_pRenderComponent->SetVisibility(true);
+			m_elapsedSec = 0;
+			m_TransformComponent->SetPosition(m_startPos.x, m_startPos.y, 0);
+			LoseLive();
+		}
+	}
+
+
+
 }
 
 void dae::PeterPepperComponent::Render() const
@@ -118,23 +137,11 @@ void dae::PeterPepperComponent::SetState(PlayerState state)
 	{
 	case PlayerState::Idle:
 	{
-		if (m_pSprite)
-		{
-			m_pSprite->SetRows(1);
-			m_pSprite->SetFile("PeterPepper/PlayerIdle.png");
-
-		}
-
 		m_direction = { 0,0 };
 		break;
 	}
 	case PlayerState::MovingLeft:
 	{
-		if (m_pSprite)
-		{
-			m_pSprite->SetRows(3);
-			m_pSprite->SetFile("PeterPepper/WalkLeft.png");
-		}
 		m_direction.x = -50;
 		break;
 	}
@@ -258,7 +265,7 @@ void dae::PeterPepperComponent::HandleCollision()
 
 		if (o2.get()->GetComponent<LadderComponent>() != nullptr)
 		{
-			if (IsOnLadder(o2.get()))
+			if (IsOverlapping2(o2.get()))
 			{
 				isOnLadder = true;
 			}
@@ -271,7 +278,16 @@ void dae::PeterPepperComponent::HandleCollision()
 				o2.get()->GetComponent<IngredientComponent>()
 					->CheckHitPoints(m_TransformComponent->GetPosition(), m_pGameObject->GetComponent<RenderComponent>()->GetHeight(), m_pGameObject->GetComponent<RenderComponent>()->GetWidth(), m_pGameObject->GetComponent<PeterPepperComponent>());
 
+			}
+		}
 
+		if (o2.get()->GetComponent<EnemyComponent>() != nullptr)
+		{
+			if (IsOverlapping2(o2.get())&& m_isDamaged ==false)
+			{
+				m_isDamaged = true;
+				m_pRenderComponent->SetVisibility(false);
+				
 			}
 		}
 	}
@@ -281,7 +297,7 @@ void dae::PeterPepperComponent::HandleCollision()
 
 }
 
-bool dae::PeterPepperComponent::IsOnLadder(GameObject* obj)
+bool dae::PeterPepperComponent::IsOverlapping2(GameObject* obj)
 {
 	int otherObjectWidth = obj->GetComponent<RenderComponent>()->GetWidth();
 	auto otherObjectPos = obj->GetComponent<TransformComponent>()->GetPosition();

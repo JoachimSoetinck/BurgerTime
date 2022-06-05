@@ -221,7 +221,7 @@ namespace dae
 
 
 
-			auto player = std::make_shared<dae::PeterPepperComponent>(peterPepper);
+			auto player = std::make_shared<dae::PeterPepperComponent>(peterPepper, glm::ivec2{x,y});
 			peterPepper->AddComponent(player);
 			peterPepper->GetComponent<dae::TransformComponent>()->SetPosition(glm::vec3{ x, y, 0 });
 
@@ -266,7 +266,7 @@ namespace dae
 		{
 
 			auto mssSalt = std::make_shared<dae::GameObject>();
-			auto player = std::make_shared<dae::PeterPepperComponent>(mssSalt, 1);
+			auto player = std::make_shared<dae::PeterPepperComponent>(mssSalt,  glm::ivec2{ x,y },1);
 			mssSalt->AddComponent(player);
 			mssSalt->GetComponent<dae::TransformComponent>()->SetPosition(glm::vec3{ x, y, 0 });
 
