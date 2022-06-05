@@ -46,7 +46,7 @@ void BurgerTimeGame::LoadGame() const
 	auto& scene2 = dae::SceneManager::GetInstance().CreateScene("Level1");
 	auto& scene3 = dae::SceneManager::GetInstance().CreateScene("Level2");
 	auto& scene4 = dae::SceneManager::GetInstance().CreateScene("Level3");
-	dae::SceneManager::GetInstance().SetActiveScene(dae::SceneManager::GetInstance().GetScene(3).get());
+	dae::SceneManager::GetInstance().SetActiveScene(dae::SceneManager::GetInstance().GetScene(0).get());
 
 
 	auto fpsObject = std::make_shared<dae::GameObject>();

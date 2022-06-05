@@ -112,23 +112,22 @@ namespace dae
 				else if (sCommand == "tr")
 				{
 					float x, y;
-				
+
 					file >> x >> y;
 					CreateTray(scene, x, y);
 				}
 				else if (sCommand == "hot")
 				{
 					float x, y;
-					
+
 					file >> x >> y;
-					if (isCoop)
-						CreateEnemy(scene, x, y);
+					CreateEnemy(scene, x, y);
 				}
 
 				else if (sCommand == "pet")
 				{
 					float x, y;
-					
+
 					file >> x >> y;
 					CreatePeter(scene, x, y);
 				}
@@ -136,7 +135,7 @@ namespace dae
 				else if (sCommand == "sal")
 				{
 					float x, y;
-					
+
 					file >> x >> y;
 					if (isCoop)
 						CreateSalt(scene, x, y);
@@ -210,7 +209,7 @@ namespace dae
 
 		}
 
-		
+
 
 		static void CreatePeter(dae::Scene& scene, float x, float y)
 		{
@@ -220,7 +219,7 @@ namespace dae
 			const auto peterPepperImage = std::make_shared<dae::RenderComponent>("PeterPepper/PlayerIdle.png", peterPepper);
 			peterPepper->AddComponent(peterPepperImage);
 
-			
+
 
 			auto player = std::make_shared<dae::PeterPepperComponent>(peterPepper);
 			peterPepper->AddComponent(player);
@@ -246,7 +245,7 @@ namespace dae
 
 			player->AddObserver(score);
 
-			
+
 
 			//attack part salt
 			auto salt = std::make_shared<dae::GameObject>();
@@ -260,7 +259,7 @@ namespace dae
 			peterPepper->AddChild(salt);
 			scene.Add(peterPepper);
 
-			
+
 		}
 
 		static void CreateSalt(dae::Scene& scene, int x, int y)
@@ -309,8 +308,8 @@ namespace dae
 
 		}
 
-		
+
 	};
 
-	
+
 }

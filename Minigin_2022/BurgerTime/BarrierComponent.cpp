@@ -20,7 +20,7 @@ void dae::BarrierComponent::Render() const
 void dae::BarrierComponent::Update()
 {
 	auto nr = SceneManager::GetInstance().GetActiveSceneNr();
-	auto objects = SceneManager::GetInstance().GetScene(1)->GetObjects();
+	auto objects = SceneManager::GetInstance().GetScene(nr)->GetObjects();
 
 	if (m_canHit)
 	{
@@ -68,7 +68,7 @@ bool dae::BarrierComponent::IsOverlapping(GameObject* object)
 	int offset = 15;
 
 	if ((PeterPepperPos.x >= otherObjectPos.x - offset && PeterPepperPos.x + PeterPepperWidth <= otherObjectPos.x + otherObjectWidth + offset) &&
-		(PeterPepperPos.y + PeterPepperHeight >= otherObjectPos.y && PeterPepperPos.y + PeterPepperHeight <= otherObjectPos.y + otherObjectheight + 3))
+		(PeterPepperPos.y + PeterPepperHeight >= otherObjectPos.y && PeterPepperPos.y + PeterPepperHeight <= otherObjectPos.y + otherObjectheight))
 	{
 		return true;
 	}

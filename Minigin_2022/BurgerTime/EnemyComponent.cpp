@@ -51,6 +51,9 @@ void dae::EnemyComponent::Render() const
 
 void dae::EnemyComponent::OnDeath()
 {
+	m_IsDead = true;
+	m_pRenderComponent->SetVisibility(false);
+	m_pGameObject->GetComponent<TransformComponent>()->SetPosition(m_spawnPoint.x, m_spawnPoint.y, 0);
 }
 
 void dae::EnemyComponent::Respawn()
@@ -72,7 +75,6 @@ void dae::EnemyComponent::HandleCollision()
 		{
 			if (IsOverlapping(object.get()))
 			{
-				
 				break;
 			}
 		}
@@ -82,9 +84,7 @@ void dae::EnemyComponent::HandleCollision()
 		{
 			if (IsOverlapping(object.get()) && object->GetComponent<SaltComponent>()->GetVisibility())
 			{
-				m_IsDead = true;
-				m_pRenderComponent->SetVisibility(false);
-				m_pGameObject->GetComponent<TransformComponent>()->SetPosition(m_spawnPoint.x, m_spawnPoint.y, 0);
+				
 				auto pepper = object->GetComponent<SaltComponent>()->GetPeterPepper();
 				pepper->GivePoints(100);
 				break;
@@ -95,10 +95,22 @@ void dae::EnemyComponent::HandleCollision()
 		{
 			if (IsOverlapping(object.get()))
 			{
-				std::cout << "Hit";
+				OnDeath();
 				break;
 			}
 		}
+
+
+		if (object->GetComponent<IngredientComponent>() != nullptr)
+		{
+			if (IsOverlapping(object.get()) && object->GetComponent<IngredientComponent>()->IsFalling()== true)
+			{
+				OnDeath();
+				object->GetComponent<IngredientComponent>()->GetDropper()->GivePoints(500);
+				break;
+			}
+		}
+
 
 		
 
@@ -116,13 +128,13 @@ bool dae::EnemyComponent::IsOverlapping(GameObject* object)
 	const auto otherObjectPos = object->GetComponent<TransformComponent>()->GetPosition();
 	const float otherObjectheight = static_cast<float>(object->GetComponent<RenderComponent>()->GetHeight());
 
-	auto& PeterPepperPos = m_pGameObject->GetComponent<TransformComponent>()->GetPosition();
-	const float PeterPepperWidth = static_cast<float>(m_pGameObject->GetComponent<RenderComponent>()->GetWidth());
-	const float PeterPepperHeight = static_cast<float>(m_pGameObject->GetComponent<RenderComponent>()->GetHeight());
+	auto& enemyPos = m_pGameObject->GetComponent<TransformComponent>()->GetPosition();
+	const float enemyWidth = static_cast<float>(m_pGameObject->GetComponent<RenderComponent>()->GetWidth());
+	const float enemyHeight = static_cast<float>(m_pGameObject->GetComponent<RenderComponent>()->GetHeight());
 
 
-	if ((PeterPepperPos.x >= otherObjectPos.x && PeterPepperPos.x + PeterPepperWidth <= otherObjectPos.x + otherObjectWidth) &&
-		(PeterPepperPos.y + PeterPepperHeight >= otherObjectPos.y && PeterPepperPos.y + PeterPepperHeight <= otherObjectPos.y + otherObjectheight))
+	if ((enemyPos.x >= otherObjectPos.x && enemyPos.x + enemyWidth <= otherObjectPos.x + otherObjectWidth) &&
+		(enemyPos.y + enemyHeight >= otherObjectPos.y && enemyPos.y + enemyHeight <= otherObjectPos.y + otherObjectheight))
 	{
 
 		return true;

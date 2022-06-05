@@ -37,10 +37,12 @@ namespace dae
 		Type GetType()const { return m_Type; }
 		void SetType(Type type) { m_Type = type; }
 		bool IsOnTray() const { return m_isOnTray; }
+		std::shared_ptr<PeterPepperComponent> GetDropper() const { return m_pepper; };
 
 		void CheckHitPoints(glm::vec3 positionPP, int height, int width, std::shared_ptr<PeterPepperComponent> pepper);
 		void SetIsFalling(bool isFalling) { m_canFall = isFalling; }
 		void ChooseTexture(Type ingredient);
+		bool IsFalling() const { return  m_canFall; }
 
 	private:
 		std::shared_ptr<RenderComponent> m_pRender{};
@@ -65,6 +67,7 @@ namespace dae
 
 		float m_elapsedSec;
 		bool m_isOnTray{ false };
+
 		std::shared_ptr<PeterPepperComponent> m_pepper{};
 		std::shared_ptr<IngredientComponent> m_previousIngredient{};
 
