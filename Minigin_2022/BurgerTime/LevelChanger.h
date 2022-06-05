@@ -26,6 +26,7 @@ namespace dae
 		std::vector<std::shared_ptr<IngredientComponent>> m_components;
 
 		int m_nrOnTrays;
+		std::shared_ptr<PeterPepperComponent> m_pPeterPepper;
 	};
 
 }

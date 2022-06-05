@@ -84,7 +84,7 @@ void dae::EnemyComponent::HandleCollision()
 		{
 			if (IsOverlapping(object.get()) && object->GetComponent<SaltComponent>()->GetVisibility())
 			{
-				
+				OnDeath();
 				auto pepper = object->GetComponent<SaltComponent>()->GetPeterPepper();
 				pepper->GivePoints(100);
 				break;
