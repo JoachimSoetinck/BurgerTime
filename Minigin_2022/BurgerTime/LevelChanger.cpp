@@ -11,6 +11,8 @@ dae::LevelChanger::LevelChanger(int Currentscene, int nextScene): m_CurrentScene
 			m_components.push_back(o->GetComponent<IngredientComponent>());
 		}
 	}
+
+	std::cout << "Ingredients:" << m_components.size();
 }
 
 void dae::LevelChanger::Render() const
@@ -19,13 +21,13 @@ void dae::LevelChanger::Render() const
 
 void dae::LevelChanger::Update()
 {
-	for(auto ingredient: m_components)
+	for (auto& ingredient : m_components)
 	{
 		if (ingredient->IsOnTray() == true)
 			++m_nrOnTrays;
 	}
 
-	if(m_nrOnTrays == m_components.size())
+	if(m_nrOnTrays == static_cast<int>(m_components.size()))
 	{
 		SceneManager::GetInstance().SetActiveScene(SceneManager::GetInstance().GetScene(m_nextSceneNr).get());
 	}
